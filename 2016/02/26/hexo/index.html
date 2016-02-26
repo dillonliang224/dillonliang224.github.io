@@ -30,7 +30,11 @@
 
 
 本地查看
-启动git bash1234567$hexo generate //编译$hexo server   //启动服务``` - 本地浏览器查询 localhost:4000如果端口被占用，修改hexo端口">
+启动git bash
+12$hexo generate //编译$hexo server   //启动服务
+
+本地浏览器查询 localhost:4000如果端口被占用，修改hexo端口
+1$hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo | 逝水流LF">
 <meta property="og:url" content="http://yoursite.com/2016/02/26/hexo/index.html">
@@ -49,8 +53,12 @@
 
 
 本地查看
-启动git bash1234567$hexo generate //编译$hexo server   //启动服务``` - 本地浏览器查询 localhost:4000如果端口被占用，修改hexo端口">
-<meta property="og:updated_time" content="2016-02-26T04:45:53.193Z">
+启动git bash
+12$hexo generate //编译$hexo server   //启动服务
+
+本地浏览器查询 localhost:4000如果端口被占用，修改hexo端口
+1$hexo">
+<meta property="og:updated_time" content="2016-02-26T05:06:34.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo | 逝水流LF">
 <meta name="twitter:description" content="安装
@@ -67,7 +75,11 @@
 
 
 本地查看
-启动git bash1234567$hexo generate //编译$hexo server   //启动服务``` - 本地浏览器查询 localhost:4000如果端口被占用，修改hexo端口">
+启动git bash
+12$hexo generate //编译$hexo server   //启动服务
+
+本地浏览器查询 localhost:4000如果端口被占用，修改hexo端口
+1$hexo">
     
     
     
@@ -236,9 +248,27 @@ classes that you can use:
 </li>
 </ul>
 <h3 id="本地查看"><a href="#本地查看" class="headerlink" title="本地查看"></a>本地查看</h3><ul>
-<li>启动git bash<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> generate //编译</span><br><span class="line"><span class="variable">$hexo</span> server   //启动服务</span><br><span class="line">``` </span><br><span class="line">- 本地浏览器查询 localhost:<span class="number">4000</span></span><br><span class="line">如果端口被占用，修改hexo端口</span><br><span class="line">```bash</span><br><span class="line"><span class="variable">$hexo</span> s -p port</span><br></pre></td></tr></table></figure>
+<li><p>启动git bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> generate //编译</span><br><span class="line"><span class="variable">$hexo</span> server   //启动服务</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地浏览器查询 localhost:4000<br>如果端口被占用，修改hexo端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> s -p port</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo g == hexo generate</span><br><span class="line">hexo d == hexo deploy</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure>
+<h3 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> new <span class="string">"new article"</span>  //会在<span class="built_in">source</span>/_posts目录下多出一个new-article.md的文件</span><br><span class="line"></span><br><span class="line">title: new article                 文章标题</span><br><span class="line">data:  <span class="number">2016</span>-<span class="number">02</span>-<span class="number">24</span> <span class="number">15</span>:<span class="number">05</span>:<span class="number">48</span>         创建文章时的日期</span><br></pre></td></tr></table></figure>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><blockquote>
+<p>编辑根目录_config.yml<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deploy:&#10;    type: git&#10;    repository: https://github.com/dillonliang224/dillonliang224.github.io.git&#10;    branch: master</span><br></pre></td></tr></table></figure></p>
+<p>重新编译部署<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"><span class="variable">$hexo</span> generate  //编译</span><br><span class="line"><span class="variable">$hexo</span> deploy  //部署，部署成功后，github代码更新，github page作出相应改变</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> new draft <span class="string">"new article"</span>  //会在<span class="built_in">source</span>/_draft目录下多出一个new-article.md的文件</span><br></pre></td></tr></table></figure>
+<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$hexo</span> new page home  //会在<span class="built_in">source</span>/home中生成index.html</span><br></pre></td></tr></table></figure>
+<h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><blockquote>
+<p>themes\hexo_config.yml文件<br>把新page name添加到menu下</p>
+</blockquote>
+<h3 id="底栏"><a href="#底栏" class="headerlink" title="底栏"></a>底栏</h3><blockquote>
+<p>修改themes\hexo\layout_partial\footer.ejs</p>
+</blockquote>
 
   </section>
 
