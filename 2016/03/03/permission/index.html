@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Android权限 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="联系人读取联系人1android.permission.READ_CONTACTS &amp;lt;!--允许应用访问联系人通讯录信息--&amp;gt;
+写入联系人1android.permission.WRITE_CONTACTS &amp;lt;!--写入联系人，但不可读取--&amp;gt;
+短信读取短信内容1android.permission.READ_SMS
+接收短信1android.permission.RECE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android权限 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2016/03/03/permission/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="联系人读取联系人1android.permission.READ_CONTACTS &amp;lt;!--允许应用访问联系人通讯录信息--&amp;gt;
+写入联系人1android.permission.WRITE_CONTACTS &amp;lt;!--写入联系人，但不可读取--&amp;gt;
+短信读取短信内容1android.permission.READ_SMS
+接收短信1android.permission.RECE">
+<meta property="og:updated_time" content="2016-03-03T05:49:35.306Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android权限 | 逝水流LF">
+<meta name="twitter:description" content="联系人读取联系人1android.permission.READ_CONTACTS &amp;lt;!--允许应用访问联系人通讯录信息--&amp;gt;
+写入联系人1android.permission.WRITE_CONTACTS &amp;lt;!--写入联系人，但不可读取--&amp;gt;
+短信读取短信内容1android.permission.READ_SMS
+接收短信1android.permission.RECE">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css" type="text/css">
+    <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+    <link rel="stylesheet" href="/css/archive.css" type="text/css">
+    <link rel="stylesheet" href="/css/china-social-icon.css" type="text/css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          生与死 轮回不止 我们生 他们死
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/blog" title="" class="">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archives" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h2 class="post-title">Android权限</h2>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-03-03" class="post-meta__date date">2016-03-03</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Android/">Android</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="联系人"><a href="#联系人" class="headerlink" title="联系人"></a>联系人</h3><p>读取联系人<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.READ_CONTACTS <span class="comment">&lt;!--允许应用访问联系人通讯录信息--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>写入联系人<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.WRITE_CONTACTS <span class="comment">&lt;!--写入联系人，但不可读取--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="短信"><a href="#短信" class="headerlink" title="短信"></a>短信</h3><p>读取短信内容<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.READ_SMS</span><br></pre></td></tr></table></figure></p>
+<p>接收短信<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.RECEIVE_SMS</span><br></pre></td></tr></table></figure></p>
+<p>发送短信<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.SEND_SMS</span><br></pre></td></tr></table></figure></p>
+<p>编写短信<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.WRITE_SMS <span class="comment">&lt;!--允许编写短信--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="电话"><a href="#电话" class="headerlink" title="电话"></a>电话</h3><p>拨打电话<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CALL_PHONE <span class="comment">&lt;!--允许程序从非系统拨号器里输入电话号码--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>通话权限<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CALL_PRIVILEGED <span class="comment">&lt;!--允许程序拨打电话，替换系统的拨号器界面--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>修改电话状态<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.MODIFY_PHONE_STATE <span class="comment">&lt;!--修改电话状态，如飞行模式，但不包含替换系统拨号器界面--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>处理拨出电话<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.PROCESS_OUTGOING_CALLS <span class="comment">&lt;!--允许程序监视，修改或放弃播出电话--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="账户"><a href="#账户" class="headerlink" title="账户"></a>账户</h3><p>账户管理<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.ACCOUNT_MANAGER <span class="comment">&lt;!--获取账户验证信息，主要为GMail账户信息，只有系统级进程才能访问的权限--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>验证账户<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.AUTHENTICATE_ACCOUNTS <span class="comment">&lt;!--允许一个程序通过账户验证方式访问账户管理ACCOUNT_MANAGER相关信息--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p>访问网络<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.INTERNET <span class="comment">&lt;!--访问网络连接，可能产生GPRS流量--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>获取网络状态<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.ACCESS_NETWORK_STATE <span class="comment">&lt;!--获取网络信息状态，如当前的网络连接是否有效--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>改变网络状态<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CHANGE_NETWORK_STATE <span class="comment">&lt;!--改变网络状态如是否能联网--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>获取WiFi状态<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.ACCESS_WIFI_STATE <span class="comment">&lt;!--获取当前WiFi接入的状态以及WLAN热点的信息--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>改变WiFi状态<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CHANGE_WIFI_STATE</span><br></pre></td></tr></table></figure></p>
+<p>改变WiFi多播状态<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CHANGE_WIFI_MULTICAST_STATE</span><br></pre></td></tr></table></figure></p>
+<h3 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h3><p>短信广播<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BROADCAST_SMS <span class="comment">&lt;!--当收到短信时触发一个广播--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>应用删除时广播<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BROADCAST_PACKAGE_REMOVED</span><br></pre></td></tr></table></figure></p>
+<p>连续广播<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BROADCAST_STICKY <span class="comment">&lt;!--允许一个程序收到广播后快速收到下一个广播--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>WAP PUSH广播<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BROADCAST_WAP_PUSH <span class="comment">&lt;!--WAP PUSH服务收到后触发一个广播--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="蓝牙"><a href="#蓝牙" class="headerlink" title="蓝牙"></a>蓝牙</h3><p>使用蓝牙<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BLUETOOTH <span class="comment">&lt;!--允许程序连接配对过的蓝牙设备--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>蓝牙管理<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BLUETOOTH_ADMIN <span class="comment">&lt;!--允许程序进行发现和配对新的蓝牙设备--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="拍照"><a href="#拍照" class="headerlink" title="拍照"></a>拍照</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CAMERA <span class="comment">&lt;!--允许访问摄像头进行拍照--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="屏幕截图"><a href="#屏幕截图" class="headerlink" title="屏幕截图"></a>屏幕截图</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.READ_FRAME_BUFFER <span class="comment">&lt;!--读取帧缓存用于屏幕截图--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="录音"><a href="#录音" class="headerlink" title="录音"></a>录音</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.RECORD_AUDIO <span class="comment">&lt;!--录制声音通过手机或耳机的麦克--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="声音"><a href="#声音" class="headerlink" title="声音"></a>声音</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.MODIFY_AUDIO_SETTINGS <span class="comment">&lt;!--修改声音设置信息--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="电量"><a href="#电量" class="headerlink" title="电量"></a>电量</h3><p>电量状态<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BATTERY_STATS <span class="comment">&lt;!--获取电池电量统计信息--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>电源管理<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.DEVICE_POWER <span class="comment">&lt;!--允许访问底层电源管理--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="闹铃"><a href="#闹铃" class="headerlink" title="闹铃"></a>闹铃</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.android.alarm.permission.SET_ALARM <span class="comment">&lt;!--设置闹铃提醒--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BIND_INPUT_METHOD <span class="comment">&lt;!--请求InputMethodService服务，只有系统才能使用--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="壁纸"><a href="#壁纸" class="headerlink" title="壁纸"></a>壁纸</h3><p>绑定壁纸<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.BIND_WALLPAPER <span class="comment">&lt;!--必须通过WallpaperService服务来请求，只有系统才能用--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="闪光灯"><a href="#闪光灯" class="headerlink" title="闪光灯"></a>闪光灯</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.FLASHLIGHT <span class="comment">&lt;!--允许访问闪光灯--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.MOUNT_FORMAT_FILESYSTEMS <span class="comment">&lt;!--格式化可移动文件系统，比如格式化清空SD卡--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="NFC"><a href="#NFC" class="headerlink" title="NFC"></a>NFC</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.NFC <span class="comment">&lt;!--允许程序执行NFC近距离通讯操作，用于移动支持--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="全局搜索"><a href="#全局搜索" class="headerlink" title="全局搜索"></a>全局搜索</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.GLOBAL_SEARCH <span class="comment">&lt;!--允许程序使用全局搜索功能--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装-or-清除-or-删除"><a href="#安装-or-清除-or-删除" class="headerlink" title="安装 or 清除 or 删除"></a>安装 or 清除 or 删除</h3><p>安装应用程序<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.INSTALL_PACKAGES</span><br></pre></td></tr></table></figure></p>
+<p>清除应用缓存<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CLEAR_APP_CACHE</span><br></pre></td></tr></table></figure></p>
+<p>删除应用<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.DELETE_PACKAGES</span><br></pre></td></tr></table></figure></p>
+<p>清除用户数据<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.CLEAR_APP_USER_DATA <span class="comment">&lt;!--清除应用的用户数据--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>删除缓存文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.permission.DELETE_CACHE_FILES <span class="comment">&lt;!--允许应用删除缓存文件--&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2016 | Dillon Liang 博客</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
