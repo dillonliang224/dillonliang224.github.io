@@ -7,7 +7,7 @@
     
 
     <title>
-      Android | 逝水流LF 
+      major.minor | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,19 +16,19 @@
     
     
 
-    <meta name="description" content="android:baselineAligned=”false”//文字不对齐
-android:weightSum=”2”//总weight是2，然后给控件分配1就占据了一半1.若想一个子控件显示为布局的一部分，且只有该子控件，只写控件的layoutweight是不行的，还要在布局中，添加android:wightSum=””。2.layout开头表示在父布局的属性，其余的为控件自身的属性。3.la">
+    <meta name="description" content="编译Java代码的时候有时候会发生如下错误：
+1234567java.lang.UnsupportedClassVersionError: test_hello_world :Unsupported major.minor version 51.0at java.lang.ClassLoader.defineClass1(Native Method)at java.lang.ClassLoader">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2016/02/24/android/index.html">
+<meta property="og:title" content="major.minor | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2016/03/03/major-minor/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="android:baselineAligned=”false”//文字不对齐
-android:weightSum=”2”//总weight是2，然后给控件分配1就占据了一半1.若想一个子控件显示为布局的一部分，且只有该子控件，只写控件的layoutweight是不行的，还要在布局中，添加android:wightSum=””。2.layout开头表示在父布局的属性，其余的为控件自身的属性。3.la">
-<meta property="og:updated_time" content="2016-03-03T08:52:33.421Z">
+<meta property="og:description" content="编译Java代码的时候有时候会发生如下错误：
+1234567java.lang.UnsupportedClassVersionError: test_hello_world :Unsupported major.minor version 51.0at java.lang.ClassLoader.defineClass1(Native Method)at java.lang.ClassLoader">
+<meta property="og:updated_time" content="2016-03-04T01:42:21.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android | 逝水流LF">
-<meta name="twitter:description" content="android:baselineAligned=”false”//文字不对齐
-android:weightSum=”2”//总weight是2，然后给控件分配1就占据了一半1.若想一个子控件显示为布局的一部分，且只有该子控件，只写控件的layoutweight是不行的，还要在布局中，添加android:wightSum=””。2.layout开头表示在父布局的属性，其余的为控件自身的属性。3.la">
+<meta name="twitter:title" content="major.minor | 逝水流LF">
+<meta name="twitter:description" content="编译Java代码的时候有时候会发生如下错误：
+1234567java.lang.UnsupportedClassVersionError: test_hello_world :Unsupported major.minor version 51.0at java.lang.ClassLoader.defineClass1(Native Method)at java.lang.ClassLoader">
     
     
     
@@ -157,22 +157,17 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h2 class="post-title">Android</h2>
+    <h2 class="post-title">major.minor</h2>
 
     
 
     <div class="post-meta">
-      <time datetime="2016-02-24" class="post-meta__date date">2016-02-24</time> 
+      <time datetime="2016-03-03" class="post-meta__date date">2016-03-03</time> 
 
       <span class="post-meta__tags tags">
 
           
 
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/Android/">Android</a>
-            </font>
           
 
       </span>
@@ -183,12 +178,20 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>android:baselineAligned=”false”//文字不对齐</p>
-<p>android:weightSum=”2”//总weight是2，然后给控件分配1就占据了一半<br>1.若想一个子控件显示为布局的一部分，且只有该子控件，只写控件的layout<em>weight是不行的，还要在布局中，添加android:wightSum=””。<br><br>2.layout</em>开头表示在父布局的属性，其余的为控件自身的属性。<br>3.layout_weight只是在线性布局中有效，计算方式：假设屏幕宽度为L，控件的layout_width或layout_height为0，则控件的宽度直接按比例计算，如控件1的layout_weight=”1”,控件2的layout_weight=”2”,则控件1的宽度为1/3L,控件2的宽度为2/3L。如果控件的宽和高为match_parent.则控件的1的宽度为=自身宽度(L)+剩余宽度([L-(L+L)])<em>所占比例=L+1/3</em>(-L)=2/3L</p>
-<hr>
-<p>SPDY</p>
+    <p>编译Java代码的时候有时候会发生如下错误：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">java.lang.UnsupportedClassVersionError: test_hello_world :</span><br><span class="line"></span><br><span class="line">Unsupported major.minor version <span class="number">51.0</span></span><br><span class="line"></span><br><span class="line">at java.lang.ClassLoader.defineClass1(Native Method)</span><br><span class="line"></span><br><span class="line">at java.lang.ClassLoader.defineClassCond(Unknown Source)</span><br></pre></td></tr></table></figure>
+<p>这个错误是JDK版本过低的原因。</p>
+<p>我测试的时候本机使用的是jdk1.6，项目编译用1.7，导致异常。</p>
+<p>各JDK版本对应的错误编号：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">J2SE 8 = 52&#10;J2SE 7 = 51&#10;J2SE 6.0 = 50&#10;J2SE 5.0 = 49&#10;JDK 1.4 = 48&#10;JDK 1.3 = 47&#10;JDK 1.2 = 46&#10;JDK 1.1 = 45</span><br></pre></td></tr></table></figure></p>
+<p>所以我换了个1.7jdk重新编译就好了。<br>步骤如下：</p>
 <blockquote>
-<p>SPDY是Google开发的基于TCP的应用层协议，用以最小化网络延迟，提升网络速度，优化用户的网络使用体验。SPDY并不是一种用于替代HTTP的协议，而是对HTTP协议的增强。新协议的功能包括数据流的多路复用、请求优先级以及HTTP报头压缩。</p>
+<ol>
+<li><p>修改Eclipse的JDK版本</p>
+<p>   Window -&gt; Preference -&gt; Java -&gt; Installed JREs</p>
+<p>  选择一个高版本的，如果没有下载一个了。</p>
+</li>
+<li>修改项目的编译版本<br>  选中项目，alt + enter，找到Java Compiler，重新选中编译</li>
+</ol>
 </blockquote>
 
   </section>
