@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      debug，优化你的日志 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="在node.js里，我们常用console.log来输出日志来调试，如果有多个日志输出，我们很容易混淆，不知道那个是我们想要的，又得一个一个的取消。 在npm里有个debug的包，可以用来美化我们的日志输出，简单明了。">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="debug，优化你的日志 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/08/07/nodejs-debug/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="在node.js里，我们常用console.log来输出日志来调试，如果有多个日志输出，我们很容易混淆，不知道那个是我们想要的，又得一个一个的取消。 在npm里有个debug的包，可以用来美化我们的日志输出，简单明了。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/1547616634_583262.png">
+<meta property="og:image" content="http://yoursite.com/images/debug.png">
+<meta property="og:updated_time" content="2019-01-23T15:18:28.629Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="debug，优化你的日志 | 逝水流LF">
+<meta name="twitter:description" content="在node.js里，我们常用console.log来输出日志来调试，如果有多个日志输出，我们很容易混淆，不知道那个是我们想要的，又得一个一个的取消。 在npm里有个debug的包，可以用来美化我们的日志输出，简单明了。">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/1547616634_583262.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">debug，优化你的日志</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-08-07" class="post-meta__date date">2018-08-07</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <div class="dillon"></div>
+    <p><img src="http://image.dillonliang.cn/blog/1547616634_583262.png" alt=""></p>
+<p>在node.js里，我们常用console.log来输出日志来调试，如果有多个日志输出，我们很容易混淆，不知道那个是我们想要的，又得一个一个的取消。</p>
+<p>在npm里有个debug的包，可以用来美化我们的日志输出，简单明了。</p>
+<a id="more"></a>
+<p><img src="/images/debug.png" alt="debug"></p>
+<p>一个迷你的JavaScript调试工具，以Node.js核心的调试技术为模型。适用于Node.js和Web浏览器。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装简单暴力<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install debug</span><br></pre></td></tr></table></figure></p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>按照github文档里写法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'debug'</span>)(<span class="string">'worker:a'</span>)</span><br><span class="line">  , b = <span class="built_in">require</span>(<span class="string">'debug'</span>)(<span class="string">'worker:b'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">work</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  a(<span class="string">'doing lots of uninteresting work'</span>);</span><br><span class="line">  setTimeout(work, <span class="built_in">Math</span>.random() * <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">work();</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">workb</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  b(<span class="string">'doing some work'</span>);</span><br><span class="line">  setTimeout(workb, <span class="built_in">Math</span>.random() * <span class="number">2000</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">workb();</span><br></pre></td></tr></table></figure>
+<p>按如下命令启动：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ DEBUG=worker:* node worker.js</span><br></pre></td></tr></table></figure>
+<p>输出格式如上面的图片。</p>
+<p>如果不想使用了debug，把命令里的DEBUG=worker:*去掉就行了</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

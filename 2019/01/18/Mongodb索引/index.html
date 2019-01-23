@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Mongodb索引 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="MongoDB索引主要内容 MongoDB索引的概念&amp;amp;机制  MongoDB索引的类型  MongoDB索引的管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mongodb索引 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/01/18/Mongodb索引/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="MongoDB索引主要内容 MongoDB索引的概念&amp;amp;机制  MongoDB索引的类型  MongoDB索引的管理">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/mongodb.jpeg">
+<meta property="og:image" content="https://docs.mongodb.com/manual/_images/index-for-sort.bakedsvg.svg">
+<meta property="og:image" content="https://docs.mongodb.com/manual/_images/index-ascending.bakedsvg.svg">
+<meta property="og:image" content="https://docs.mongodb.com/manual/_images/index-compound-key.bakedsvg.svg">
+<meta property="og:image" content="https://docs.mongodb.com/manual/_images/index-multikey.bakedsvg.svg">
+<meta property="og:updated_time" content="2019-01-23T15:18:28.623Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mongodb索引 | 逝水流LF">
+<meta name="twitter:description" content="MongoDB索引主要内容 MongoDB索引的概念&amp;amp;机制  MongoDB索引的类型  MongoDB索引的管理">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/mongodb.jpeg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Mongodb索引</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-01-18" class="post-meta__date date">2019-01-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <div class="dillon"></div>
+    <p><img src="http://image.dillonliang.cn/blog/mongodb.jpeg" alt=""></p>
+<h2 id="MongoDB索引主要内容"><a href="#MongoDB索引主要内容" class="headerlink" title="MongoDB索引主要内容"></a>MongoDB索引主要内容</h2><ul>
+<li><p>MongoDB索引的概念&amp;机制</p>
+</li>
+<li><p>MongoDB索引的类型</p>
+</li>
+<li><p>MongoDB索引的管理</p>
+</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h2 id="索引的概念"><a href="#索引的概念" class="headerlink" title="索引的概念"></a>索引的概念</h2><blockquote>
+<p>数据库索引是对数据表中一列或多列的值进行排序的一种数据结构，使用索引可以快速访问数据库表中的特定信息。</p>
+<p>数据库索引的功能类似于书籍的索引，书籍有了索引就不需要翻查整本书。于此类似，在进行查询时，数据库会首先在索引中查找，找到相应的条目后，就可以直接跳转到目标文档的位置 </p>
+<p>MongoDB索引几乎与关系型数据库的索引一样，绝大数优化关系型数据库索引的技巧同样适用于MongoDB。</p>
+</blockquote>
+<p><img src="https://docs.mongodb.com/manual/_images/index-for-sort.bakedsvg.svg" alt=""></p>
+<hr>
+<h2 id="索引的机制"><a href="#索引的机制" class="headerlink" title="索引的机制"></a>索引的机制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// db.users.find()</span><br><span class="line">&#123; &quot;_id&quot;: ObjectId(&quot;5ab06959ea72f7b2089e1225&quot;), &quot;name: &quot;jack&quot;, &quot;score&quot;: 19 &#125;</span><br><span class="line">&#123; &quot;_id&quot;: ObjectId(&quot;5ab06959ea72f7b2089e1226&quot;), &quot;name: &quot;tom&quot;, &quot;score&quot;: 18 &#125;</span><br><span class="line">&#123; &quot;_id&quot;: ObjectId(&quot;5ab06959ea72f7b2089e1227&quot;), &quot;name: &quot;liang&quot;, &quot;score&quot;: 30 &#125;</span><br><span class="line">&#123; &quot;_id&quot;: ObjectId(&quot;5ab06959ea72f7b2089e1228&quot;), &quot;name: &quot;rose&quot;, &quot;score&quot;: 30 &#125;</span><br><span class="line">&#123; &quot;_id&quot;: ObjectId(&quot;5ab06959ea72f7b2089e1229&quot;), &quot;name: &quot;admin&quot;, &quot;score&quot;: 50 &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当你往某各个集合插入多个文档后，每个文档在经过底层的存储引擎持久化后，会有一个位置信息，通过这个位置信息，就能从存储引擎里读出该文档。比如mmapv1引擎里，位置信息是『文件id + 文件内offset 』， 在wiredtiger存储引擎（一个KV存储引擎）里，位置信息是wiredtiger在存储文档时生成的一个key，通过这个key能访问到对应的文档；为方便介绍，统一用pos(position的缩写)来代表位置信息。</p>
+</blockquote>
+<p>在users集合里有5个文档，假设其存储后位置信息如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">位置信息</th>
+<th style="text-align:center">文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">pos1</td>
+<td style="text-align:center">{“name: “jack”, “score”: 19 }</td>
+</tr>
+<tr>
+<td style="text-align:center">pos2</td>
+<td style="text-align:center">{“name: “tom”, “score”: 18 }</td>
+</tr>
+<tr>
+<td style="text-align:center">pos3</td>
+<td style="text-align:center">{“name: “liang”, “score”: 30 }</td>
+</tr>
+<tr>
+<td style="text-align:center">pos4</td>
+<td style="text-align:center">{“name: “rose”, “score”: 30 }</td>
+</tr>
+<tr>
+<td style="text-align:center">pos5</td>
+<td style="text-align:center">{“name: “admin”, “score”: 50 }</td>
+</tr>
+</tbody>
+</table>
+<p>假设现在有个查询 db.users.find({ score: 30 }), 查询所有成绩为30分的人，这时需要遍历所有的文档（『全表扫描』），根据位置信息读出文档，对比score字段是否为30。当然如果只有5个文档，全表扫描的开销并不大，但如果集合文档数量到百万、甚至千万上亿的时候，对集合进行全表扫描开销是非常大的，一个查询耗费数十秒甚至几分钟都有可能。</p>
+<p>如果想加速 db.users.find({ score: 30 }），就可以考虑对users表的score字段建立索引。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.uses.createIndex(&#123; score: 1 &#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建立索引后，MongoDB会额外存储一份按score字段升序排序的索引数据，索引结构类似如下，索引通常采用类似btree的结构持久化存储，以保证从索引里快速（O(logN)的时间复杂度）找出某个score值对应的位置信息，然后根据位置信息就能读取出对应的文档。</p>
+</blockquote>
+<p>索引本质上是树(多路平衡查找树)🌲，最小的值在最左边的叶子🍃上，最大的值在最右边的叶子🍃上。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">SCORE</th>
+<th style="text-align:center">位置信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:center">pos2</td>
+</tr>
+<tr>
+<td style="text-align:center">19</td>
+<td style="text-align:center">pos1</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:center">pos3</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:center">pos4</td>
+</tr>
+<tr>
+<td style="text-align:center">50</td>
+<td style="text-align:center">pos5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h2><p>MongoDB提供了多种类型的索引，功能十分强大，其类型如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Single Filed</td>
+<td style="text-align:center">单字段索引</td>
+<td style="text-align:center">在普通字段，自文档以及子文档的某个字段上建立的索引</td>
+</tr>
+<tr>
+<td style="text-align:center">Compound Index</td>
+<td style="text-align:center">复合索引</td>
+<td style="text-align:center">同时在多个字段上建立的索引</td>
+</tr>
+<tr>
+<td style="text-align:center">Multikey Index</td>
+<td style="text-align:center">多键索引</td>
+<td style="text-align:center">对数组建立的索引</td>
+</tr>
+<tr>
+<td style="text-align:center">Geospatial Index</td>
+<td style="text-align:center">地理空间索引</td>
+<td style="text-align:center">对地理位置型数据建立的索引(支持球面和平面)</td>
+</tr>
+<tr>
+<td style="text-align:center">Text Index</td>
+<td style="text-align:center">全文索引</td>
+<td style="text-align:center">对每一个词建立索引，支持全文索引</td>
+</tr>
+<tr>
+<td style="text-align:center">Hashed Index</td>
+<td style="text-align:center">哈希索引</td>
+<td style="text-align:center">索引中存储的是被索引键的哈希值</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="MongoDB索引的类型-单字段索引"><a href="#MongoDB索引的类型-单字段索引" class="headerlink" title="MongoDB索引的类型 - 单字段索引"></a>MongoDB索引的类型 - 单字段索引</h3><p>MongoDB可以在单个字段上建立索引，字段可以是普通字段、整个子文档以及子文档的某个字段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.users.createIndex(&#123; &apos;name&apos;: 1 &#125;)</span><br><span class="line">db.users.createIndex(&#123; &apos;bind&apos;: 1 &#125;)</span><br><span class="line">db.users.createIndex(&#123; &apos;bind.Weixin.uid&apos;: 1 &#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://docs.mongodb.com/manual/_images/index-ascending.bakedsvg.svg" alt=""></p>
+<p>_id索引是系统默认创建的单字段升序且具有唯一性的索引，每个集合的文档都会包含该字段，不能被删除，默认值是ObjectId类型。</p>
+<hr>
+<h3 id="MongoDB索引的类型-复合索引"><a href="#MongoDB索引的类型-复合索引" class="headerlink" title="MongoDB索引的类型 - 复合索引"></a>MongoDB索引的类型 - 复合索引</h3><p>创建复合索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.collection.createIndex( &#123; &lt;field1&gt;: &lt;type&gt;, &lt;field2&gt;: &lt;type2&gt;, ... &#125; )</span><br><span class="line">db.users.createIndex(&#123; userid: 1, score: -1 &#125;) // 按照userid升序，score降序</span><br></pre></td></tr></table></figure>
+<p><img src="https://docs.mongodb.com/manual/_images/index-compound-key.bakedsvg.svg" alt=""></p>
+<p>索引字段排序优化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 上面创建的索引支持以下两种数据查询排序</span><br><span class="line">db.users.find().sort(&#123; userid: 1, score: -1 &#125;)</span><br><span class="line">db.users.find().sort(&#123; userid: -1, score: 1 &#125;)</span><br></pre></td></tr></table></figure>
+<p>复合索引也支持前缀匹配，相当于创建了userid索引。</p>
+<p>使用复合索引，尽量使用<strong>覆盖索引</strong>查询。覆盖索引的条件：</p>
+<ul>
+<li><p>所有的查询字段是索引的一部分</p>
+</li>
+<li><p>所有的查询返回字段在同一个索引中</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;&#125;, &#123; userid: 1, score: 1, _id: -1 &#125;)</span><br></pre></td></tr></table></figure>
+<p>只查询索引就完成了本次查询，不用根据索引检索文档，可极大提高查询效率。</p>
+<hr>
+<h3 id="MongoDB索引的类型-多键索引"><a href="#MongoDB索引的类型-多键索引" class="headerlink" title="MongoDB索引的类型 - 多键索引"></a>MongoDB索引的类型 - 多键索引</h3><p>多键索引是对数组类型建立的索引，对<strong>数组建立的索引，实际上是对数组的每个元素建立索引，而不是对数组本身建立索引</strong>。</p>
+<p><img src="https://docs.mongodb.com/manual/_images/index-multikey.bakedsvg.svg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let book1 = &#123; name: &apos;大主宰&apos;, tags: [&apos;玄幻&apos;, &apos;奇幻&apos;] &#125;</span><br><span class="line">let book2 = &#123; name: &apos;星辰变&apos;, tags: [&apos;奇幻&apos;, &apos;仙侠&apos;] &#125;</span><br><span class="line"></span><br><span class="line">db.books.createIndex(&#123; tags: 1 &#125;)</span><br><span class="line"></span><br><span class="line">// 创建后索引大致如下：</span><br><span class="line">玄幻 =&gt; [book1]</span><br><span class="line">奇幻 =&gt; [book1, book2]</span><br><span class="line">仙侠 =&gt; [book2]</span><br></pre></td></tr></table></figure>
+<p>关于多键索引需要注意的几个问题：</p>
+<blockquote>
+<p>一个索引中的数组字段最多只能有一个。 由于复合键的笛卡尔积中的每一个值都要被索引，如果支持多个数组，笛卡尔积会很大，索引条目会爆炸式增长。如果数组A有m个元素，数组B有n个元素，那么在A与B字段上建立索引，将产生m*n个索引条目。</p>
+</blockquote>
+<p>eg: {a: [1, 2], b: [1, 2]} a和b都是数组类型，无法创建这样的索引：<br>{a: 1, b:1}</p>
+<ul>
+<li>当数组元素是文档类型时，可以为文档的某个字段建立多键索引</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot;: ObjectId(&apos;5aad3aaf93cd493421f17088&apos;),</span><br><span class="line">    &quot;title&quot;: &quot;推荐书单&quot;,</span><br><span class="line">    &quot;books&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;author&quot;: &quot;dillon&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">db.list.createIndex(&#123; &quot;books.author&quot;: 1 &#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="MongoDB索引的类型-全文本索引"><a href="#MongoDB索引的类型-全文本索引" class="headerlink" title="MongoDB索引的类型 - 全文本索引"></a>MongoDB索引的类型 - 全文本索引</h3><p>MongoDB支持在文档中搜索文本，在需要搜索的文档字段上创建全文本索引。<br>创建任何一种索引的开销都比较大，而创建全文本索引的成本更高。MongoDB在字符串上创建全文本索引，对字符串进行分解，分词，并且保存到一些地方。</p>
+<p>Note:</p>
+<ul>
+<li><p>一个文档集合最多只能创建一个文本索引</p>
+</li>
+<li><p>可以在文档多个字段上创建文本索引</p>
+</li>
+<li><p>可以在复合索引中创建文本索引</p>
+</li>
+</ul>
+<p><strong>todo</strong> 栗子🌰</p>
+<hr>
+<h3 id="MongoDB索引的类型-地理空间索引索引"><a href="#MongoDB索引的类型-地理空间索引索引" class="headerlink" title="MongoDB索引的类型 - 地理空间索引索引"></a>MongoDB索引的类型 - 地理空间索引索引</h3><ul>
+<li><p>2dsphere Indexes (球面)</p>
+</li>
+<li><p>2d Indexes (平面)</p>
+</li>
+<li><p>geoHaystack Indexes</p>
+</li>
+</ul>
+<p><strong>todo</strong> 栗子🌰</p>
+<hr>
+<h3 id="MongoDB索引的类型-哈希索引"><a href="#MongoDB索引的类型-哈希索引" class="headerlink" title="MongoDB索引的类型 - 哈希索引"></a>MongoDB索引的类型 - 哈希索引</h3><p>哈希索引项中存储的是索引键的哈希值，哈希索引只支持等值查询，不支持范围查找。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.createIndex(&#123; name: &apos;hashed&apos; &#125;)</span><br></pre></td></tr></table></figure>
+<p>哈希索引主要用于分片的集合上，可以作为片键来使用，能够将数据比较均匀的分散存储在各个分片上。</p>
+<hr>
+<h2 id="MongoDB索引的属性"><a href="#MongoDB索引的属性" class="headerlink" title="MongoDB索引的属性"></a>MongoDB索引的属性</h2><ul>
+<li><p>唯一(Unique)索引</p>
+</li>
+<li><p>稀疏(Sparse)索引</p>
+</li>
+<li><p>TTL(Time To Live)索引</p>
+</li>
+<li><p>部分(Partial)索引</p>
+</li>
+<li><p>Case Insensitive Indexes</p>
+</li>
+</ul>
+<hr>
+<h3 id="MongoDB索引-唯一索引"><a href="#MongoDB索引-唯一索引" class="headerlink" title="MongoDB索引 - 唯一索引"></a>MongoDB索引 - 唯一索引</h3><p>唯一索引可以确保集合的每一个文档的索引字段都有唯一的值，不会出现重复值。</p>
+<p>创建唯一索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.createIndex(&#123; nickname: 1 &#125;, &#123; unique: true &#125;)</span><br></pre></td></tr></table></figure>
+<p>非空集合上创建唯一索引可能会失败，因为集合中索引字段已经存在重复值，这时可以使用dropDups: true选项来删除重复的数据:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.createIndex(&#123; nickname: 1 &#125;, &#123; unique: true, dropDups: true &#125;)</span><br></pre></td></tr></table></figure>
+<p>Note:</p>
+<ol>
+<li><p>_id</p>
+</li>
+<li><p>复合索引</p>
+</li>
+<li><p>null</p>
+</li>
+<li><p>不能为哈希索引指定唯一属性</p>
+</li>
+</ol>
+<hr>
+<h3 id="MongoDB索引-稀疏索引"><a href="#MongoDB索引-稀疏索引" class="headerlink" title="MongoDB索引 - 稀疏索引"></a>MongoDB索引 - 稀疏索引</h3><p>稀疏索引指的是只为索引字段存在的文档建立索引，即使索引字段的值为null,但不会为索引字段不存在的文档创建索引。</p>
+<p>创建稀疏索引:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.createIndex(&#123; age: 1 &#125;, &#123; spare: true &#125;)</span><br></pre></td></tr></table></figure>
+<p>Note: </p>
+<ul>
+<li><p>对应复合索引，只要有一个索引字段存在，就会为该文档建立索引</p>
+</li>
+<li><p>默认情况下，地理空间索引和全文索引都是稀疏索引</p>
+</li>
+</ul>
+<hr>
+<h3 id="MongoDB索引-TTL索引"><a href="#MongoDB索引-TTL索引" class="headerlink" title="MongoDB索引 - TTL索引"></a>MongoDB索引 - TTL索引</h3><p>TTL(Time-To-Live)索引可以为文档设置一个超时时间，当达到预设值的时间后，该文档会被数据库自动删除。</p>
+<p>创建ttl索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.errlogs.createIndex(&#123; created: 1 &#125;, &#123; expireAfterSeconds: 60 * 60 &#125;)</span><br></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li><p>TTL索引只能建立在单独字段上，在复合索引上无法指定TTL属性</p>
+</li>
+<li><p>在_id字段无法使用TTL索引</p>
+</li>
+<li><p>在固定集合(Capped collection)上无法使用TTL索引</p>
+</li>
+<li><p>创建TTL索引后，MongoDB会有一个TTL后台线程来管理文档，当达到超时时间时会将文档删除</p>
+</li>
+<li><p>使用collMod修改TTL索引的超时时间，eg: db.runCommand({collMod: 集合名, index: {keyPattern: {索引名}, expireAfterSeconds: 时间}})</p>
+</li>
+<li><p>TTL索引不能保证达到过期时间时，立即将文档删除，中间可能会有一定的延迟</p>
+</li>
+<li><p>在复制集上建立的TTL索引，TTL后台线程只会运行在主节点上</p>
+</li>
+</ul>
+<p><strong>todo</strong>🌰</p>
+<h3 id="MongoDB索引-部分索引"><a href="#MongoDB索引-部分索引" class="headerlink" title="MongoDB索引 - 部分索引"></a>MongoDB索引 - 部分索引</h3><p>部分索引仅索引符合指定过滤器表达式的集合中的文档。<br>通过索引集合中的文档的子集，部分索引具有较低的存储需求并且降低了索引创建和维护的性能成本。</p>
+<p><strong>todo</strong>🌰</p>
+<p>ref: <a href="https://docs.mongodb.com/manual/core/index-partial/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/core/index-partial/</a></p>
+<h3 id="MongoDB索引-Case-Insensitive索引"><a href="#MongoDB索引-Case-Insensitive索引" class="headerlink" title="MongoDB索引 - Case Insensitive索引"></a>MongoDB索引 - Case Insensitive索引</h3><blockquote>
+<p>Case insensitive indexes support queries that perform string comparisons without regard for case.</p>
+</blockquote>
+<p>不区分大小写的索引支持执行字符串比较而不考虑大小写的查询。</p>
+<p>创建Case Insensitive索引需要指定参数collation:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.collection.createIndex( &#123; &quot;key&quot; : 1 &#125;,</span><br><span class="line">                           &#123; collation: &#123;</span><br><span class="line">                               locale : &lt;locale&gt;,</span><br><span class="line">                               strength : &lt;strength&gt;</span><br><span class="line">                             &#125;</span><br><span class="line">                           &#125; )</span><br></pre></td></tr></table></figure>
+<p>其中，locale指定语言，strength指定比较级别。</p>
+<p>eg: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">db.createCollection(&quot;fruit&quot;)</span><br><span class="line">db.fruit.createIndex( &#123; type: 1&#125;,</span><br><span class="line">                      &#123; collation: &#123; locale: &apos;en&apos;, strength: 2 &#125; &#125; )</span><br><span class="line"></span><br><span class="line">db.fruit.insert( [ &#123; type: &quot;apple&quot; &#125;,</span><br><span class="line">                   &#123; type: &quot;Apple&quot; &#125;,</span><br><span class="line">                   &#123; type: &quot;APPLE&quot; &#125; ] )</span><br><span class="line"></span><br><span class="line">db.fruit.find( &#123; type: &quot;apple&quot; &#125; ) // does not use index, finds one result</span><br><span class="line"></span><br><span class="line">db.fruit.find( &#123; type: &quot;apple&quot; &#125; ).collation( &#123; locale: &apos;en&apos;, strength: 2 &#125; )</span><br><span class="line">// uses the index, finds three results</span><br><span class="line"></span><br><span class="line">db.fruit.find( &#123; type: &quot;apple&quot; &#125; ).collation( &#123; locale: &apos;en&apos;, strength: 1 &#125; )</span><br><span class="line">// does not use the index, finds three results</span><br></pre></td></tr></table></figure>
+<p>ref: <a href="https://docs.mongodb.com/manual/core/index-case-insensitive/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/core/index-case-insensitive/</a></p>
+<hr>
+<h2 id="创建索引的参数"><a href="#创建索引的参数" class="headerlink" title="创建索引的参数"></a>创建索引的参数</h2><h2 id="索引优化器"><a href="#索引优化器" class="headerlink" title="索引优化器"></a>索引优化器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">// db.books.find(&#123;majorCate: &apos;玄幻&apos;&#125;, &#123; majorCate: 1&#125;).explain(&apos;executionStats&apos;)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;queryPlanner&quot; : &#123;</span><br><span class="line">        &quot;plannerVersion&quot; : 1,</span><br><span class="line">        &quot;namespace&quot; : &quot;gleeman.books&quot;,</span><br><span class="line">        &quot;indexFilterSet&quot; : false,</span><br><span class="line">        &quot;parsedQuery&quot; : &#123;</span><br><span class="line">            &quot;majorCate&quot; : &#123;</span><br><span class="line">                &quot;$eq&quot; : &quot;玄幻&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;winningPlan&quot; : &#123;  // 最优执行计划</span><br><span class="line">            &quot;stage&quot; : &quot;PROJECTION&quot;, // 制定返回字段时是projection</span><br><span class="line">            &quot;transformBy&quot; : &#123;</span><br><span class="line">                &quot;majorCate&quot; : 1.0,</span><br><span class="line">                &quot;minorCate&quot; : 1.0</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;inputStage&quot; : &#123;</span><br><span class="line">                &quot;stage&quot; : &quot;FETCH&quot;,</span><br><span class="line">                &quot;inputStage&quot; : &#123;</span><br><span class="line">                    &quot;stage&quot; : &quot;IXSCAN&quot;, // 根据索引查询</span><br><span class="line">                    &quot;keyPattern&quot; : &#123;</span><br><span class="line">                        &quot;majorCate&quot; : 1</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &quot;indexName&quot; : &quot;majorCate_1&quot;,</span><br><span class="line">                    &quot;isMultiKey&quot; : false, // 多键索引为true</span><br><span class="line">                    &quot;direction&quot; : &quot;forward&quot;,</span><br><span class="line">                    &quot;indexBounds&quot; : &#123;</span><br><span class="line">                        &quot;majorCate&quot; : [ </span><br><span class="line">                            &quot;[\&quot;玄幻\&quot;, \&quot;玄幻\&quot;]&quot;</span><br><span class="line">                        ]</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;rejectedPlans&quot; : [ </span><br><span class="line">            &#123;</span><br><span class="line">                &quot;stage&quot; : &quot;PROJECTION&quot;,</span><br><span class="line">                &quot;transformBy&quot; : &#123;</span><br><span class="line">                    &quot;majorCate&quot; : 1.0,</span><br><span class="line">                    &quot;minorCate&quot; : 1.0</span><br><span class="line">                &#125;,</span><br><span class="line">                &quot;inputStage&quot; : &#123;</span><br><span class="line">                    &quot;stage&quot; : &quot;FETCH&quot;,</span><br><span class="line">                    &quot;inputStage&quot; : &#123;</span><br><span class="line">                        &quot;stage&quot; : &quot;IXSCAN&quot;,</span><br><span class="line">                        &quot;keyPattern&quot; : &#123;</span><br><span class="line">                            &quot;majorCate&quot; : 1,</span><br><span class="line">                            &quot;minorCate&quot; : 1</span><br><span class="line">                        &#125;,</span><br><span class="line">                        &quot;indexName&quot; : &quot;majorCate_1_minorCate_1&quot;,</span><br><span class="line">                        &quot;isMultiKey&quot; : false,</span><br><span class="line">                        &quot;direction&quot; : &quot;forward&quot;,</span><br><span class="line">                        &quot;indexBounds&quot; : &#123;</span><br><span class="line">                            &quot;majorCate&quot; : [ </span><br><span class="line">                                &quot;[\&quot;玄幻\&quot;, \&quot;玄幻\&quot;]&quot;</span><br><span class="line">                            ],</span><br><span class="line">                            &quot;minorCate&quot; : [ </span><br><span class="line">                                &quot;[MinKey, MaxKey]&quot; // 因为只指定了majorCate, 所以minorCate的索引范围是[Minkey, MaxKey]</span><br><span class="line">                            ]</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;executionStats&quot; : &#123;</span><br><span class="line">        &quot;executionSuccess&quot; : true,</span><br><span class="line">        &quot;nReturned&quot; : 513063,</span><br><span class="line">        &quot;executionTimeMillis&quot; : 14417,</span><br><span class="line">        &quot;totalKeysExamined&quot; : 513063,</span><br><span class="line">        &quot;totalDocsExamined&quot; : 513063,</span><br><span class="line">        &quot;executionStages&quot; : &#123;</span><br><span class="line">            &quot;stage&quot; : &quot;PROJECTION&quot;,</span><br><span class="line">            &quot;nReturned&quot; : 513063,</span><br><span class="line">            &quot;executionTimeMillisEstimate&quot; : 13711,</span><br><span class="line">            &quot;works&quot; : 513064,</span><br><span class="line">            &quot;advanced&quot; : 513063,</span><br><span class="line">            &quot;needTime&quot; : 0,</span><br><span class="line">            &quot;needFetch&quot; : 0,</span><br><span class="line">            &quot;saveState&quot; : 4009,</span><br><span class="line">            &quot;restoreState&quot; : 4009,</span><br><span class="line">            &quot;isEOF&quot; : 1,</span><br><span class="line">            &quot;invalidates&quot; : 0,</span><br><span class="line">            &quot;transformBy&quot; : &#123;</span><br><span class="line">                &quot;majorCate&quot; : 1.0,</span><br><span class="line">                &quot;minorCate&quot; : 1.0</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;inputStage&quot; : &#123;</span><br><span class="line">                &quot;stage&quot; : &quot;FETCH&quot;,</span><br><span class="line">                &quot;nReturned&quot; : 513063,</span><br><span class="line">                &quot;executionTimeMillisEstimate&quot; : 11223,</span><br><span class="line">                &quot;works&quot; : 513064,</span><br><span class="line">                &quot;advanced&quot; : 513063,</span><br><span class="line">                &quot;needTime&quot; : 0,</span><br><span class="line">                &quot;needFetch&quot; : 0,</span><br><span class="line">                &quot;saveState&quot; : 4009,</span><br><span class="line">                &quot;restoreState&quot; : 4009,</span><br><span class="line">                &quot;isEOF&quot; : 1,</span><br><span class="line">                &quot;invalidates&quot; : 0,</span><br><span class="line">                &quot;docsExamined&quot; : 513063,</span><br><span class="line">                &quot;alreadyHasObj&quot; : 0,</span><br><span class="line">                &quot;inputStage&quot; : &#123;</span><br><span class="line">                    &quot;stage&quot; : &quot;IXSCAN&quot;,</span><br><span class="line">                    &quot;nReturned&quot; : 513063,</span><br><span class="line">                    &quot;executionTimeMillisEstimate&quot; : 560,</span><br><span class="line">                    &quot;works&quot; : 513064,</span><br><span class="line">                    &quot;advanced&quot; : 513063,</span><br><span class="line">                    &quot;needTime&quot; : 0,</span><br><span class="line">                    &quot;needFetch&quot; : 0,</span><br><span class="line">                    &quot;saveState&quot; : 4009,</span><br><span class="line">                    &quot;restoreState&quot; : 4009,</span><br><span class="line">                    &quot;isEOF&quot; : 1,</span><br><span class="line">                    &quot;invalidates&quot; : 0,</span><br><span class="line">                    &quot;keyPattern&quot; : &#123;</span><br><span class="line">                        &quot;majorCate&quot; : 1</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &quot;indexName&quot; : &quot;majorCate_1&quot;,</span><br><span class="line">                    &quot;isMultiKey&quot; : false,</span><br><span class="line">                    &quot;direction&quot; : &quot;forward&quot;,</span><br><span class="line">                    &quot;indexBounds&quot; : &#123;</span><br><span class="line">                        &quot;majorCate&quot; : [ </span><br><span class="line">                            &quot;[\&quot;玄幻\&quot;, \&quot;玄幻\&quot;]&quot;</span><br><span class="line">                        ]</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &quot;keysExamined&quot; : 513063,</span><br><span class="line">                    &quot;dupsTested&quot; : 0,</span><br><span class="line">                    &quot;dupsDropped&quot; : 0,</span><br><span class="line">                    &quot;seenInvalidated&quot; : 0,</span><br><span class="line">                    &quot;matchTested&quot; : 0</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;serverInfo&quot; : &#123;</span><br><span class="line">        &quot;host&quot; : &quot;database28&quot;,</span><br><span class="line">        &quot;port&quot; : 27017,</span><br><span class="line">        &quot;version&quot; : &quot;3.0.11&quot;,</span><br><span class="line">        &quot;gitVersion&quot; : &quot;48f8b49dc30cc2485c6c1f3db31b723258fcbf39&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;ok&quot; : 1.0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>stage:</p>
+<p>COLLSCAN 全表扫描（没有索引的时候）<br>IXSCAN 索引扫描<br>FETCH 根据索引检索文档<br>SORT 在内存中排序（大数据浪费性能）<br>TEXT 全文索引扫描<br>PROJECTION 限定返回字段时</p>
+<hr>
+<p>参考：<br>MongoDB索引: <a href="https://docs.mongodb.com/manual/indexes/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/indexes/</a><br>MongoDB索引原理： <a href="http://www.mongoing.com/archives/2797" target="_blank" rel="noopener">http://www.mongoing.com/archives/2797</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

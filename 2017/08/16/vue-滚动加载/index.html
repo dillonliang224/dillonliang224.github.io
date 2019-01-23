@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      vue 滚动加载 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="在很多场景下，我们需要使用vue滚动加载，数据不断的接上去。">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue 滚动加载 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2017/08/16/vue-滚动加载/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="在很多场景下，我们需要使用vue滚动加载，数据不断的接上去。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/vue.jpeg">
+<meta property="og:updated_time" content="2019-01-23T15:18:28.634Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue 滚动加载 | 逝水流LF">
+<meta name="twitter:description" content="在很多场景下，我们需要使用vue滚动加载，数据不断的接上去。">
+<meta name="twitter:image" content="http://image.dillonliang.cn/vue.jpeg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">vue 滚动加载</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-08-16" class="post-meta__date date">2017-08-16</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+            <font class="categories">
+            &#8226; 分类:
+            <a class="categories-link" href="/categories/vue/">vue</a>
+            </font>
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/vue/">vue</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <div class="dillon"></div>
+    <p><img src="http://image.dillonliang.cn/vue.jpeg" alt=""></p>
+<p>在很多场景下，我们需要使用vue滚动加载，数据不断的接上去。</p>
+<a id="more"></a>
+<p>可以参考如下： 问题下的回答列表</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>滚动加载<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">        hello</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.staticfile.org/axios/0.15.3/axios.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> vue = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'.container'</span>,</span></span><br><span class="line"><span class="undefined">            data: &#123;</span></span><br><span class="line"><span class="javascript">                question_id: <span class="string">''</span>,</span></span><br><span class="line"><span class="undefined">                question: &#123;&#125;,</span></span><br><span class="line"><span class="undefined">                answers: [],</span></span><br><span class="line"><span class="undefined">                page_size: 10,</span></span><br><span class="line"><span class="undefined">                page_index: 1,</span></span><br><span class="line"><span class="javascript">                load_more: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">                is_requesting: <span class="literal">false</span></span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            created: <span class="function"><span class="keyword">function</span> <span class="title">created</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.question_id = <span class="string">'5992ab1871e8596697274117'</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="keyword">this</span>.question_id) &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.getQuestionDetail();</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.getQuestionAnswers();</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            methods: &#123;</span></span><br><span class="line"><span class="javascript">                getQuestionDetail: <span class="function"><span class="keyword">function</span> <span class="title">getQuestionDetail</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> questionID = <span class="keyword">this</span>.question_id;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                    axios.get(<span class="string">'/api/question/'</span> + questionID).then(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                        <span class="keyword">var</span> result = res.data.result;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                        <span class="keyword">if</span> (result &amp;&amp; result.ok) &#123;</span></span><br><span class="line"><span class="undefined">                            self.question = &#123;</span></span><br><span class="line"><span class="undefined">                                title: result.question_title,</span></span><br><span class="line"><span class="undefined">                                type: result.question_type,</span></span><br><span class="line"><span class="undefined">                                describe: result.question_describe,</span></span><br><span class="line"><span class="undefined">                                answer_count: result.question_answer_count,</span></span><br><span class="line"><span class="undefined">                                view_count: result.question_view_count,</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">                                user_id: result.user_id,</span></span><br><span class="line"><span class="undefined">                                user_name: result.user_name,</span></span><br><span class="line"><span class="undefined">                                user_avatar: result.user_avatar</span></span><br><span class="line"><span class="undefined">                            &#125;;</span></span><br><span class="line"><span class="undefined">                        &#125;</span></span><br><span class="line"><span class="undefined">                    &#125;);</span></span><br><span class="line"><span class="undefined">                &#125;,</span></span><br><span class="line"><span class="javascript">                getQuestionAnswers: <span class="function"><span class="keyword">function</span> <span class="title">getQuestionAnswers</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> questionID = <span class="keyword">this</span>.question_id;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                    <span class="keyword">if</span> (!self.is_requesting) &#123;</span></span><br><span class="line"><span class="javascript">                        self.is_requesting = <span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                        axios.get(<span class="string">'/api/question/answers/'</span> + questionID, &#123;</span></span><br><span class="line"><span class="undefined">                            page_size: self.page_size,</span></span><br><span class="line"><span class="undefined">                            page_index: self.page_index++</span></span><br><span class="line"><span class="javascript">                        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                            self.is_requesting = <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">                            <span class="keyword">var</span> result = res.data.result;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                            <span class="keyword">if</span> (result &amp;&amp; result.ok) &#123;</span></span><br><span class="line"><span class="undefined">                                self.answers = self.answers.concat(result.list);</span></span><br><span class="line"><span class="undefined">                                self.load_more = result.list.length == self.page_size;</span></span><br><span class="line"><span class="undefined">                            &#125;</span></span><br><span class="line"><span class="javascript">                        &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                            self.is_requesting = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined">                        &#125;);</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;,</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="javascript">            mounted: <span class="function"><span class="keyword">function</span> <span class="title">mounted</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> self = <span class="keyword">this</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                <span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">if</span> (<span class="built_in">document</span>.body.scrollTop + <span class="built_in">window</span>.innerHeight &gt;= <span class="built_in">document</span>.body.offsetHeight &amp;&amp; self.load_more) &#123;</span></span><br><span class="line"><span class="undefined">                        self.getQuestionAnswers();</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这种实现方式即实现了滚动加载，又不会多次请求api</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

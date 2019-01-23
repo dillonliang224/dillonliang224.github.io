@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Crypto之AES加密 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="crypto模块是node.js里的加密模块，提供非对称／对称等加密方法。 AES是项目中常用的非对称加密算法，接下来看看如何使用node.js进行加解密的。">
+<meta name="keywords" content="Crypto,node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto之AES加密 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/12/14/Crypto之AES加密/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="crypto模块是node.js里的加密模块，提供非对称／对称等加密方法。 AES是项目中常用的非对称加密算法，接下来看看如何使用node.js进行加解密的。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/1547550717_149784.png">
+<meta property="og:updated_time" content="2019-01-23T15:18:28.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Crypto之AES加密 | 逝水流LF">
+<meta name="twitter:description" content="crypto模块是node.js里的加密模块，提供非对称／对称等加密方法。 AES是项目中常用的非对称加密算法，接下来看看如何使用node.js进行加解密的。">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/1547550717_149784.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Crypto之AES加密</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-12-14" class="post-meta__date date">2018-12-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Crypto/">Crypto</a>, <a class="tags-link" href="/tags/node-js/">node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <div class="dillon"></div>
+    <p><img src="http://image.dillonliang.cn/blog/1547550717_149784.png" alt=""></p>
+<p>crypto模块是node.js里的加密模块，提供非对称／对称等加密方法。</p>
+<p>AES是项目中常用的非对称加密算法，接下来看看如何使用node.js进行加解密的。</p>
+<a id="more"></a>
+<h2 id="AES简介"><a href="#AES简介" class="headerlink" title="AES简介"></a>AES简介</h2><p><strong>AES</strong>(英语：Advanced Encryption Standard，缩写：AES), 高级加密标准, <strong>对称加密</strong>算法之一。</p>
+<p>在linux下执行如下命令查看支持的AES加密模式：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl list -cipher-algorithms</span><br><span class="line"></span><br><span class="line">aes-128-cbc    aes-128-ecb    aes-192-cbc    aes-192-ecb    aes-256-cbc</span><br><span class="line">aes-256-ecb</span><br></pre></td></tr></table></figure>
+<p><strong>AES密钥长度则可以是128，192或256比特，也就是16，24，32字节。</strong></p>
+<p>具体的加密原理参考<a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86" target="_blank" rel="noopener">高级加密标准</a>。</p>
+<h3 id="准备条件"><a href="#准备条件" class="headerlink" title="准备条件"></a>准备条件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">algorithm: aes-128-cbc  // 算法</span><br><span class="line">key: 8U*JzqV@&amp;7yXBmdc   // 密钥, 长度油算法决定</span><br><span class="line">iv: 5aeb293e76a71930    // 初始向量，固定16字节</span><br></pre></td></tr></table></figure>
+<h3 id="show-me-code"><a href="#show-me-code" class="headerlink" title="show me code"></a>show me code</h3><p>node.js原声模块crypto提供了如何AES加密，用到了Cipher和Decipher.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> algorithm = <span class="string">'aes-128-cbc'</span></span><br><span class="line"><span class="keyword">const</span> key = <span class="string">'8U*JzqV@&amp;7yXBmdc'</span></span><br><span class="line"><span class="keyword">const</span> iv = <span class="string">'5aeb293e76a71930'</span></span><br></pre></td></tr></table></figure>
+<p><strong>Cipher和Decipher对象不能通过new关键字声明，只能由crypto.createCipheriv()和crypto.createDecipheriv()创建。</strong></p>
+<h4 id="Cipher-加密"><a href="#Cipher-加密" class="headerlink" title="Cipher 加密"></a>Cipher 加密</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用crypto的createCipheriv方法创建一个加密对象</span></span><br><span class="line"><span class="keyword">const</span> cipher = crypto.createCipheriv(algorithm, key, iv)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对数据进行加密</span></span><br><span class="line"><span class="comment">// 如果指定了inputEncoding，那它的值必须是'utf8', 'ascii', or 'latin1'中的一个，并且data数据也是对应的encoding字符串.</span></span><br><span class="line"><span class="comment">// 如果没有指定inputEncoding,data必须是Buffer, TypedArray, or DataView.</span></span><br><span class="line"><span class="comment">// 如果data是Buffer, TypedArray, or DataView, 则忽略inputEncoding.</span></span><br><span class="line"><span class="comment">// 如果没有指定密文的输出格式outputEncoding，将会返回Buffer.</span></span><br><span class="line"><span class="comment">// 如果指定了outputEncoding，将返回指定outputEncoding的字符串，outputEncoding支持'latin1', 'base64' or 'hex'</span></span><br><span class="line"><span class="keyword">let</span> encrypted = cipher.update(data[, inputEncoding][, outputEncoding])</span><br><span class="line"></span><br><span class="line"><span class="comment">// cipher.update()可以执行多次，直到cipher.final([outputEncoding])被调用.</span></span><br><span class="line"><span class="comment">// 在cipher.final()方法调用后，cipher.update()将不可再调用，否则会报错.</span></span><br><span class="line"><span class="comment">// encrypted将是最终的密文</span></span><br><span class="line">encrypted += cipher.final(outputEncoding)</span><br></pre></td></tr></table></figure>
+<h4 id="Decipher-解密"><a href="#Decipher-解密" class="headerlink" title="Decipher 解密"></a>Decipher 解密</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用crypto的createDecipheriv方法创建一个解密对象</span></span><br><span class="line"><span class="keyword">const</span> decipher = crypto.createDecipheriv(algorithm, key, iv)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对数据进行解密</span></span><br><span class="line"><span class="comment">// 如果指定了inputEncoding，那它的值必须是'latin1', 'base64', or 'hex'中的一个，并且data数据也是对应的encoding字符串.</span></span><br><span class="line"><span class="comment">// 如果没有指定inputEncoding,data必须是Buffer.</span></span><br><span class="line"><span class="comment">// 如果data是Buffer,则忽略inputEncoding.</span></span><br><span class="line"><span class="comment">// 如果没有指定密文的输出格式outputEncoding，将会返回Buffer.</span></span><br><span class="line"><span class="comment">// 如果指定了outputEncoding，将返回指定outputEncoding的字符串，outputEncoding支持'latin1', 'ascii' or 'utf8'</span></span><br><span class="line"><span class="keyword">let</span> decrypted = decipher.update(data[, inputEncoding][, outputEncoding])</span><br><span class="line"></span><br><span class="line"><span class="comment">// decipher.update()可以执行多次，直到decipher.final([outputEncoding])被调用.</span></span><br><span class="line"><span class="comment">// 在decipher.final()方法调用后，decipher.update()将不可再调用，否则会报错.</span></span><br><span class="line"><span class="comment">// decrypted将是最终的明文</span></span><br><span class="line">decrypted += decipher.final([outputEncoding])</span><br></pre></td></tr></table></figure>
+<h4 id="AES-加解密🌰"><a href="#AES-加解密🌰" class="headerlink" title="AES 加解密🌰"></a>AES 加解密🌰</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> algorithm = <span class="string">'aes-128-cbc'</span></span><br><span class="line"><span class="keyword">const</span> key = <span class="string">'8U*JzqV@&amp;7yXBmdc'</span></span><br><span class="line"><span class="keyword">const</span> iv = <span class="string">'5aeb293e76a71930'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 解密</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decipher</span>(<span class="params">ciphertext</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> decip = crypto.createDecipheriv(algorithm, key, iv)</span><br><span class="line">    <span class="keyword">return</span> decip.update(ciphertext, <span class="string">'base64'</span>, <span class="string">'utf8'</span>) + decip.final(<span class="string">'utf8'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加密</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cipher</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> cip = crypto.createCipheriv(algorithm, key, iv)</span><br><span class="line">    <span class="keyword">return</span> cip.update(data, <span class="string">'utf8'</span>, <span class="string">'base64'</span>) + cip.final(<span class="string">'base64'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = <span class="string">'helloworld'</span></span><br><span class="line"><span class="keyword">let</span> result = cipher(data)</span><br><span class="line"><span class="built_in">console</span>.log(decipher(result))</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>如果加解密的都是Buffer，就没有什么编码的问题</li>
+<li>加密使用了编码，那么inputEncoding可选’utf8’, ‘ascii’, or ‘latin1’，outputEncoding可选’latin1’, ‘base64’ or ‘hex’</li>
+<li>解密使用了解码，那么inputEncoding可选’latin1’, ‘base64’, or ‘hex’，outputEncoding可选’utf8’, ‘ascii’ or ‘latin1’</li>
+</ol>
+<hr>
+<ol>
+<li><a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86" target="_blank" rel="noopener">高级加密标准</a></li>
+<li><a href="https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_class_cipher" target="_blank" rel="noopener">node.js 对称加密文档</a></li>
+<li><a href="https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_class_decipher" target="_blank" rel="noopener">node.js 对称解密文档</a></li>
+</ol>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

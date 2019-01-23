@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      pm2简介 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="什么是PM2，P(rocess)M(anager)2 Runtime，运行时的进程管理器。 为什么要用PM2，作为进程管理者，它提供了大量的便利操作帮助开发者管理他们的应用。">
+<meta name="keywords" content="node.js,pm2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pm2简介 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/pm2/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="什么是PM2，P(rocess)M(anager)2 Runtime，运行时的进程管理器。 为什么要用PM2，作为进程管理者，它提供了大量的便利操作帮助开发者管理他们的应用。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/pm2.png">
+<meta property="og:updated_time" content="2019-01-23T15:18:28.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pm2简介 | 逝水流LF">
+<meta name="twitter:description" content="什么是PM2，P(rocess)M(anager)2 Runtime，运行时的进程管理器。 为什么要用PM2，作为进程管理者，它提供了大量的便利操作帮助开发者管理他们的应用。">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/pm2.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">pm2简介</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-07-31" class="post-meta__date date">2018-07-31</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>, <a class="tags-link" href="/tags/pm2/">pm2</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <div class="dillon"></div>
+    <p><img src="http://image.dillonliang.cn/blog/pm2.png" alt=""></p>
+<p>什么是PM2，P(rocess)M(anager)2 Runtime，运行时的进程管理器。</p>
+<p>为什么要用PM2，作为进程管理者，它提供了大量的便利操作帮助开发者管理他们的应用。</p>
+<a id="more"></a>
+<p>运行如下的命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start app.js</span><br></pre></td></tr></table></figure></p>
+<p>启动一个进程就是如此的简单，一旦启动，它将会永久运行，在机器崩溃或者重启的时候，自动重启。</p>
+<h2 id="安装pm2"><a href="#安装pm2" class="headerlink" title="安装pm2"></a>安装pm2</h2><p>用npm</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install pm2 -g</span><br></pre></td></tr></table></figure>
+<p>用yarn<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add pm2</span><br></pre></td></tr></table></figure></p>
+<h3 id="CLI-自动提醒"><a href="#CLI-自动提醒" class="headerlink" title="CLI 自动提醒"></a>CLI 自动提醒</h3><p>安装completion<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 completion install</span><br></pre></td></tr></table></figure></p>
+<p>然后当你输入命令的时候，可以提醒你哪些命令可用。比如输入pm2 re，再按tab键，输出如下内容，提示你re开头的命令有哪些。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ pm2 re</span><br><span class="line">register    reload      reloadLogs  report      reset       restart     resurrect</span><br></pre></td></tr></table></figure></p>
+<p>如果不知道某个命令有哪些参数，哪些功能，可以使用–help标志。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看pm2 restart怎么用</span></span><br><span class="line">pm2 restart -h</span><br></pre></td></tr></table></figure></p>
+<h2 id="管理多个进程-Manage-multiple-processes"><a href="#管理多个进程-Manage-multiple-processes" class="headerlink" title="管理多个进程(Manage multiple processes)"></a>管理多个进程(Manage multiple processes)</h2><p>PM2会保留您的进程列表，以便能够轻松启动，重启和停止它们。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start and add a process to your list</span></span><br><span class="line"><span class="comment"># can use --name or -n to define process name</span></span><br><span class="line">pm2 start app.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># show your list</span></span><br><span class="line">pm2 ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># stop and delete a process from the list</span></span><br><span class="line">pm2 delete app</span><br></pre></td></tr></table></figure>
+<p>当应用启动后，可以使用应用名来管理你的应用。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># stop the process (kill the process but keep it in the process list)</span></span><br><span class="line">pm2 stop app</span><br><span class="line"></span><br><span class="line"><span class="comment"># start the process</span></span><br><span class="line">pm2 start app</span><br><span class="line"></span><br><span class="line"><span class="comment"># both stop and start</span></span><br><span class="line">pm2 restart app</span><br></pre></td></tr></table></figure></p>
+<p>同样，当服务器重启时，可以使用startup脚本来启动。</p>
+<h2 id="查看日志-Access-your-logs"><a href="#查看日志-Access-your-logs" class="headerlink" title="查看日志(Access your logs)"></a>查看日志(Access your logs)</h2><p>使用pm2 logs来查看所有进程的实时日志，也可以通过进程名（进程ID）来查看指定进程的日志，比如pm2 logs app。</p>
+<p>在~/.pm2/logs文件夹下，有进程的所有日志（常规输出／错误输出）</p>
+<h2 id="Clusterize"><a href="#Clusterize" class="headerlink" title="Clusterize"></a>Clusterize</h2><p>cluster模式可以充分利用服务器CPU，不需要任何代码的改动。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 -i 参数可以启动cluster模式</span></span><br><span class="line">pm2 start app.js -i 4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动检测可用的CPU数</span></span><br><span class="line">pm2 start app.js -i max</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用reload命令来代替restart命令，实现0秒停机</span></span><br><span class="line">pm2 reload app</span><br></pre></td></tr></table></figure>
+<h2 id="Ecosystem-File"><a href="#Ecosystem-File" class="headerlink" title="Ecosystem File"></a>Ecosystem File</h2><p>使用Ecosystem File来代替在多个服务器上部署或使用多个命令行参数启动进程，方便轻松管理应用。</p>
+<h3 id="生成模版文件"><a href="#生成模版文件" class="headerlink" title="生成模版文件"></a>生成模版文件</h3><p>在pm2 3.0以上的版本中，有pm2 init命令，在3.0以下，有pm2 ecosystem命令，都会生成一个ecosystem.config.js文件，内容大致如下:</p>
+<p>命令：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 init <span class="comment"># pm2 ecosystem</span></span><br></pre></td></tr></table></figure></p>
+<p>生成的文件 ecosystem.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps : [&#123;</span><br><span class="line">    name: <span class="string">"app"</span>,	<span class="comment">// 进程名</span></span><br><span class="line">    script: <span class="string">"./app.js"</span>, <span class="comment">// 启动文件</span></span><br><span class="line">    env: &#123;</span><br><span class="line">      NODE_ENV: <span class="string">"development"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    env_production: &#123;</span><br><span class="line">      NODE_ENV: <span class="string">"production"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><h4 id="常规用法"><a href="#常规用法" class="headerlink" title="常规用法"></a>常规用法</h4><p>在项目根目录下，可以使用pm2 start命令启动所有进程，默认查找ecosystem.config.js文件，启动所有定义在apps下的进程。</p>
+<p>如果文件重命名了，假设为file.api.js，那么启动命令改为pm2 start file.api.js，效果和ecosystem一样。</p>
+<h4 id="启动特定的app"><a href="#启动特定的app" class="headerlink" title="启动特定的app"></a>启动特定的app</h4><p>假设file.api.js下有app和file的服务可以启动，但是只启动file服务</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps : [&#123;</span><br><span class="line">    name: <span class="string">"app"</span>,	<span class="comment">// 进程名</span></span><br><span class="line">    script: <span class="string">"./app.js"</span>, <span class="comment">// 启动文件</span></span><br><span class="line">    env: &#123;</span><br><span class="line">      NODE_ENV: <span class="string">"development"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    env_production: &#123;</span><br><span class="line">      NODE_ENV: <span class="string">"production"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  	name: <span class="string">"file"</span>,</span><br><span class="line">  	script: <span class="string">"./file.js"</span>,</span><br><span class="line">  	env: &#123;</span><br><span class="line">  		NODE_ENV: <span class="string">"development"</span></span><br><span class="line">  	&#125;,</span><br><span class="line">  	env_production: &#123;</span><br><span class="line">      NODE_ENV: <span class="string">"production"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  	&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么启动命令使用–only &lt;app_name&gt;，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start file.api.js --only app</span><br></pre></td></tr></table></figure></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>pm2支持在不同环境下不同的参数，格式： env_<environment-name>，在上面的例子中有两种环境：development和production，假设要加上staging环境，那么加上env_staging，然后定义环境变量即可。</environment-name></p>
+<p>使用–env标志来启动不同的环境：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pm2 start file.api.js // 默认development，使用env下的变量</span><br><span class="line">pm2 start file.api.js --env production // 使用env_production下的变量</span><br></pre></td></tr></table></figure></p>
+<h3 id="不可变环境"><a href="#不可变环境" class="headerlink" title="不可变环境"></a>不可变环境</h3><p>应用的环境在应用进程创建的时候就定下来，即使重启也不会改变应用的环境，这种行为保证了环境的一致性。</p>
+<p>如果要强制更新应用的环境，一定要使用–update-env:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># refresh the environment</span></span><br><span class="line">pm2 restart ecosystem.config.js --update-env</span><br><span class="line"></span><br><span class="line"><span class="comment"># switch the environment</span></span><br><span class="line">pm2 restart ecosystem.config.js --env production --update-env</span><br></pre></td></tr></table></figure></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

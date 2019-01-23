@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      pm2进程管理-P(rocess) M(anagement) | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="PM2是一个后台保存的进程，一个守护进程，负责处理所有正在运行的进程。我们将学习如何使用PM2管理流程并发现一个关键概念：进程列表(the process list)。">
+<meta name="keywords" content="node.js,pm2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pm2进程管理-P(rocess) M(anagement) | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/08/01/pm2-process-management/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="PM2是一个后台保存的进程，一个守护进程，负责处理所有正在运行的进程。我们将学习如何使用PM2管理流程并发现一个关键概念：进程列表(the process list)。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-23T15:18:28.631Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pm2进程管理-P(rocess) M(anagement) | 逝水流LF">
+<meta name="twitter:description" content="PM2是一个后台保存的进程，一个守护进程，负责处理所有正在运行的进程。我们将学习如何使用PM2管理流程并发现一个关键概念：进程列表(the process list)。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">pm2进程管理-P(rocess) M(anagement)</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-08-01" class="post-meta__date date">2018-08-01</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>, <a class="tags-link" href="/tags/pm2/">pm2</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <div class="dillon"></div>
+    <p>PM2是一个后台保存的进程，一个守护进程，负责处理所有正在运行的进程。<br>我们将学习如何使用PM2管理流程并发现一个关键概念：进程列表(the process list)。</p>
+<a id="more"></a>
+<h2 id="进程列表（the-process-list"><a href="#进程列表（the-process-list" class="headerlink" title="进程列表（the process list)"></a>进程列表（the process list)</h2><p>进程列表是所有正在运行的应用程序的注册位置。</p>
+<p>使用下面几个命令来管理进程列表。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start and add a process to your list</span></span><br><span class="line">pm2 start app.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># show your list</span></span><br><span class="line">pm2 ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># stop and delete a process from the list</span></span><br><span class="line">pm2 delete app</span><br></pre></td></tr></table></figure>
+<p>当使用pm2 start app.js命令的时候，它做了2件事：</p>
+<ul>
+<li>在pm2进程列表里注册app进程</li>
+<li>后台启动app进程</li>
+</ul>
+<p>在进程列表里的进程名跟启动的.js文件名相关，一般为文件名，不带扩展名。可以使用–name或者-n来修改进程名。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>可以通过进程列表中的进程名来操作进程。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kill the process but keep it in the process list</span></span><br><span class="line">pm2 stop app</span><br><span class="line"></span><br><span class="line"><span class="comment"># start the process again</span></span><br><span class="line">pm2 start app</span><br><span class="line"></span><br><span class="line"><span class="comment"># both stop and start</span></span><br><span class="line">pm2 restart app</span><br></pre></td></tr></table></figure>
+<p>也可以同时指定多个进程名</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 restart app1 app2 app3</span><br></pre></td></tr></table></figure>
+<p>或者使用正则表达式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 restart /app/</span><br></pre></td></tr></table></figure>
+<h2 id="保存进程列表"><a href="#保存进程列表" class="headerlink" title="保存进程列表"></a>保存进程列表</h2><p>可以通过下面的命令保存和复活进程列表：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># save your list in hard disk memory</span></span><br><span class="line">pm2 save</span><br><span class="line"></span><br><span class="line"><span class="comment"># resurrect your list previously saved</span></span><br><span class="line">pm2 resurrect</span><br></pre></td></tr></table></figure>
+<p>进程列表会保存在$HOME/.pm2/dump.pm2。<br>也可以设置startup hook，在服务器重启的时候复活进程列表。</p>
+<h2 id="管理任何应用类型"><a href="#管理任何应用类型" class="headerlink" title="管理任何应用类型"></a>管理任何应用类型</h2><p>pm2和其他编程语言兼容，使用此等价于：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">".sh"</span>: <span class="string">"bash"</span>,</span><br><span class="line">  <span class="string">".py"</span>: <span class="string">"python"</span>,</span><br><span class="line">  <span class="string">".rb"</span>: <span class="string">"ruby"</span>,</span><br><span class="line">  <span class="string">".coffee"</span>: <span class="string">"coffee"</span>,</span><br><span class="line">  <span class="string">".php"</span>: <span class="string">"php"</span>,</span><br><span class="line">  <span class="string">".pl"</span>: <span class="string">"perl"</span>,</span><br><span class="line">  <span class="string">".js"</span>: <span class="string">"node"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果启动的文件没有扩展名，则安装二进制文件启动。</p>
+<p>假设启动一个phthon的demo:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start demo.py</span><br></pre></td></tr></table></figure></p>
+<p>如果要指定解释器的路径，在ecosystem文件中指定它：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  <span class="string">"apps"</span> : [&#123;</span><br><span class="line">    name: <span class="string">"script"</span>,</span><br><span class="line">    script: <span class="string">"./script.py"</span>,</span><br><span class="line">    interpreter: <span class="string">"/usr/bin/python"</span>,</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="本地监测"><a href="#本地监测" class="headerlink" title="本地监测"></a>本地监测</h2><p>使用pm2 monit命令可以查看本地监测，可以获取cpu使用，内存利用率，循环延迟，每分钟请求数。</p>
+<p>可以使用PM2 Plus在Web仪表盘上来监测app应用。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

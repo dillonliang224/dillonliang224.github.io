@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      supertest翻译学习 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="##supertest HTTP断言，易于构建在superagent之上。">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="supertest翻译学习 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/supertest翻译学习/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="##supertest HTTP断言，易于构建在superagent之上。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-23T15:18:28.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="supertest翻译学习 | 逝水流LF">
+<meta name="twitter:description" content="##supertest HTTP断言，易于构建在superagent之上。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">supertest翻译学习</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-09-11" class="post-meta__date date">2017-09-11</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <div class="dillon"></div>
+    <p>##supertest</p>
+<p>HTTP断言，易于构建在superagent之上。</p>
+<a id="more"></a>
+<h3 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h3><p>编写这个模块的动机在于提供一个高级抽象的http测试库，同时也支持superagent低级api。</p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>使用npm安装supertest并保存为开发依赖项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install supertest --save-dev</span><br><span class="line"></span><br><span class="line">//or </span><br><span class="line">npm i supertest -D</span><br></pre></td></tr></table></figure>
+<p>安装完成后，可以使用require(‘supertest’)来调用它。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>你可能传递一个http服务或者一个request方法，如果服务器还没有监听连接，那么它将被绑定到一个临时端口，因此不需要跟踪端口。</p>
+<p>supertest可以运行在任何测试框架，下面的例子没有用任何测试框架。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">'supertest'</span>);</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/user'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">	res.status(<span class="number">200</span>).json(&#123; <span class="attr">name</span>: <span class="string">'tobi'</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">request(app)</span><br><span class="line">	.get(<span class="string">'/user'</span>)</span><br><span class="line">	.expect(<span class="string">'Content-Type'</span>, /json/)</span><br><span class="line">	.expect(<span class="string">'Content-Length'</span>, <span class="string">'15'</span>)</span><br><span class="line">	.expect(<span class="number">200</span>)</span><br><span class="line">	.end(<span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<p>下面这个例子是和mocha结合，注意如何使用done完成任意的链式调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'GET /users'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">'respond with json'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		request(app)</span><br><span class="line">			.get(<span class="string">'/users'</span>)</span><br><span class="line">			.set(<span class="string">'Accept'</span>, <span class="string">'application/json'</span>)</span><br><span class="line">			.expect(<span class="string">'Content-Type'</span>, /json/)</span><br><span class="line">			.expect(<span class="number">200</span>, done);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>关于上述代码有一点需要注意的是，如何你没有添加一个期望的状态码（比如说302），<br>superagent现在可以发送任何http错误（任何大于2XX的代码）到回调函数作为第一个参数。</p>
+<p>如何你正在使用.end方法，.expect在断言失败的情况下不会抛出，它将会把这个断言作为一个error返回给end方法。为了获取这个<br>失败的测试例子，你需要重新抛出这个error或者传给done()方法， 如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'GET /users'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">'respond with json'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">		request(app)</span><br><span class="line">			.get(<span class="string">'/users'</span>)</span><br><span class="line">			.set(<span class="string">'Accept'</span>, <span class="string">'application/json'</span>)</span><br><span class="line">			.expect(<span class="number">200</span>)</span><br><span class="line">			.end(<span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">				<span class="keyword">if</span> (err) <span class="keyword">return</span> done(err);</span><br><span class="line">				done();</span><br><span class="line">			&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>你也可以使用promises</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'GET /users'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	it(<span class="string">'respond with json'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> request(app)</span><br><span class="line">			.get(<span class="string">'/users'</span>)</span><br><span class="line">			.set(<span class="string">'Accept'</span>, <span class="string">'application/json'</span>)</span><br><span class="line">			.expect(<span class="number">200</span>)</span><br><span class="line">			.then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">				assert(response.body.email, <span class="string">'foo@bar.com'</span>);</span><br><span class="line">			&#125;);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>预期结果按照定义的顺序执行。在执行断言之前，可以使用此特性修改响应体或headers。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'GET /user'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  	it(<span class="string">'user.name should be an case-insensitive match for "tobi"'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">	    request(app)</span><br><span class="line">	      	.get(<span class="string">'/user'</span>)</span><br><span class="line">	      	.set(<span class="string">'Accept'</span>, <span class="string">'application/json'</span>)</span><br><span class="line">	      	.expect(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">	        	res.body.id = <span class="string">'some fixed id'</span>;</span><br><span class="line">	        	res.body.name = res.body.name.toUpperCase();</span><br><span class="line">	      	&#125;)</span><br><span class="line">	      	.expect(<span class="number">200</span>, &#123;</span><br><span class="line">	        	id: <span class="string">'some fixed id'</span>,</span><br><span class="line">	        	name: <span class="string">'TOBI'</span></span><br><span class="line">	      	&#125;, done);</span><br><span class="line">  	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>你可以用superagent做的事情，supertest也可以做，比如说多文件上传。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">request(app)</span><br><span class="line">	.post(<span class="string">'/'</span>)</span><br><span class="line">	.field(<span class="string">'name'</span>, <span class="string">'my awesome avatar'</span>)</span><br><span class="line">	.attach(<span class="string">'avatar'</span>, <span class="string">'test/fixtures/homeboy.jpg'</span>)</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<p>如何你正在测试同一主机，没必要每次都传递一个app或者url，你可以简单地用初始化app或URL重新分配请求变量，一个新的Test被<br>request.VERB()所创建。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request = request(<span class="string">'http://localhost:5555'</span>);</span><br><span class="line"> </span><br><span class="line">request.get(<span class="string">'/'</span>).expect(<span class="number">200</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">  	<span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">request.get(<span class="string">'/'</span>).expect(<span class="string">'heya'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">  	<span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里有个例子，使用mocha来展示如何持久化一个request和它的cookies:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">'supertest'</span>);</span><br><span class="line"><span class="keyword">const</span> should = <span class="built_in">require</span>(<span class="string">'should'</span>);</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>);</span><br><span class="line"> </span><br><span class="line">describe(<span class="string">'request.agent(app)'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> app = express();</span><br><span class="line">  app.use(cookieParser());</span><br><span class="line"> </span><br><span class="line">  app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    res.cookie(<span class="string">'cookie'</span>, <span class="string">'hey'</span>);</span><br><span class="line">    res.send();</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  app.get(<span class="string">'/return'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (req.cookies.cookie) res.send(req.cookies.cookie);</span><br><span class="line">    <span class="keyword">else</span> res.send(<span class="string">':('</span>)</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">const</span> agent = request.agent(app);</span><br><span class="line"> </span><br><span class="line">  it(<span class="string">'should save cookies'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    agent</span><br><span class="line">    .get(<span class="string">'/'</span>)</span><br><span class="line">    .expect(<span class="string">'set-cookie'</span>, <span class="string">'cookie=hey; Path=/'</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  it(<span class="string">'should send cookies'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    agent</span><br><span class="line">    .get(<span class="string">'/return'</span>)</span><br><span class="line">    .expect(<span class="string">'hey'</span>, done);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>还有一个用agency.js来介绍的例子。<br><a href="https://github.com/visionmedia/superagent/blob/master/test/node/agency.js" target="_blank" rel="noopener">https://github.com/visionmedia/superagent/blob/master/test/node/agency.js</a></p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>你可以使用任何superagent方法，包括.write(), pipe()等，还可以为了低级需求在.end()方法里使用断言。</p>
+<h4 id="expect-status-fn"><a href="#expect-status-fn" class="headerlink" title=".expect(status[, fn])"></a>.expect(status[, fn])</h4><p>断言响应状态码</p>
+<h4 id="expect-status-body-fn"><a href="#expect-status-body-fn" class="headerlink" title=".expect(status, body[, fn])"></a>.expect(status, body[, fn])</h4><p>断言响应状态码和body</p>
+<h4 id="expect-body-fn"><a href="#expect-body-fn" class="headerlink" title=".expect(body[, fn])"></a>.expect(body[, fn])</h4><p>用字符串、正则表达式或解析体对象断言响应正文文本。</p>
+<h4 id="expect-field-value-fn"><a href="#expect-field-value-fn" class="headerlink" title=".expect(field, value[, fn])"></a>.expect(field, value[, fn])</h4><p>用字符串或正则表达式断言header字段值。</p>
+<h4 id="expect-function-res"><a href="#expect-function-res" class="headerlink" title=".expect(function(res){})"></a>.expect(function(res){})</h4><p>传递自定义断言函数。它会给出响应对象检查。如果检查失败，抛出错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request(app)</span><br><span class="line">  	.get(<span class="string">'/'</span>)</span><br><span class="line">  	.expect(hasPreviousAndNextKeys)</span><br><span class="line">  	.end(done);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPreviousAndNextKeys</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">  	<span class="keyword">if</span> (!(<span class="string">'next'</span> <span class="keyword">in</span> res.body)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"missing next key"</span>);</span><br><span class="line">  	<span class="keyword">if</span> (!(<span class="string">'prev'</span> <span class="keyword">in</span> res.body)) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"missing prev key"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="end-fn"><a href="#end-fn" class="headerlink" title=".end(fn)"></a>.end(fn)</h4><p>执行request并调用fn(err, res)方法</p>
+<h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><p>MIT</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
