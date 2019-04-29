@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Redis持久化 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="Redis持久化Redis提供了2种不同的持久化方法来将数据存储到硬盘里： 快照(RDB文件)和只追加文件(AOF文件)">
+<meta name="keywords" content="redis,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis持久化 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/10/17/redis持久化/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="Redis持久化Redis提供了2种不同的持久化方法来将数据存储到硬盘里： 快照(RDB文件)和只追加文件(AOF文件)">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/1547615984_229691.png">
+<meta property="og:updated_time" content="2019-04-29T10:18:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis持久化 | 逝水流LF">
+<meta name="twitter:description" content="Redis持久化Redis提供了2种不同的持久化方法来将数据存储到硬盘里： 快照(RDB文件)和只追加文件(AOF文件)">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/1547615984_229691.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Redis持久化</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-10-17" class="post-meta__date date">2018-10-17</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/redis/">redis</a>, <a class="tags-link" href="/tags/数据库/">数据库</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><img src="http://image.dillonliang.cn/blog/1547615984_229691.png" alt></p>
+<h1 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h1><p>Redis提供了2种不同的持久化方法来将数据存储到硬盘里： 快照(RDB文件)和只追加文件(AOF文件)</p>
+<a id="more"></a>
+<ul>
+<li>RDB持久化方式会以特定的时间间隔保存时间点的数据快照。</li>
+<li>AOF持久化方式会记录服务器收到的每个写操作，这样的话，当服务器重启，redis会逐条执行这些写操作，从而重建原来的redis数据。写操作的命令以只读，redis协议的格式被记录。当AOF文件太大的时候，Redis可以以background的方式重写此文件。</li>
+<li>Redis可以禁用持久化功能，缓存的生命周期随服务器。</li>
+<li>可以在Redis里同时启用RDB和AOF持久化功能。值得注意的是，当服务重启的时候，AOF以其高完整性被用于重建原来的redis数据。</li>
+</ul>
+<h2 id="RDB优点"><a href="#RDB优点" class="headerlink" title="RDB优点"></a>RDB优点</h2><ul>
+<li>RDB是Redis数据的一个非常紧凑的单文件时间点表示。RDB文件非常适合备份。例如，您可能希望在最近24小时内每小时归档您的RDB文件，并且每天保存RDB快照30天。<br>这使您可以在发生灾难时轻松恢复不同版本的数据集。</li>
+<li>RDB非常适合灾难恢复，可以将单个压缩文件传输到远端数据中心，也可以传输到Amazon S3（可能是加密的）。</li>
+<li>RDB最大限度地提高了Redis的性能，主进程会fork一个子进程，主进程继续处理服务请求，子进程处理文件I／O备份。</li>
+<li>与AOF相比，RDB允许使用大数据集更快地重启。</li>
+</ul>
+<h2 id="RDB缺点"><a href="#RDB缺点" class="headerlink" title="RDB缺点"></a>RDB缺点</h2><ul>
+<li>RDB不适用于那些对数据完整性要求高的应用。假如因为停电导致服务器挂了，那么redis会丢失上次执行RDB持久化后的所有数据。可以设置不同的配置来执行RDB持久化，比如对redis进行5分钟和300次写入就执行一次RDB持久化，可以同时配置不同持久化策略。不管如何配置RDB持久化策略，当服务器因为非正常关闭时，都会丢失上次快照到出现问题时间内的数据。</li>
+<li>RDB经常需要fork一个子进程来持久化数据到磁盘上。当Redis数据特别大的时候，fock子进程也会很耗时，出现redis停顿。如果数据非常大并且CPU不是很好，可能会导致Redis停止服务客户端几毫秒甚至一秒钟。AOF持久化也会fork子进程，但是可以控制重写日志的频率，不会影响主进程的服务。</li>
+</ul>
+<h2 id="AOF优点"><a href="#AOF优点" class="headerlink" title="AOF优点"></a>AOF优点</h2><ul>
+<li>AOF做redis持久化更为可靠，可以使用不同的fsync策略：不进行fsync，每秒一次fsync，每次查询进行fsync。默认采取每秒一次fsync对AOF文件进行同步，性能和不使用任何redis持久化功能时的性能相差无几。通过每秒一次fsync，redis可以保证，即使系统故障，用户最多丢失1秒之内的数据。</li>
+<li>AOF日志文件是一个纯追加的文件。就算是遇到突然停电的情况，也不会出现日志的定位或者损坏问题。甚至如果因为某些原因（例如磁盘满了）命令只写了一半到日志文件里，我们也可以用redis-check-aof这个工具很简单的进行修复。</li>
+<li>当AOF文件太大时，Redis会自动在后台进行重写。重写很安全，因为重写是在一个新的文件上进行，同时Redis会继续往旧的文件追加数据。新文件上会写入能重建当前数据集的最小操作命令的集合。当新文件重写完，Redis会把新旧文件进行切换，然后开始把数据写到新文件上。</li>
+<li>AOF把操作命令以简单易懂的格式一条接一条的保存在文件里，很容易导出来用于恢复数据。例如我们不小心用FLUSHALL命令把所有数据刷掉了，只要文件没有被重写，我们可以把服务停掉，把最后那条命令删掉，然后重启服务，这样就能把被刷掉的数据恢复回来。</li>
+</ul>
+<h2 id="AOF缺点"><a href="#AOF缺点" class="headerlink" title="AOF缺点"></a>AOF缺点</h2><ul>
+<li>对同样的redis数据集，AOF文件常常比RDB文件大。</li>
+<li>在某些fsync策略下，AOF文件会比RDB文件慢。通常情况下采用每秒一次fsync会有很高的性能，不采用fsync策略的性能和RDB相差无几。</li>
+<li>在过去曾经发现一些罕见的bug导致redis使用AOF文件重建的时候，数据不一致的问题。</li>
+</ul>
+<h2 id="那么，我们该如何选择呢？"><a href="#那么，我们该如何选择呢？" class="headerlink" title="那么，我们该如何选择呢？"></a>那么，我们该如何选择呢？</h2><p>迹象表明，如果你想redis数据安全性一定程度上和PostgreSQL可为你提供的数据安全性相当，就同时使用这两种持久化方法：RDB，AOF。</p>
+<p>如果你care你的数据，又能容忍几分钟数据的丢失，你可以只使用RDB。</p>
+<p>需多人都仅仅使用AOF持久化，但是不鼓励这样做，RDB可以快照某个时间点的数据，可以用于数据备份，快速重建数据，或者AOF引擎出现bug。</p>
+<p>注意：基于以上的原因，我们可能在未来的某一时刻统一RDB和AOF到一个单一的持久化模型里。</p>
+<h2 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h2><p>默认情况下，Redis将数据集的快照保存在磁盘上，名为dump.rdb的二进制文件中。可以配置每N秒至少有M个更改时，执行快照操作。或者主动调用SAVE or BGSAVE命令。</p>
+<p>eg: 这个配置会使redis每60秒如果有1000次更改，自动快照redis数据，保存为dump文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 60 1000</span><br></pre></td></tr></table></figure>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>当redis准备持久化数据到磁盘时候，将会发生如下步骤：</p>
+<ol>
+<li>Redis fork一个子进程。此时存在父进程和子进程。</li>
+<li>子进程开始写数据集到一个临时RDB文件。</li>
+<li>当子进程写完所有数据后，用这个临时RDB文件替换旧的RDB文件。</li>
+</ol>
+<p>此方法使Redis受益于COW语义。</p>
+<h2 id="Append-only-file"><a href="#Append-only-file" class="headerlink" title="Append-only file"></a>Append-only file</h2><p>快照不是很可靠。如果运行redis实例的机器挂了，电源停电了，或者一不小心使用kill -9删除了实例，那么最新的数据将会丢失。这对某些应用可能是无伤大雅，对数据要求高的来说，redis就不是一个很好的选择。</p>
+<p>仅附加文件是Redis的另一种完全持久的策略，可以通过配置启用AOF：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+<p>从现在开始，每次Redis收到更改数据集的命令（例如SET）时，它都会将其附加到AOF。<br>当您重新启动Redis时，它将重新播放AOF以重建状态。</p>
+<h3 id="日志重写"><a href="#日志重写" class="headerlink" title="日志重写"></a>日志重写</h3><p>你可以猜到，随着写操作的执行，AOF变得越来越大。例如，如果您将计数器递增100次，则最终会在数据集中包含一个包含最终值的单个键，但您的AOF中会有100个条目。<br>重建当前状态不需要其中99个条目。</p>
+<p>So Redis支持重写日志文件，以background的形式压缩AOF文件。</p>
+<h3 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h3><p>可以通过配置Redis fsync数据到磁盘的频率来提高可靠性，有下面三个选项：</p>
+<ul>
+<li>每当有新命令追加到AOF的时候调用fsync。速度最慢，但是最安全。</li>
+<li>每秒fsync一次。速度快（2.4版本跟快照方式速度差不多），安全性不错（最多丢失1秒的数据）。</li>
+<li>从不fsync，交由系统去处理。这个方式速度最快，但是安全性一般。</li>
+</ul>
+<p>推荐使用每秒fsync一次的方式（默认的方式），因为它速度快，安全性也不错。</p>
+<h3 id="数据损坏修复"><a href="#数据损坏修复" class="headerlink" title="数据损坏修复"></a>数据损坏修复</h3><p>可能存在因为服务器崩溃导致AOF文件不可用，可以通过以下方式进行修复。</p>
+<ul>
+<li>备份AOF文件</li>
+<li><p>使用redis-check-aof工具修复原始的AOF文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-check-aof --fix</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用diff -u命令看下两个文件的差异</p>
+</li>
+<li>使用修复过的文件重启Redis服务</li>
+</ul>
+<h3 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h3><p>日志重写和快照一样采用COW(copy-on-write)，原理如下：</p>
+<ul>
+<li>Redis fork一个子进程</li>
+<li>子进程开始把AOF写到临时文件</li>
+<li>主进程持续把新的变动写到内存里的buffer，同时也会把这些新的变动写到旧的AOF里，这样即使重写失败也能保证数据的安全</li>
+<li>当子进程完成文件的重写后，主进程会获得一个信号，然后把内存里的buffer追加到子进程生成的那个新AOF里</li>
+<li>Redis原子性重命名新文件，然后把新的数据appending新文件里</li>
+</ul>
+<h3 id="从RDB切换到AOF"><a href="#从RDB切换到AOF" class="headerlink" title="从RDB切换到AOF"></a>从RDB切换到AOF</h3><p>Redis &gt;= 2.2</p>
+<ul>
+<li>备份一个最新的dump.rdb文件，并存到一个安全的位置。</li>
+<li><p>执行下面2个命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli config <span class="built_in">set</span> appendonly yes</span><br><span class="line">redis-cli config <span class="built_in">set</span> save <span class="string">""</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>确保数据跟切换前一致</p>
+</li>
+<li>确保数据正确的写到AOF文件里</li>
+</ul>
+<p>第一条命令用来启用AOF持久化，Redis会卡顿，初始化AOF文件，然后接受客户端命令并appending到AOF。</p>
+<p>第二条命令用来关闭RDB持久化，这是可选的，你可以同时启用RDB和AOF。</p>
+<p><strong>别忘了更新redis.conf文件的配置，开启AOF功能，否则，当redis服务重启的时候，会继续使用旧的配置运行服务。</strong></p>
+<h2 id="AOF和RDB互动"><a href="#AOF和RDB互动" class="headerlink" title="AOF和RDB互动"></a>AOF和RDB互动</h2><p>Redis&gt; = 2.4确保在RDB快照操作正在进行时避免触发AOF重写，或者在AOF重写正在进行时允许BGSAVE。这可以防止两个Redis后台进程同时执行大量磁盘I / O.</p>
+<p>当快照正在进行并且用户使用BGREWRITEAOF明确请求日志重写操作时，服务器将回复一个OK状态代码，告诉用户操作已安排，并且一旦快照完成，重写将开始。</p>
+<p>在启用AOF和RDB持久性并且Redis重新启动的情况下，AOF文件将用于重建原始数据集，因为它保证是最完整的。</p>
+<h2 id="备份Redis数据"><a href="#备份Redis数据" class="headerlink" title="备份Redis数据"></a>备份Redis数据</h2><p><strong>时刻备份你的数据！！</strong></p>
+<p>建议：</p>
+<ul>
+<li>创建一个定时任务，把当天每小时的快照放在同一个文件夹下，每天的快照放在不同的文件夹下。</li>
+<li>定时任务运行时，删除太旧的快照，比如每小时的保留最近48小时的，每天的保留最近2个月的。</li>
+<li>每天确保一次把RDB文件传送到安全的地方保存，至少不是运行redis实例的那台机器。</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://redis.io/topics/persistence" target="_blank" rel="noopener">https://redis.io/topics/persistence</a></li>
+<li><a href="https://segmentfault.com/a/1190000002906345" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002906345</a></li>
+</ul>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

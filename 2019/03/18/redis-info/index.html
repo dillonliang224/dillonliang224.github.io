@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      redis info | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="INFO命令以一种易于计算机解析且易于人类阅读的格式返回有关服务器的信息和统计信息。">
+<meta name="keywords" content="redis,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis info | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/redis-info/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="INFO命令以一种易于计算机解析且易于人类阅读的格式返回有关服务器的信息和统计信息。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T10:18:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis info | 逝水流LF">
+<meta name="twitter:description" content="INFO命令以一种易于计算机解析且易于人类阅读的格式返回有关服务器的信息和统计信息。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">redis info</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-03-18" class="post-meta__date date">2019-03-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/redis/">redis</a>, <a class="tags-link" href="/tags/数据库/">数据库</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>INFO命令以一种易于计算机解析且易于人类阅读的格式返回有关服务器的信息和统计信息。</p>
+<a id="more"></a>
+<h2 id="info-section"><a href="#info-section" class="headerlink" title="info section"></a>info section</h2><p>在连接redis server后，输入info命令可以查看信息<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 默认输出所有信息，可以通过指定section来查看指定内容</span></span><br><span class="line">info [section]</span><br><span class="line"></span><br><span class="line"><span class="comment">## 支持section如下:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 有关Redis服务器的信息</span></span><br><span class="line">info server</span><br><span class="line"></span><br><span class="line"><span class="comment">## 客户端连接信息</span></span><br><span class="line">info clients</span><br><span class="line"></span><br><span class="line"><span class="comment">## 内存使用相关信息</span></span><br><span class="line">info memory</span><br><span class="line"></span><br><span class="line"><span class="comment">## RDB和AOF相关信息</span></span><br><span class="line">info persistence</span><br><span class="line"></span><br><span class="line"><span class="comment">## 统计信息</span></span><br><span class="line">info stats</span><br><span class="line"></span><br><span class="line"><span class="comment">## 主副本复制信息</span></span><br><span class="line">info replication</span><br><span class="line"></span><br><span class="line"><span class="comment">## cpu使用相关信息</span></span><br><span class="line">info cpu</span><br><span class="line"></span><br><span class="line"><span class="comment">## Redis命令统计信息</span></span><br><span class="line">info commandstats</span><br><span class="line"></span><br><span class="line"><span class="comment">## Redis集群信息</span></span><br><span class="line">info cluster</span><br><span class="line"></span><br><span class="line"><span class="comment">## 数据库key相关统计信息</span></span><br><span class="line">info keyspace</span><br></pre></td></tr></table></figure></p>
+<p>info还支持以下section<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 返回所有section</span></span><br><span class="line">info all</span><br><span class="line"></span><br><span class="line"><span class="comment">## 返回默认的section</span></span><br><span class="line">info default</span><br><span class="line"></span><br><span class="line"><span class="comment">## info在没有指定任何section的情况下，执行的是info default命令</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="info返回值-gt-2-4"><a href="#info返回值-gt-2-4" class="headerlink" title="info返回值(&gt;=2.4)"></a>info返回值(&gt;=2.4)</h2><h3 id="info-server"><a href="#info-server" class="headerlink" title="info server"></a>info server</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Server</span></span><br><span class="line">redis_version:3.2.10	<span class="comment">## redis版本</span></span><br><span class="line">redis_git_sha1:00000000		<span class="comment">## git版本</span></span><br><span class="line">redis_git_dirty:0	<span class="comment">## git的代码是否修改</span></span><br><span class="line">redis_build_id:2fc357230b5d7d9e		<span class="comment">## 编译时ID</span></span><br><span class="line">redis_mode:standalone	<span class="comment">## redis运行模式</span></span><br><span class="line">os:Linux 4.1.0-16.el6.ucloud.x86_64 x86_64		<span class="comment">## redis服务器操纵系统内核</span></span><br><span class="line">arch_bits:64	<span class="comment">## 64位／32位</span></span><br><span class="line">multiplexing_api:epoll 		<span class="comment">## redis使用的事件循环模型</span></span><br><span class="line">gcc_version:4.4.7		<span class="comment">## gcc版本</span></span><br><span class="line">process_id:11	<span class="comment">## 进程pid</span></span><br><span class="line">run_id:b87c240a1585c224b10807f110c5d6e56e5bf16c <span class="comment">## Redis的随机标识符(用于sentinel和集群)</span></span><br><span class="line">tcp_port:6379	<span class="comment">## redis端口</span></span><br><span class="line">uptime_in_seconds:130679 <span class="comment">## Redis运行时长的秒数</span></span><br><span class="line">uptime_in_days:1 <span class="comment">## Redis运行时长的天数</span></span><br><span class="line">hz:10	<span class="comment">## 时间事件，单位是赫兹,每10毫秒循环一次</span></span><br><span class="line">lru_clock:9378323 <span class="comment">## 以分钟为单位的自增时钟,用于LRU管理maxmemory-policy 内存回收策略</span></span><br><span class="line">executable:/data/922d93c9-13df-46b1-aa5e-04eca791a3d3/redis-server <span class="comment">## 服务器可执行文件的路径</span></span><br><span class="line">config_file:/data/922d93c9-13df-46b1-aa5e-04eca791a3d3/redis.conf	<span class="comment">## 配置文件的路径</span></span><br></pre></td></tr></table></figure>
+<h3 id="info-clients"><a href="#info-clients" class="headerlink" title="info clients"></a>info clients</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Clients</span></span><br><span class="line">connected_clients:2		<span class="comment">## 已连接客户端的数量（不包括通过从属服务器连接的客户端）</span></span><br><span class="line">client_longest_output_list:0 	<span class="comment">## 所有客户端连接中，最长的输出列表，Redis输出缓存峰值</span></span><br><span class="line">client_biggest_input_buf:0		<span class="comment">## 所有客户端连接中，最大输入缓存,Redis输入缓存峰值</span></span><br><span class="line">blocked_clients:0		<span class="comment">## 正在等待阻塞命令（BLPOP、BRPOP、BRPOPLPUSH）的客户端的数量</span></span><br></pre></td></tr></table></figure>
+<h3 id="info-memory"><a href="#info-memory" class="headerlink" title="info memory"></a>info memory</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Memory</span></span><br><span class="line">used_memory:70397800			<span class="comment">## 由Redis分配的内存的总量,字节数,给机器看的</span></span><br><span class="line">used_memory_human:67.14M		<span class="comment">## 由Redis分配的内存的总量,单位G,给人看的</span></span><br><span class="line">used_memory_rss:13381632		<span class="comment">## Redis进程从OS角度分配的物理内存</span></span><br><span class="line">used_memory_rss_human:12.76M	<span class="comment">## Redis进程从OS角度分配的物理内存</span></span><br><span class="line">used_memory_peak:70509696		<span class="comment">## Redis使用内存的峰值</span></span><br><span class="line">used_memory_peak_human:67.24M	<span class="comment">## Redis使用内存的峰值</span></span><br><span class="line">used_memory_lua:37888			<span class="comment">## lua引擎使用的内存总量</span></span><br><span class="line">used_memory_lua_human:37.00K	<span class="comment">## lua引擎使用的内存总量</span></span><br><span class="line">maxmemory:17179869184			<span class="comment">## 最大内存配置</span></span><br><span class="line">maxmemory_human:16.00G			<span class="comment">## 最大内存配置</span></span><br><span class="line">maxmemory_policy:noeviction		<span class="comment">## 最大内存配置策略</span></span><br><span class="line">mem_fragmentation_ratio:0.19	<span class="comment">## Ratio between used_memory_rss and used_memory</span></span><br><span class="line">mem_allocator:jemalloc-4.0.3	<span class="comment">## Redis内存管理器</span></span><br></pre></td></tr></table></figure>
+<h3 id="info-persistence"><a href="#info-persistence" class="headerlink" title="info persistence"></a>info persistence</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Persistence</span></span><br><span class="line">loading:0								<span class="comment">## 一个标志值，记录了服务器是否正在载入持久化文件</span></span><br><span class="line">rdb_changes_since_last_save:47861539	<span class="comment">## 距离最近一次成功创建持久化文件之后，经过了多少秒。</span></span><br><span class="line">rdb_bgsave_in_progress:0				<span class="comment">## 一个标志值，记录了服务器是否正在创建 RDB 文件</span></span><br><span class="line">rdb_last_save_time:1552751516			<span class="comment">## 最近一次成功创建 RDB 文件的 UNIX 时间戳</span></span><br><span class="line">rdb_last_bgsave_status:ok 				<span class="comment">## 一个标志值，记录了最近一次创建 RDB 文件的结果是成功还是失败。</span></span><br><span class="line">rdb_last_bgsave_time_sec:-1				<span class="comment">## 记录了最近一次创建 RDB 文件耗费的秒数</span></span><br><span class="line">rdb_current_bgsave_time_sec:-1 			<span class="comment">## 如果服务器正在创建 RDB 文件，那么这个域记录的就是当前的创建操作已经耗费的秒数。</span></span><br><span class="line">aof_enabled:1							<span class="comment">## 一个标志值，记录了 AOF 是否处于打开状态</span></span><br><span class="line">aof_rewrite_in_progress:0				<span class="comment">## 一个标志值，记录了服务器是否正在创建 AOF 文件</span></span><br><span class="line">aof_rewrite_scheduled:0					<span class="comment">## 一个标志值，记录了在 RDB 文件创建完毕之后，是否需要执行预约的 AOF 重写操作。</span></span><br><span class="line">aof_last_rewrite_time_sec:-1			<span class="comment">## 最近一次创建 AOF 文件耗费的时长</span></span><br><span class="line">aof_current_rewrite_time_sec:-1			<span class="comment">## 如果服务器正在创建 AOF 文件，那么这个域记录的就是当前的创建操作已经耗费的秒数。</span></span><br><span class="line">aof_last_bgrewrite_status:ok 			<span class="comment">## 一个标志值，记录了最近一次创建 AOF 文件的结果是成功还是失败。</span></span><br><span class="line">aof_last_write_status:ok 				<span class="comment">## 最后一次写入AOF的操作状态</span></span><br><span class="line">aof_current_size:5072527252				<span class="comment">## AOF文件的当前大小</span></span><br><span class="line">aof_base_size:0							<span class="comment">## 最新启动或重写时的AOF文件大小</span></span><br><span class="line">aof_pending_rewrite:0</span><br><span class="line">aof_buffer_length:0</span><br><span class="line">aof_rewrite_buffer_length:0</span><br><span class="line">aof_pending_bio_fsync:0</span><br><span class="line">aof_delayed_fsync:0</span><br></pre></td></tr></table></figure>
+<h3 id="info-stats"><a href="#info-stats" class="headerlink" title="info stats"></a>info stats</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Stats</span></span><br><span class="line">total_connections_received:11264	<span class="comment">## 服务器已接受的连接请求数量</span></span><br><span class="line">total_commands_processed:73803308	<span class="comment">## 服务器已执行的命令数量</span></span><br><span class="line">instantaneous_ops_per_sec:8054		<span class="comment">## 服务器每秒钟执行的命令数量</span></span><br><span class="line">total_net_input_bytes:5000387001	<span class="comment">## 从网络读取的总字节数</span></span><br><span class="line">total_net_output_bytes:5119029997	<span class="comment">## 写入网络的总字节数</span></span><br><span class="line">instantaneous_input_kbps:530.57		<span class="comment">## 网络的每秒读取速率，以KB /秒为单位</span></span><br><span class="line">instantaneous_output_kbps:478.97	<span class="comment">## 网络的每秒写入速率，以KB /秒为单位</span></span><br><span class="line">rejected_connections:0				<span class="comment">## 因为最大客户端数量限制而被拒绝的连接请求数量</span></span><br><span class="line">sync_full:1</span><br><span class="line">sync_partial_ok:0</span><br><span class="line">sync_partial_err:0</span><br><span class="line">expired_keys:21817730				<span class="comment">## 因为过期而被自动删除的数据库键数量</span></span><br><span class="line">evicted_keys:0						<span class="comment">## 因为最大内存容量限制而被驱逐（evict）的键数量</span></span><br><span class="line">keyspace_hits:25773688				<span class="comment">## 查找数据库键成功的次数</span></span><br><span class="line">keyspace_misses:6					<span class="comment">## 查找数据库键失败的次数</span></span><br><span class="line">pubsub_channels:0					<span class="comment">## 目前被订阅的频道数量</span></span><br><span class="line">pubsub_patterns:0					<span class="comment">## 目前被订阅的模式数量</span></span><br><span class="line">latest_fork_usec:12283				<span class="comment">## 最近一次 fork() 操作耗费的毫秒数</span></span><br><span class="line">migrate_cached_sockets:0			<span class="comment">## 为MIGRATE目的打开的套接字数量</span></span><br></pre></td></tr></table></figure>
+<h3 id="info-replication"><a href="#info-replication" class="headerlink" title="info replication"></a>info replication</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master <span class="comment">## 如果当前服务器没有在复制任何其他服务器，那么这个域的值就是 master ；否则的话，这个域的值就是 slave 。注意，在创建复制链的时候，一个从服务器也可能是另一个服务器的主服务器</span></span><br><span class="line">connected_slaves:1	<span class="comment">## 已连接的从服务器数量</span></span><br><span class="line">slave0:ip=10.10.155.57,port=6379,state=online,offset=4740420472,lag=1	<span class="comment">##  ID、IP 地址、端口号、连接状态</span></span><br><span class="line">master_repl_offset:4740828912</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:62914560</span><br><span class="line">repl_backlog_first_byte_offset:4677914353</span><br><span class="line">repl_backlog_histlen:62914560</span><br></pre></td></tr></table></figure>
+<h3 id="info-cpu"><a href="#info-cpu" class="headerlink" title="info cpu"></a>info cpu</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CPU</span></span><br><span class="line">used_cpu_sys:1788.78			<span class="comment">## Redis 服务器耗费的系统 CPU</span></span><br><span class="line">used_cpu_user:638.75			<span class="comment">## Redis 服务器耗费的用户 CPU</span></span><br><span class="line">used_cpu_sys_children:0.00		<span class="comment">## 后台进程耗费的系统 CPU</span></span><br><span class="line">used_cpu_user_children:0.00		<span class="comment">## 后台进程耗费的用户 CPU</span></span><br></pre></td></tr></table></figure>
+<h3 id="info-commandstats"><a href="#info-commandstats" class="headerlink" title="info commandstats"></a>info commandstats</h3><p>commandsstats部分根据命令类型提供数据统计，包括命令调用次数，总cpu时间，平均每个命令cpu时间,</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Commandstats</span></span><br><span class="line">cmdstat_get:calls=9,usec=32,usec_per_call=3.56</span><br><span class="line">cmdstat_set:calls=3,usec=52,usec_per_call=17.33</span><br><span class="line">cmdstat_del:calls=1,usec=3,usec_per_call=3.00</span><br><span class="line">cmdstat_incr:calls=26328979,usec=85602622,usec_per_call=3.25</span><br><span class="line">cmdstat_expire:calls=22557247,usec=42154769,usec_per_call=1.87</span><br><span class="line">cmdstat_auth:calls=6280,usec=12328,usec_per_call=1.96</span><br><span class="line">cmdstat_psync:calls=1,usec=26,usec_per_call=26.00</span><br><span class="line">cmdstat_replconf:calls=150681,usec=268080,usec_per_call=1.78</span><br><span class="line">cmdstat_info:calls=6239,usec=256697,usec_per_call=41.14</span><br><span class="line">cmdstat_ttl:calls=26328982,usec=15140788,usec_per_call=0.58</span><br><span class="line">cmdstat_config:calls=51,usec=1561,usec_per_call=30.61</span><br><span class="line">cmdstat_command:calls=5034,usec=2020156,usec_per_call=401.30</span><br></pre></td></tr></table></figure>
+<h3 id="info-cluster"><a href="#info-cluster" class="headerlink" title="info cluster"></a>info cluster</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Cluster</span></span><br><span class="line"><span class="comment">## 表示是否启用了redis集群</span></span><br><span class="line">cluster_enabled:0</span><br></pre></td></tr></table></figure>
+<h3 id="info-keyspace"><a href="#info-keyspace" class="headerlink" title="info keyspace"></a>info keyspace</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Keyspace</span></span><br><span class="line"><span class="comment">## keys代表所有key的数量,expires代表设有过期时间key的数量,avg_ttl代表平均key过期时间</span></span><br><span class="line">db0:keys=263224,expires=263207,avg_ttl=39615</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="http://redisdoc.com/client_and_server/info.html" target="_blank" rel="noopener">http://redisdoc.com/client_and_server/info.html</a></li>
+<li><a href="https://redis.io/commands/info" target="_blank" rel="noopener">https://redis.io/commands/info</a></li>
+<li><a href="https://yq.aliyun.com/articles/414650" target="_blank" rel="noopener">https://yq.aliyun.com/articles/414650</a></li>
+</ol>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

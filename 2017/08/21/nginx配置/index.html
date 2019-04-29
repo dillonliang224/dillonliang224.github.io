@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      nginx配置 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="Nginx是一个高性能的HTTP和反向代理服务器， Nginx能做什么?  反向代理 负载均衡 HTTP服务器（包含动静分离） 正向代理">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx配置 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2017/08/21/nginx配置/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="Nginx是一个高性能的HTTP和反向代理服务器， Nginx能做什么?  反向代理 负载均衡 HTTP服务器（包含动静分离） 正向代理">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/nginx.jpg">
+<meta property="og:updated_time" content="2019-04-29T10:18:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx配置 | 逝水流LF">
+<meta name="twitter:description" content="Nginx是一个高性能的HTTP和反向代理服务器， Nginx能做什么?  反向代理 负载均衡 HTTP服务器（包含动静分离） 正向代理">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/nginx.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">nginx配置</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-08-21" class="post-meta__date date">2017-08-21</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><img src="http://image.dillonliang.cn/blog/nginx.jpg" alt></p>
+<p>Nginx是一个高性能的HTTP和反向代理服务器，</p>
+<p>Nginx能做什么?</p>
+<ul>
+<li>反向代理</li>
+<li>负载均衡</li>
+<li>HTTP服务器（包含动静分离）</li>
+<li>正向代理</li>
+</ul>
+<a id="more"></a>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义Nginx运行的用户和用户组</span></span><br><span class="line">user www nginx;</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx进程数，建议设置为等于CPU总核心数。</span></span><br><span class="line">worker_processes auto;</span><br><span class="line"></span><br><span class="line"><span class="comment">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]</span></span><br><span class="line">error_log /var/<span class="built_in">log</span>/nginx/error.log info;</span><br><span class="line"></span><br><span class="line"><span class="comment">#进程文件</span></span><br><span class="line">pid /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="comment">#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。</span></span><br><span class="line">worker_rlimit_nofile 65535;</span><br><span class="line"></span><br><span class="line"><span class="comment">#工作模式与连接数上限</span></span><br><span class="line">events &#123;</span><br><span class="line">	<span class="comment">#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</span></span><br><span class="line">	use epoll;</span><br><span class="line">	<span class="comment">#单个进程最大连接数（最大连接数=连接数*进程数）</span></span><br><span class="line">	worker_connections 65535;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#设定http服务器</span></span><br><span class="line">http &#123;</span><br><span class="line">	include mime.types; <span class="comment">#文件扩展名与文件类型映射表</span></span><br><span class="line">	default_type application/octet-stream; <span class="comment">#默认文件类型</span></span><br><span class="line">	<span class="comment">#charset utf-8; #默认编码</span></span><br><span class="line">	server_names_hash_bucket_size 128; <span class="comment">#服务器名字的hash表大小</span></span><br><span class="line">	client_header_buffer_size 32k; <span class="comment">#上传文件大小限制</span></span><br><span class="line">	large_client_header_buffers 4 64k; <span class="comment">#设定请求缓</span></span><br><span class="line">	client_max_body_size 8m; <span class="comment">#设定请求缓</span></span><br><span class="line">	sendfile on; <span class="comment">#开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。</span></span><br><span class="line">	autoindex on; <span class="comment">#开启目录列表访问，合适下载服务器，默认关闭。</span></span><br><span class="line">	tcp_nopush on; <span class="comment">#防止网络阻塞</span></span><br><span class="line">	tcp_nodelay on; <span class="comment">#防止网络阻塞</span></span><br><span class="line">	keepalive_timeout 120; <span class="comment">#长连接超时时间，单位是秒</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。</span></span><br><span class="line">	fastcgi_connect_timeout 300;</span><br><span class="line">	fastcgi_send_timeout 300;</span><br><span class="line">	fastcgi_read_timeout 300;</span><br><span class="line">	fastcgi_buffer_size 64k;</span><br><span class="line">	fastcgi_buffers 4 64k;</span><br><span class="line">	fastcgi_busy_buffers_size 128k;</span><br><span class="line">	fastcgi_temp_file_write_size 128k;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#gzip模块设置</span></span><br><span class="line">	gzip on; <span class="comment">#开启gzip压缩输出</span></span><br><span class="line">	gzip_min_length 1k; <span class="comment">#最小压缩文件大小</span></span><br><span class="line">	gzip_buffers 4 16k; <span class="comment">#压缩缓冲区</span></span><br><span class="line">	gzip_http_version 1.0; <span class="comment">#压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</span></span><br><span class="line">	gzip_comp_level 2; <span class="comment">#压缩等级</span></span><br><span class="line">	gzip_types text/plain application/x-javascript text/css application/xml;</span><br><span class="line">	<span class="comment">#压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。</span></span><br><span class="line">	gzip_vary on;</span><br><span class="line">	<span class="comment">#limit_zone crawler $binary_remote_addr 10m; #开启限制IP连接数的时候需要使用</span></span><br><span class="line"></span><br><span class="line">	upstream www.dillonliang224.com &#123;</span><br><span class="line">		<span class="comment">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span></span><br><span class="line">		server 192.168.1.1:80 weight=3;</span><br><span class="line">		server 192.168.1.2:80 weight=2;</span><br><span class="line">		server 192.168.1.3:80 weight=3;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#虚拟主机的配置</span></span><br><span class="line">	server &#123;</span><br><span class="line">	    <span class="comment">#监听端口</span></span><br><span class="line">	    listen 80;</span><br><span class="line">	    <span class="comment">#域名可以有多个，用空格隔开</span></span><br><span class="line">	    server_name www.dillonliang224.com;</span><br><span class="line">	    index index.html index.htm index.php;</span><br><span class="line">	    root /home/wwwblog/hexo;</span><br><span class="line">	    location ~ .*\.(php|php5)?$ &#123;</span><br><span class="line">		    fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">		    fastcgi_index index.php;</span><br><span class="line">		    include fastcgi.conf;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="comment">#图片缓存时间设置</span></span><br><span class="line">	    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ &#123;</span><br><span class="line">	    	expires 10d;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="comment">#JS和CSS缓存时间设置</span></span><br><span class="line">	    location ~ .*\.(js|css)?$ &#123;</span><br><span class="line">	    	expires 1h;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="comment">#日志格式设定</span></span><br><span class="line">	    log_format access <span class="string">'$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">	    <span class="string">'$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">	    <span class="string">'"$http_user_agent" $http_x_forwarded_for'</span>;</span><br><span class="line">	    <span class="comment">#定义本虚拟主机的访问日志</span></span><br><span class="line">	    access_log /var/<span class="built_in">log</span>/nginx/ha97access.log access;</span><br><span class="line"></span><br><span class="line">	    <span class="comment">#对 "/" 启用反向代理</span></span><br><span class="line">	    location / &#123;</span><br><span class="line">		    proxy_pass http://127.0.0.1:88;</span><br><span class="line">		    proxy_redirect off;</span><br><span class="line">		    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">		    <span class="comment">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">		    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">		    <span class="comment">#以下是一些反向代理的配置，可选。</span></span><br><span class="line">		    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">		    client_max_body_size 10m; <span class="comment">#允许客户端请求的最大单文件字节数</span></span><br><span class="line">		    client_body_buffer_size 128k; <span class="comment">#缓冲区代理缓冲用户端请求的最大字节数，</span></span><br><span class="line">		    proxy_connect_timeout 90; <span class="comment">#nginx跟后端服务器连接超时时间(代理连接超时)</span></span><br><span class="line">		    proxy_send_timeout 90; <span class="comment">#后端服务器数据回传时间(代理发送超时)</span></span><br><span class="line">		    proxy_read_timeout 90; <span class="comment">#连接成功后，后端服务器响应时间(代理接收超时)</span></span><br><span class="line">		    proxy_buffer_size 4k; <span class="comment">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</span></span><br><span class="line">		    proxy_buffers 4 32k; <span class="comment">#proxy_buffers缓冲区，网页平均在32k以下的设置</span></span><br><span class="line">		    proxy_busy_buffers_size 64k; <span class="comment">#高负荷下缓冲大小（proxy_buffers*2）</span></span><br><span class="line">		    proxy_temp_file_write_size 64k;</span><br><span class="line">		    <span class="comment">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span></span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">	    <span class="comment">#设定查看Nginx状态的地址</span></span><br><span class="line">	    location /NginxStatus &#123;</span><br><span class="line">		    stub_status on;</span><br><span class="line">		    access_log on;</span><br><span class="line">		    auth_basic <span class="string">"NginxStatus"</span>;</span><br><span class="line">		    auth_basic_user_file conf/htpasswd;</span><br><span class="line">		    <span class="comment">#htpasswd文件的内容可以用apache提供的htpasswd工具来产生。</span></span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">	    <span class="comment">#本地动静分离反向代理配置</span></span><br><span class="line">	    <span class="comment">#所有jsp的页面均交由tomcat或resin处理</span></span><br><span class="line">	    location ~ .(jsp|jspx|<span class="keyword">do</span>)?$ &#123;</span><br><span class="line">		    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">		    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">		    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">		    proxy_pass http://127.0.0.1:8080;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="comment">#所有静态文件由nginx直接读取不经过tomcat或resin</span></span><br><span class="line">	    location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)$</span><br><span class="line">	    &#123; expires 15d; &#125;</span><br><span class="line">	    location ~ .*.(js|css)?$</span><br><span class="line">	    &#123; expires 1h; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

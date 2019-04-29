@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      apidoc tool | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="项目中写文档是常有事情，我们使用的apidoc来写api接口文档。">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apidoc tool | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/apidoc-tool/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="项目中写文档是常有事情，我们使用的apidoc来写api接口文档。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T10:18:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="apidoc tool | 逝水流LF">
+<meta name="twitter:description" content="项目中写文档是常有事情，我们使用的apidoc来写api接口文档。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">apidoc tool</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-07-19" class="post-meta__date date">2018-07-19</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>项目中写文档是常有事情，我们使用的<a href="http://apidocjs.com/" target="_blank" rel="noopener">apidoc</a>来写api接口文档。</p>
+<a id="more"></a>
+<p>当使用apidoc里的@apiSuccess参数时，如果接口返回的参数少，比如:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ok: <span class="literal">true</span>,</span><br><span class="line">    name: <span class="string">'dillon'</span>,</span><br><span class="line">    age: <span class="number">26</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以很easy的写下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@apiSuccess Boolean ok</span><br><span class="line">@apiSuccess String name</span><br><span class="line">@apiSuccess Number age</span><br></pre></td></tr></table></figure></p>
+<p>但是当一个接口返回的数据比较多而繁杂，再这样写很浪费时间，且容易出错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;ok&quot;: true,</span><br><span class="line">    &quot;layout&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;module&quot;: &quot;gameGroup&quot;,</span><br><span class="line">            &quot;id&quot;: &quot;5b45e6292abaf87db8ed28d6&quot;,</span><br><span class="line">            &quot;title&quot;: &quot;街机游戏&quot;,</span><br><span class="line">            &quot;gameGroup&quot;: &#123;</span><br><span class="line">                &quot;_id&quot;: &quot;5b45e6292abaf87db8ed28d6&quot;,</span><br><span class="line">                &quot;name&quot;: &quot;街机游戏&quot;,</span><br><span class="line">                &quot;__v&quot;: 0,</span><br><span class="line">                &quot;games&quot;: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;_id&quot;: &quot;56e916b2e55db6da66dd8fae&quot;,</span><br><span class="line">                        &quot;name&quot;: &quot;射雕英雄传3D&quot;,</span><br><span class="line">                        &quot;cat&quot;: &quot;动作冒险&quot;,</span><br><span class="line">                        &quot;intro&quot;: &quot;《射雕英雄传3D》是一款金庸正版授权的3D武侠动作手游。游戏改编自\&quot;华人第一武侠作家\&quot;金庸的奠基之作《射雕英雄传》，完美还原了从牛家村到华山论剑的小说剧情，玩家在游戏中不仅能够收集并培养大家耳熟能详的英雄人物，还能与好友一较高下!黄蓉、郭靖、杨康……数十位经典角色悉数登场，将与你展开一段撑霆裂月的江湖之旅。\r\n《射雕英雄传3D》游戏画风精致可爱，使用Unity3D引擎精心打造，完美世界顶级美术亲自操刀游戏原画、场景设计、人物模型。挥毫间再现桃花岛的一川风月、华山之巅的恢弘气势、江南水乡的车水马龙，让玩家犹如置身其间。\r\n追书神器游戏玩家群 117975871&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&quot;,</span><br><span class="line">                        &quot;shortIntro&quot;: &quot;金庸正版授权的3D武侠动作手游&quot;,</span><br><span class="line">                        &quot;start&quot;: &quot;2016-03-15T16:00:00.000Z&quot;,</span><br><span class="line">                        &quot;iosLink&quot;: &quot;&quot;,</span><br><span class="line">                        &quot;iosSize&quot;: null,</span><br><span class="line">                        &quot;androidLink&quot;: &quot;https://dn-zhuishu-download.qbox.me/dino.zip&quot;,</span><br><span class="line">                        &quot;androidSize&quot;: 419430400,</span><br><span class="line">                        &quot;androidPackageName&quot;: &quot;com.meiqi.sdyxz.android.kaopu&quot;,</span><br><span class="line">                        &quot;icon&quot;: &quot;http://statics.zhuishushenqi.com/game-icon/14616570336476?imageView/2/w/144/h/144&quot;,</span><br><span class="line">                        &quot;cover&quot;: &quot;http://statics.zhuishushenqi.com/game-cover/146068709521655?imageView/2/w/312/h/156&quot;,</span><br><span class="line">                        &quot;banner&quot;: &quot;http://statics.zhuishushenqi.com/game-cover/146068709521521?imageView/2/w/720/h/360&quot;,</span><br><span class="line">                        &quot;__v&quot;: 0,</span><br><span class="line">                        &quot;modified&quot;: &quot;2017-05-21T19:00:13.642Z&quot;,</span><br><span class="line">                        &quot;simulatorMainPromo&quot;: true,</span><br><span class="line">                        &quot;h5MainPromo&quot;: false,</span><br><span class="line">                        &quot;mainPromoInfo&quot;: &#123;</span><br><span class="line">                            &quot;desc&quot;: &quot;游戏改编自\&quot;华人第一武侠作家\&quot;金庸奠基之作《射雕英雄传》，一较高下吧！&quot;,</span><br><span class="line">                            &quot;playingCount&quot;: 31231</span><br><span class="line">                        &#125;,</span><br><span class="line">                        &quot;mainPromo&quot;: false,</span><br><span class="line">                        &quot;type&quot;: &quot;simulator&quot;,</span><br><span class="line">                        &quot;hasGift&quot;: false,</span><br><span class="line">                        &quot;giftFlag&quot;: false,</span><br><span class="line">                        &quot;activityFlag&quot;: false,</span><br><span class="line">                        &quot;hotFlag&quot;: false,</span><br><span class="line">                        &quot;firsthand&quot;: false,</span><br><span class="line">                        &quot;recommend&quot;: false,</span><br><span class="line">                        &quot;sort&quot;: 3,</span><br><span class="line">                        &quot;followers&quot;: 1074,</span><br><span class="line">                        &quot;pasted&quot;: false,</span><br><span class="line">                        &quot;enable&quot;: true,</span><br><span class="line">                        &quot;platforms&quot;: [</span><br><span class="line">                            &quot;android&quot;</span><br><span class="line">                        ],</span><br><span class="line">                        &quot;pictures&quot;: [</span><br><span class="line">                            &quot;http://statics.zhuishushenqi.com/game-picture/146068709521681?imageView/2/w/1500/h/1500&quot;,</span><br><span class="line">                            &quot;http://statics.zhuishushenqi.com/game-picture/146068709521661?imageView/2/w/1500/h/1500&quot;,</span><br><span class="line">                            &quot;http://statics.zhuishushenqi.com/game-picture/146068709521659?imageView/2/w/1500/h/1500&quot;,</span><br><span class="line">                            &quot;http://statics.zhuishushenqi.com/game-picture/14606870952162?imageView/2/w/1500/h/1500&quot;,</span><br><span class="line">                            &quot;http://statics.zhuishushenqi.com/game-picture/14606870952167?imageView/2/w/1500/h/1500&quot;</span><br><span class="line">                        ]</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">    &quot;promotions&quot;: [&#123;</span><br><span class="line">        &quot;_id&quot;: &quot;5515313b22a7f74c0371d487&quot;,</span><br><span class="line">        &quot;name&quot;: &quot;小游戏测试1&quot;,</span><br><span class="line">        &quot;cat&quot;: &quot;飞行射击&quot;,</span><br><span class="line">        &quot;banner&quot;: &quot;http://statics.zhuishushenqi.com/game-cover/143997279413641?imageView/2/w/720/h/360&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;simulator&quot;</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一个对象，输出为@apiSuccess的doc的方式不可取，我们肯定想写一个tool来简化每次的操作。</p>
+<p>在apidoc文档里，@apiSuccess的用法如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@apiSuccess &#123;String&#125; firstname Firstname of the User.</span><br></pre></td></tr></table></figure></p>
+<p>里面有返回类型，字段，和字段描述，我们主要关注返回类型和字段。</p>
+<p>返回类型大约有如下几种：{Boolean},  {Number},  {String}, {Object}, {String[]}</p>
+<p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _ = <span class="built_in">require</span>(<span class="string">'lodash'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> text = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">getNodes(obj)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(text)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outputApiDocLine</span>(<span class="params">type, node, pNode</span>) </span>&#123;</span><br><span class="line">    type = _.capitalize(type) <span class="comment">// 首字母大写</span></span><br><span class="line">    <span class="keyword">let</span> key = pNode ? <span class="string">`<span class="subst">$&#123;pNode&#125;</span>.<span class="subst">$&#123;node&#125;</span>`</span> : <span class="string">`<span class="subst">$&#123;node&#125;</span>`</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`@apiSuccess &#123;<span class="subst">$&#123;type&#125;</span>&#125; <span class="subst">$&#123;key&#125;</span>\n`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNodes</span>(<span class="params">target, pNode = <span class="string">''</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> target) &#123;</span><br><span class="line">        <span class="keyword">let</span> type = <span class="keyword">typeof</span> target[key]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (_.isArray(target[key])) &#123;</span><br><span class="line">            <span class="keyword">let</span> temp = target[key][<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span> (_.isObject(temp)) &#123;</span><br><span class="line">                text += outputApiDocLine(<span class="string">'object[]'</span>, key, pNode)</span><br><span class="line">                newPNode = pNode ? <span class="string">`<span class="subst">$&#123;pNode&#125;</span>.<span class="subst">$&#123;key&#125;</span>`</span> : key</span><br><span class="line">                getNodes(target[key][<span class="number">0</span>], newPNode)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                text += outputApiDocLine(<span class="string">'array'</span>, key, pNode)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (_.isObject(target[key])) &#123;</span><br><span class="line">            text += outputApiDocLine(type, key, pNode)</span><br><span class="line">            newPNode = pNode ? <span class="string">`<span class="subst">$&#123;pNode&#125;</span>.<span class="subst">$&#123;key&#125;</span>`</span> : key</span><br><span class="line">            getNodes(target[key], newPNode)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            text += outputApiDocLine(type, key, pNode)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们这里引用了lodash库来做类型判断和首字母大写。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_.capitalize(str)  <span class="comment">// 首字母大写</span></span><br><span class="line">_.isArray(target)  <span class="comment">// 是否是数组</span></span><br><span class="line">_.isObject(target) <span class="comment">// 是否是对象</span></span><br></pre></td></tr></table></figure>
+<p>因为数组也是对象的一种，所以先判断数组，再判断对象，然后非对象的直接输出。</p>
+<p>采用递归的方式遍历每个子节点，获取对用节点信息。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

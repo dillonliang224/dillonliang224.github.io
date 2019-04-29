@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      bluebird学习 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="原生的Promise只提供了基础的API，满足不了项目中的应用，bluebird包扩展了这部分，提供了大量高级应用。在性能方面，暂时领先于原生的Promise。">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bluebird学习 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/07/07/bluebird学习/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="原生的Promise只提供了基础的API，满足不了项目中的应用，bluebird包扩展了这部分，提供了大量高级应用。在性能方面，暂时领先于原生的Promise。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/bluebird.png">
+<meta property="og:updated_time" content="2019-04-29T10:18:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bluebird学习 | 逝水流LF">
+<meta name="twitter:description" content="原生的Promise只提供了基础的API，满足不了项目中的应用，bluebird包扩展了这部分，提供了大量高级应用。在性能方面，暂时领先于原生的Promise。">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/bluebird.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">bluebird学习</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-07-07" class="post-meta__date date">2018-07-07</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><img src="http://image.dillonliang.cn/blog/bluebird.png" alt></p>
+<p>原生的Promise只提供了基础的API，满足不了项目中的应用，bluebird包扩展了这部分，提供了大量高级应用。在性能方面，暂时领先于原生的Promise。</p>
+<a id="more"></a>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i bluebird -S</span><br></pre></td></tr></table></figure>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">'bluebird'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="核心方法（Core）"><a href="#核心方法（Core）" class="headerlink" title="核心方法（Core）"></a>核心方法（Core）</h3><h3 id="同步检查（Synchronous-inspection）"><a href="#同步检查（Synchronous-inspection）" class="headerlink" title="同步检查（Synchronous inspection）"></a>同步检查（Synchronous inspection）</h3><h3 id="集合操作（Collections）"><a href="#集合操作（Collections）" class="headerlink" title="集合操作（Collections）"></a>集合操作（Collections）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询用户数量:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countUser</span>(<span class="params">con</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> User.count(con).exec()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询用户列表</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findUserList</span>(<span class="params">con</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> User.find(con).exec()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Promise-all-同时执行多个promise"><a href="#Promise-all-同时执行多个promise" class="headerlink" title="Promise.all - 同时执行多个promise"></a>Promise.all - 同时执行多个promise</h4><p>返回的是一个数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> con = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> result = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([countUser(con), findUserList(con)])</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> count = result[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">let</span> list = result[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="Promise-props-以对象的形式同时执行多个promise"><a href="#Promise-props-以对象的形式同时执行多个promise" class="headerlink" title="Promise.props - 以对象的形式同时执行多个promise"></a>Promise.props - 以对象的形式同时执行多个promise</h4><p>返回的是一个对象，可以利用es6解构函数获取对应的数据，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> con = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> &#123; count, list &#125; = <span class="keyword">await</span> <span class="built_in">Promise</span>.props(&#123;</span><br><span class="line">    count: countUser(con),</span><br><span class="line">    list: findUserList(con)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// todo something with count, list</span></span><br></pre></td></tr></table></figure>
+<h4 id="Promise-any-任何一个promise完成立即返回"><a href="#Promise-any-任何一个promise完成立即返回" class="headerlink" title="Promise.any - 任何一个promise完成立即返回"></a>Promise.any - 任何一个promise完成立即返回</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.any(Iterable&lt;any&gt;|<span class="built_in">Promise</span>&lt;Iterable&lt;any&gt;&gt; input) -&gt; <span class="built_in">Promise</span></span><br></pre></td></tr></table></figure>
+<p>类似于Promise.some，返回第一个执行成功的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> con = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> data = <span class="keyword">await</span> <span class="built_in">Promise</span>.any([countUser(con), findUserList(con)])</span><br><span class="line"></span><br><span class="line"><span class="comment">// data可能是count，也可能是list，谁也执行完，值就是谁</span></span><br></pre></td></tr></table></figure>
+<h4 id="Promise-some-执行指定个数的promise成功后返回"><a href="#Promise-some-执行指定个数的promise成功后返回" class="headerlink" title="Promise.some - 执行指定个数的promise成功后返回"></a>Promise.some - 执行指定个数的promise成功后返回</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.some(</span><br><span class="line">    Iterable&lt;any&gt;|<span class="built_in">Promise</span>&lt;Iterable&lt;any&gt;&gt; input,</span><br><span class="line">    int count</span><br><span class="line">) -&gt; <span class="built_in">Promise</span></span><br></pre></td></tr></table></figure>
+<p>同时执行多个promise，在有count个promise完成后返回，返回的是一个数组，按照返回的顺序排序。</p>
+<p>同时ping四个网址，返回执行最快的2个<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.some([</span><br><span class="line">  ping(<span class="string">"ns1.example.com"</span>),</span><br><span class="line">  ping(<span class="string">"ns2.example.com"</span>),</span><br><span class="line">  ping(<span class="string">"ns3.example.com"</span>),</span><br><span class="line">  ping(<span class="string">"ns4.example.com"</span>)</span><br><span class="line">], <span class="number">2</span>).spread(<span class="function"><span class="keyword">function</span>(<span class="params">first, second</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(first, second);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="Promise-map-Map操作"><a href="#Promise-map-Map操作" class="headerlink" title="Promise.map - Map操作"></a>Promise.map - Map操作</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.map(</span><br><span class="line">    Iterable&lt;any&gt;|<span class="built_in">Promise</span>&lt;Iterable&lt;any&gt;&gt; input,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">any item, int index, int length</span>) <span class="title">mapper</span>,</span></span><br><span class="line">    [Object &#123;concurrency: int=Infinity&#125; options]</span><br><span class="line">) -&gt; <span class="built_in">Promise</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>按照指定方法执行map操作，返回执行成功后的数组或者iterable promise。</li>
+<li>concurrency可以并行执行多个promise</li>
+<li>直到所有的promise按照mapper执行完成后，才返回。如果有任一个promise reject，则整个map操作reject。</li>
+<li>Promise.map不能保证数据返回的顺序。</li>
+</ul>
+<p>一个最常用的列子是替代.push + Promise.all<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promises = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; fileNames.length; ++i) &#123;</span><br><span class="line">    promises.push(fs.readFileAsync(fileNames[i]));</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Promise</span>.all(promises).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"done"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Using Promise.map:</span></span><br><span class="line"><span class="built_in">Promise</span>.map(fileNames, <span class="function"><span class="keyword">function</span>(<span class="params">fileName</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Promise.map awaits for returned promises as well.</span></span><br><span class="line">    <span class="keyword">return</span> fs.readFileAsync(fileName);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"done"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="Promise-mapSeries-顺序执行promise"><a href="#Promise-mapSeries-顺序执行promise" class="headerlink" title="Promise.mapSeries - 顺序执行promise"></a>Promise.mapSeries - 顺序执行promise</h4><p>类似于promise.map，但是要顺序执行promise</p>
+<h4 id="Promise-reduce-reduce操作"><a href="#Promise-reduce-reduce操作" class="headerlink" title="Promise.reduce - reduce操作"></a>Promise.reduce - reduce操作</h4><h4 id="Promise-filter-filter操作"><a href="#Promise-filter-filter操作" class="headerlink" title="Promise.filter - filter操作"></a>Promise.filter - filter操作</h4><p>使用给定的function过滤出满足条件的promise，返回的是个数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.filter(</span><br><span class="line">    Iterable&lt;any&gt;|<span class="built_in">Promise</span>&lt;Iterable&lt;any&gt;&gt; input,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">any item, int index, int length</span>) <span class="title">filterer</span>,</span></span><br><span class="line">    [Object &#123;concurrency: int=Infinity&#125; options]</span><br><span class="line">) -&gt; <span class="built_in">Promise</span></span><br></pre></td></tr></table></figure>
+<p>遍历给定的用户ids，找出男生<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.filter(ids, <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> User.findById(id).exec().then(<span class="function">(<span class="params">user</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> user.gender === <span class="string">'male'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;, <span class="number">3</span>) <span class="comment">// 3代表一次最多执行3个</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Promise-each-依次执行promise"><a href="#Promise-each-依次执行promise" class="headerlink" title="Promise.each - 依次执行promise"></a>Promise.each - 依次执行promise</h4><p>更新用户的时间<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.each(ids, <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> User.findByIdAndUpdate(id, &#123;<span class="attr">updated</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Promise-race-竞速执行promise，返回第一个，不管成功or失败"><a href="#Promise-race-竞速执行promise，返回第一个，不管成功or失败" class="headerlink" title="Promise.race - 竞速执行promise，返回第一个，不管成功or失败"></a>Promise.race - 竞速执行promise，返回第一个，不管成功or失败</h4><h3 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h3><p>### </p>
+<hr>
+<p>ref:<br><a href="http://bluebirdjs.com/docs/api-reference.html" target="_blank" rel="noopener">http://bluebirdjs.com/docs/api-reference.html</a><br><a href="https://itbilu.com/nodejs/npm/VJHw6ScNb.html#api-promisify" target="_blank" rel="noopener">https://itbilu.com/nodejs/npm/VJHw6ScNb.html#api-promisify</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

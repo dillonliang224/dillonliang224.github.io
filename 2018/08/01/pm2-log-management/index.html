@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      pm2日志管理 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="在应用中，有效的日志是宝贵的财富，可以帮助开发解决很多问题。 pm2中的日志可实时获取并保存在硬盘中，可以自定义日志的格式以及日志文件的创建方式。">
+<meta name="keywords" content="node.js,pm2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pm2日志管理 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/08/01/pm2-log-management/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="在应用中，有效的日志是宝贵的财富，可以帮助开发解决很多问题。 pm2中的日志可实时获取并保存在硬盘中，可以自定义日志的格式以及日志文件的创建方式。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T10:18:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pm2日志管理 | 逝水流LF">
+<meta name="twitter:description" content="在应用中，有效的日志是宝贵的财富，可以帮助开发解决很多问题。 pm2中的日志可实时获取并保存在硬盘中，可以自定义日志的格式以及日志文件的创建方式。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">pm2日志管理</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-08-01" class="post-meta__date date">2018-08-01</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>, <a class="tags-link" href="/tags/pm2/">pm2</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>在应用中，有效的日志是宝贵的财富，可以帮助开发解决很多问题。</p>
+<p>pm2中的日志可实时获取并保存在硬盘中，可以自定义日志的格式以及日志文件的创建方式。</p>
+<a id="more"></a>
+<h2 id="访问日志"><a href="#访问日志" class="headerlink" title="访问日志"></a>访问日志</h2><h3 id="实时日志"><a href="#实时日志" class="headerlink" title="实时日志"></a>实时日志</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># all apps logs</span></span><br><span class="line">pm2 logs</span><br><span class="line"></span><br><span class="line"><span class="comment"># only app logs</span></span><br><span class="line">pm2 logs app</span><br></pre></td></tr></table></figure>
+<h3 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h3><p>默认情况下，所有的日志文件会被保存在$HOME/.pm2/logs下。</p>
+<p>可以使用如下命令清空所有应用的日志：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 flush</span><br></pre></td></tr></table></figure>
+<h2 id="日志文件配置"><a href="#日志文件配置" class="headerlink" title="日志文件配置"></a>日志文件配置</h2><p>可以自定义日志文件位置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [&#123;</span><br><span class="line">      name: <span class="string">'app'</span>,</span><br><span class="line">      script: <span class="string">'app.js'</span>,</span><br><span class="line">      output: <span class="string">'./out.log'</span>,</span><br><span class="line">      error: <span class="string">'./error.log'</span>,</span><br><span class="line">      log: <span class="string">'./combined.outerr.log'</span>,</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中</p>
+<ul>
+<li>output 只有常规输出(console.log)</li>
+<li>error 只有错误输出(console.error)</li>
+<li>log 结合output(常规输出)和error(错误输出)，默认禁用</li>
+</ul>
+<h3 id="Rotating-Logs"><a href="#Rotating-Logs" class="headerlink" title="Rotating Logs"></a>Rotating Logs</h3><p>如果想把一个大的日志文件分为多个小文件存储，可以使用<a href="https://github.com/keymetrics/pm2-logrotate" target="_blank" rel="noopener">logrotate</a>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 install pm2-logrotate</span><br></pre></td></tr></table></figure>
+<h2 id="合并日志-Merging-Logs"><a href="#合并日志-Merging-Logs" class="headerlink" title="合并日志(Merging Logs)"></a>合并日志(Merging Logs)</h2><p>在cluster模式下，每个cluster都有它自己的日志，可以使用merge选项来收集所有相关日志到一个文件里去。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [&#123;</span><br><span class="line">      name: <span class="string">'app'</span>,</span><br><span class="line">      script: <span class="string">'app.js'</span>,</span><br><span class="line">      output: <span class="string">'./out.log'</span>,</span><br><span class="line">      error: <span class="string">'./error.log'</span>,</span><br><span class="line">      merge_logs: <span class="literal">true</span>,</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>日志文件依旧按照output/error/log划分。</p>
+<h2 id="禁用日志"><a href="#禁用日志" class="headerlink" title="禁用日志"></a>禁用日志</h2><p>可以把日志发送到/dev/null来实现禁用日志的目的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [&#123;</span><br><span class="line">      name: <span class="string">'app'</span>,</span><br><span class="line">      script: <span class="string">'app.js'</span>,</span><br><span class="line">      output: <span class="string">'/dev/null'</span>,</span><br><span class="line">      error: <span class="string">'/dev/null'</span>,</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="日志格式"><a href="#日志格式" class="headerlink" title="日志格式"></a>日志格式</h2><h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p>可以输出为JSON格式的日志</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
+<p>变成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">"message"</span>: <span class="string">"Hello World!\n"</span>,</span><br><span class="line">   <span class="string">"timestamp"</span>: <span class="string">"2018-08-01T14:51:38.896Z"</span>,</span><br><span class="line">   <span class="string">"type"</span>: <span class="string">"out"</span>,</span><br><span class="line">   <span class="string">"process_id"</span>: <span class="number">0</span>,</span><br><span class="line">   <span class="string">"app_name"</span>: <span class="string">"app"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只需要在ecosystem文件里加上参数：<br>“log_type”: “json”</p>
+<h3 id="时间戳格式"><a href="#时间戳格式" class="headerlink" title="时间戳格式"></a>时间戳格式</h3><p>可以输出带有时间戳的日志</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
+<p>变成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">01</span><span class="number">-08</span><span class="number">-2018</span>: Hello World!</span><br></pre></td></tr></table></figure>
+<p>只需要在ecosystem文件里加上参数：<br>“log_date_format”: “DD-MM-YYYY”</p>
+<p>时间格式必须安装<a href="https://momentjs.com/docs/#/parsing/string-format/" target="_blank" rel="noopener">moment</a>格式。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

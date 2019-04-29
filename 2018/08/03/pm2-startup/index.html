@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      pm2之startup | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="pm2文档里有pm2 startup的命令，这个命令的目的是保存你的进程，然后在重启的服务器后，运行保存的进程，即使是意外的重启。">
+<meta name="keywords" content="node.js,pm2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pm2之startup | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/pm2-startup/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="pm2文档里有pm2 startup的命令，这个命令的目的是保存你的进程，然后在重启的服务器后，运行保存的进程，即使是意外的重启。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T10:18:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pm2之startup | 逝水流LF">
+<meta name="twitter:description" content="pm2文档里有pm2 startup的命令，这个命令的目的是保存你的进程，然后在重启的服务器后，运行保存的进程，即使是意外的重启。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">pm2之startup</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-08-03" class="post-meta__date date">2018-08-03</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>, <a class="tags-link" href="/tags/pm2/">pm2</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>pm2文档里有pm2 startup的命令，这个命令的目的是保存你的进程，然后在重启的服务器后，运行保存的进程，即使是意外的重启。</p>
+<a id="more"></a>
+<blockquote>
+<p>The purpose of a startup hook is to save your process list and bring it back at machine restarts, even unexpected ones.</p>
+</blockquote>
+<p>每个操作系统都有一个特定的工具来处理启动hook，pm2提供了更简单的方式去生成和配置它。</p>
+<p>步骤如下：</p>
+<ol>
+<li>在你需要保存的进程环境里，选择正确的node版本，然后执行pm2 startup命令。</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 startup</span><br></pre></td></tr></table></figure>
+<p>输出如下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">[PM2] Init System found: systemd</span><br><span class="line">Platform systemd</span><br><span class="line">Template</span><br><span class="line">[Unit]</span><br><span class="line">Description=PM2 process manager</span><br><span class="line">Documentation=https://pm2.keymetrics.io/</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">User=root</span><br><span class="line">LimitNOFILE=infinity</span><br><span class="line">LimitNPROC=infinity</span><br><span class="line">LimitCORE=infinity</span><br><span class="line">Environment=PATH=/root/.nvm/versions/node/v8.9.0/bin:/bin:/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/usr/sbin:/usr/bin</span><br><span class="line">Environment=PM2_HOME=/root/.pm2</span><br><span class="line">PIDFile=/root/.pm2/pm2.pid</span><br><span class="line"></span><br><span class="line">ExecStart=/root/.nvm/versions/node/v8.9.0/lib/node_modules/pm2/bin/pm2 resurrect</span><br><span class="line">ExecReload=/root/.nvm/versions/node/v8.9.0/lib/node_modules/pm2/bin/pm2 reload all</span><br><span class="line">ExecStop=/root/.nvm/versions/node/v8.9.0/lib/node_modules/pm2/bin/pm2 <span class="built_in">kill</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">Target path</span><br><span class="line">/etc/systemd/system/pm2-root.service</span><br><span class="line">Command list</span><br><span class="line">[ <span class="string">'systemctl enable pm2-root'</span>,</span><br><span class="line">  <span class="string">'systemctl start pm2-root'</span>,</span><br><span class="line">  <span class="string">'systemctl daemon-reload'</span>,</span><br><span class="line">  <span class="string">'systemctl status pm2-root'</span> ]</span><br><span class="line">[PM2] Writing init configuration <span class="keyword">in</span> /etc/systemd/system/pm2-root.service</span><br><span class="line">[PM2] Making script booting at startup...</span><br><span class="line">&gt;&gt;&gt; Executing systemctl <span class="built_in">enable</span> pm2-root</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/pm2-root.service to /etc/systemd/system/pm2-root.service.</span><br><span class="line">[DONE]</span><br><span class="line">&gt;&gt;&gt; Executing systemctl start pm2-root</span><br><span class="line">[DONE]</span><br><span class="line">&gt;&gt;&gt; Executing systemctl daemon-reload</span><br><span class="line">[DONE]</span><br><span class="line">&gt;&gt;&gt; Executing systemctl status pm2-root</span><br><span class="line">● pm2-root.service - PM2 process manager</span><br><span class="line">   Loaded: loaded (/etc/systemd/system/pm2-root.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Mon 2018-07-30 21:10:51 CST; 142ms ago</span><br><span class="line">     Docs: https://pm2.keymetrics.io/</span><br><span class="line"> Main PID: 18797 (PM2 v2.9.3: God)</span><br><span class="line">   CGroup: /system.slice/pm2-root.service</span><br><span class="line">           ‣ 18797 PM2 v2.9.3: God Daemon (/root/.pm2)</span><br><span class="line"></span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: ┌──────────┬────┬─────────┬──────┬────────┬─────────┬────────┬─────┬───────────┬──────┬──────────┐</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: │ App name │ id │ mode    │ pid  │ status │ restart │ uptime │ cpu │ mem       │ user │ watching │</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: ├──────────┼────┼─────────┼──────┼────────┼─────────┼────────┼─────┼───────────┼──────┼──────────┤</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: │ file     │ 0  │ cluster │ 7218 │ online │ 1       │ 4M     │ 0%  │ 68.7 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: │ file     │ 1  │ cluster │ 7217 │ online │ 1       │ 4M     │ 0%  │ 71.3 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: │ file     │ 2  │ cluster │ 7229 │ online │ 1       │ 4M     │ 0%  │ 72.0 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: │ file     │ 3  │ cluster │ 7225 │ online │ 1       │ 4M     │ 0%  │ 68.5 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: └──────────┴────┴─────────┴──────┴────────┴─────────┴────────┴─────┴───────────┴──────┴──────────┘</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz pm2[25150]: Use `pm2 show &lt;id|name&gt;` to get more details about an app</span><br><span class="line">Jul 30 21:10:51 izwz90ssdog3u3uaesujemz systemd[1]: Started PM2 process manager.</span><br><span class="line">[DONE]</span><br><span class="line">+---------------------------------------+</span><br><span class="line">[PM2] Freeze a process list on reboot via:</span><br><span class="line">$ pm2 save</span><br><span class="line"></span><br><span class="line">[PM2] Remove init script via:</span><br><span class="line">$ pm2 unstartup systemd</span><br></pre></td></tr></table></figure></p>
+<p>同样，我们可以通过–service-name来指定启动的服务名。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 startup --service-name file</span><br></pre></td></tr></table></figure></p>
+<p>输出格式略有不同，如下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">[PM2] Init System found: systemd</span><br><span class="line">Platform systemd</span><br><span class="line">Template</span><br><span class="line">[Unit]</span><br><span class="line">Description=PM2 process manager</span><br><span class="line">Documentation=https://pm2.keymetrics.io/</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">User=root</span><br><span class="line">LimitNOFILE=infinity</span><br><span class="line">LimitNPROC=infinity</span><br><span class="line">LimitCORE=infinity</span><br><span class="line">Environment=PATH=/root/.nvm/versions/node/v8.9.0/bin:/bin:/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/usr/sbin:/usr/bin</span><br><span class="line">Environment=PM2_HOME=/root/.pm2</span><br><span class="line">PIDFile=/root/.pm2/pm2.pid</span><br><span class="line"></span><br><span class="line">ExecStart=/root/.nvm/versions/node/v8.9.0/lib/node_modules/pm2/bin/pm2 resurrect</span><br><span class="line">ExecReload=/root/.nvm/versions/node/v8.9.0/lib/node_modules/pm2/bin/pm2 reload all</span><br><span class="line">ExecStop=/root/.nvm/versions/node/v8.9.0/lib/node_modules/pm2/bin/pm2 <span class="built_in">kill</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">Target path</span><br><span class="line">/etc/systemd/system/file.service</span><br><span class="line">Command list</span><br><span class="line">[ <span class="string">'systemctl enable file'</span>,</span><br><span class="line">  <span class="string">'systemctl start file'</span>,</span><br><span class="line">  <span class="string">'systemctl daemon-reload'</span>,</span><br><span class="line">  <span class="string">'systemctl status file'</span> ]</span><br><span class="line">[PM2] Writing init configuration <span class="keyword">in</span> /etc/systemd/system/file.service</span><br><span class="line">[PM2] Making script booting at startup...</span><br><span class="line">&gt;&gt;&gt; Executing systemctl <span class="built_in">enable</span> file</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/file.service to /etc/systemd/system/file.service.</span><br><span class="line">[DONE]</span><br><span class="line">&gt;&gt;&gt; Executing systemctl start file</span><br><span class="line">[DONE]</span><br><span class="line">&gt;&gt;&gt; Executing systemctl daemon-reload</span><br><span class="line">[DONE]</span><br><span class="line">&gt;&gt;&gt; Executing systemctl status file</span><br><span class="line">● file.service - PM2 process manager</span><br><span class="line">   Loaded: loaded (/etc/systemd/system/file.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Mon 2018-07-30 21:12:22 CST; 71ms ago</span><br><span class="line">     Docs: https://pm2.keymetrics.io/</span><br><span class="line"> Main PID: 25264 (PM2 v2.9.3: God)</span><br><span class="line">   CGroup: /system.slice/file.service</span><br><span class="line">           ├─25264 PM2 v2.9.3: God Daemon (/root/.pm2)</span><br><span class="line">           ├─25276 node /root/app/file/api/app.js</span><br><span class="line">           ├─25277 node /root/app/file/api/app.js</span><br><span class="line">           ├─25288 node /root/app/file/api/app.js</span><br><span class="line">           ├─25295 node /root/app/file/api/app.js</span><br><span class="line">           ├─25383 /bin/sh -c <span class="built_in">cd</span> <span class="string">'/root/app/file/'</span>;LC_ALL=en_US.UTF-8 git remote</span><br><span class="line">           └─25385 git remote</span><br><span class="line"></span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: ┌──────────┬────┬─────────┬───────┬────────┬─────────┬────────┬─────┬───────────┬──────┬──────────┐</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: │ App name │ id │ mode    │ pid   │ status │ restart │ uptime │ cpu │ mem       │ user │ watching │</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: ├──────────┼────┼─────────┼───────┼────────┼─────────┼────────┼─────┼───────────┼──────┼──────────┤</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: │ file     │ 0  │ cluster │ 25276 │ online │ 0       │ 0s     │ 29% │ 22.0 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: │ file     │ 1  │ cluster │ 25277 │ online │ 0       │ 0s     │ 18% │ 22.0 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: │ file     │ 2  │ cluster │ 25288 │ online │ 0       │ 0s     │ 23% │ 22.0 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: │ file     │ 3  │ cluster │ 25295 │ online │ 0       │ 0s     │ 22% │ 22.0 MB   │ root │ disabled │</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: └──────────┴────┴─────────┴───────┴────────┴─────────┴────────┴─────┴───────────┴──────┴──────────┘</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz pm2[25258]: Use `pm2 show &lt;id|name&gt;` to get more details about an app</span><br><span class="line">Jul 30 21:12:22 izwz90ssdog3u3uaesujemz systemd[1]: Started PM2 process manager.</span><br><span class="line">[DONE]</span><br><span class="line">+---------------------------------------+</span><br><span class="line">[PM2] Freeze a process list on reboot via:</span><br><span class="line">$ pm2 save</span><br><span class="line"></span><br><span class="line">[PM2] Remove init script via:</span><br><span class="line">$ pm2 unstartup systemd</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>保存进程列表–pm2 save</li>
+</ol>
+<p>在步骤1中，startup hook会列出将要保存的进程列表，执行<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 save</span><br></pre></td></tr></table></figure></p>
+<p>将会把这些进程保存下来，并在/root/.pm2目录下生成dump文件。</p>
+<p>Note: 如果删除了所有进程，然后重启了系统（or use pm2 update）, 系统会重启所有刚刚保存在dump中的进程。这是为了防止空dump文件的bug。</p>
+<p>如果要创建一个空的dump文件，需要先执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 cleardump</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>禁用系统的startup</li>
+</ol>
+<p>如果不想用这个功能了，可以执行<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 unstartup</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>用户权限</li>
+</ol>
+<p>如果要在一个其他账号下运行重启hook，执行如下命令，在user是liang的账号，/home/liang的根目录执行file启动hook。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 startup file -u liang --hp /home/liang</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>更新hook</li>
+</ol>
+<p>更新startup hook，只需要执行如下命令即可：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pm2 unstartup</span><br><span class="line">pm2 startup</span><br></pre></td></tr></table></figure>
+<p>END</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
