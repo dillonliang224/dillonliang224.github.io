@@ -7,7 +7,7 @@
     
 
     <title>
-      RabbitMQ | 逝水流LF 
+      RabbitMQ笔记 | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,17 +16,18 @@
     
     
 
-    <meta name="description" content="生与死 轮回不止 我们生 他们死">
+    <meta name="description" content="RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件，由 Erlang 语言开发AMQP ：Advanced Message Queue，高级消息队列协议。它是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受产品、开发语言等条件的限制。">
+<meta name="keywords" content="rabbitmq">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RabbitMQ | 逝水流LF">
+<meta property="og:title" content="RabbitMQ笔记 | 逝水流LF">
 <meta property="og:url" content="http://yoursite.com/2019/04/29/RabbitMQ/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="生与死 轮回不止 我们生 他们死">
+<meta property="og:description" content="RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件，由 Erlang 语言开发AMQP ：Advanced Message Queue，高级消息队列协议。它是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受产品、开发语言等条件的限制。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-29T10:24:07.000Z">
+<meta property="og:updated_time" content="2019-05-30T01:48:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RabbitMQ | 逝水流LF">
-<meta name="twitter:description" content="生与死 轮回不止 我们生 他们死">
+<meta name="twitter:title" content="RabbitMQ笔记 | 逝水流LF">
+<meta name="twitter:description" content="RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件，由 Erlang 语言开发AMQP ：Advanced Message Queue，高级消息队列协议。它是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受产品、开发语言等条件的限制。">
     
     
     
@@ -150,7 +151,7 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">RabbitMQ</h1>
+    <h1 class="post-title">RabbitMQ笔记</h1>
 
     
 
@@ -162,6 +163,11 @@ classes that you can use:
           
 
           
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/rabbitmq/">rabbitmq</a>
+            </font>
+          
 
       </span>
     </div>
@@ -171,7 +177,58 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    
+    <blockquote>
+<p>RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件，由 Erlang 语言开发<br>AMQP ：Advanced Message Queue，高级消息队列协议。它是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受产品、开发语言等条件的限制。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="生产者／消费者"><a href="#生产者／消费者" class="headerlink" title="生产者／消费者"></a>生产者／消费者</h3><p>生产者创建消息，然后发布到代理服务器（RabbitMQ）。</p>
+<p>消息由2部分构成：</p>
+<pre><code>- payload: 有效载体，要传输的数据，可以是任务内容
+- label: 标签，描述了payload，并且RabbitMQ用它来决定谁将获得消息的拷贝
+</code></pre><p>消费者接受来自于RabbitMQ的消息并处理</p>
+<h3 id="信道（channel"><a href="#信道（channel" class="headerlink" title="信道（channel)"></a>信道（channel)</h3><blockquote>
+<p>应用程序和Rabbit代理服务器之间创建一条TCP连接。一旦TCP连接打开，应用程序就可以创建一条AMQP信道。</p>
+</blockquote>
+<blockquote>
+<p>信道是建立在“真实的”TCP连接内的虚拟连接。</p>
+</blockquote>
+<blockquote>
+<p>AMQP命令都是通过信道发送出去的。</p>
+</blockquote>
+<blockquote>
+<p>信道就好像电缆里的一根光纤，电缆就是AMQP连接</p>
+</blockquote>
+<p>Note: 为什么不直接通过TCP连接发送AMQP命令呢？<br>主要原因在于对操作系统来说建立和销毁TCP会话是非常昂贵的开销。</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>接受消息的两种方式:</p>
+<ul>
+<li>basic.consume: 消费最近接收到到消息后，自动从队列接收下一条消息。</li>
+<li>basic.get: 从队列获得单条消息而不是持续订阅。</li>
+</ul>
+<p>队列参数：</p>
+<ul>
+<li>auto_ack: true下，一旦消费者接收消息，Rabbitmq会自动视其确认了消息。</li>
+<li>basic.reject: 设置成true，RQ会把消息发送给下一个订阅的消费者。设置成false, 死信(dead letter)</li>
+<li>exclusive: 设置成true，队列将变成私有的，只有消费者。</li>
+<li>auto-delete: 当最后一个消费者取消订阅的时候，队列就会自动删除。</li>
+</ul>
+<h3 id="交换器"><a href="#交换器" class="headerlink" title="交换器"></a>交换器</h3><p>服务器会根据路由键将消息从交换器路由到队列。</p>
+<p>路由器有4种类型： direct、fanout、topic和headers（不常用）。</p>
+<p>direct: 如果路由键匹配的话，消息就被投递到对应到队列。<br>fanout: 这种类型的交换器会把收到的消息广播到绑定到队列上。<br>topic: 通过模糊匹配规则，队列接收一类消息。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>AMQP架构中最关键的几个组件分别是交换器、队列和绑定。</li>
+<li>根据绑定规则将队列绑定到交换器上。</li>
+<li>消息是发布到交换器上的。</li>
+<li>有三种类型的交换器: direct,fanout和topic。</li>
+<li>基于消息的路由键和交换器类型，服务器会决定将消息投递到哪个队列去。</li>
+</ul>
+<h3 id="虚拟主机和隔离（vhost"><a href="#虚拟主机和隔离（vhost" class="headerlink" title="虚拟主机和隔离（vhost)"></a>虚拟主机和隔离（vhost)</h3><p>vhost本质上是一个mini版的RabbitMQ服务器，拥有自己的队列，交换器和绑定，更重要的是，它拥有自己的权限机制。</p>
+<p>命令行模式下操作vhost，其中vhost_name就是要操作的vhost<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 新增vhost</span></span><br><span class="line">rabbitmqctl add_vhost[vhost_name]</span><br><span class="line"></span><br><span class="line"><span class="comment">## 删除vhost</span></span><br><span class="line">rabbitmqctl delete_vhost[vhost_name]</span><br><span class="line"></span><br><span class="line"><span class="comment">## 列出所有vhost</span></span><br><span class="line">rabbitmqctl list_vhosts</span><br></pre></td></tr></table></figure></p>
+<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>如果消息想要从Rabbit崩溃中恢复，那么消息必须：</p>
+<pre><code>- 把它的投递模式选项设置为2（持久）
+- 发送到持久化的交换器
+- 到达持久化的队列
+</code></pre><p>RabbitMQ确保持久性消息能从服务器重启中恢复的方式是，将它们写入磁盘上的一个持久化日志文件。当发布一条持久性信息到持久交换器上时，Rabbit会在消息提交到日志文件后发送响应。</p>
+
   </section>
 
   <section class="post-comments">
