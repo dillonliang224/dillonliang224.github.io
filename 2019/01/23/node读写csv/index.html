@@ -16,17 +16,17 @@
     
     
 
-    <meta name="description" content="生与死 轮回不止 我们生 他们死">
+    <meta name="description" content="逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。 npm里有包comma-separated-values可以处理csv。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="node读写csv | 逝水流LF">
 <meta property="og:url" content="http://yoursite.com/2019/01/23/node读写csv/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="生与死 轮回不止 我们生 他们死">
+<meta property="og:description" content="逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。 npm里有包comma-separated-values可以处理csv。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-30T01:48:31.000Z">
+<meta property="og:updated_time" content="2019-06-04T12:24:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node读写csv | 逝水流LF">
-<meta name="twitter:description" content="生与死 轮回不止 我们生 他们死">
+<meta name="twitter:description" content="逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。 npm里有包comma-separated-values可以处理csv。">
     
     
     
@@ -171,7 +171,11 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    
+    <p>逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。</p>
+<p>npm里有包<a href="https://www.npmjs.com/package/comma-separated-values" target="_blank" rel="noopener">comma-separated-values</a>可以处理csv。</p>
+<a id="more"></a>
+<p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CSV = <span class="built_in">require</span>(<span class="string">'comma-separated-values'</span>)</span><br><span class="line"><span class="keyword">const</span> csvFile = path.resolve(__dirname, <span class="string">'users.csv'</span>)</span><br><span class="line"><span class="keyword">const</span> data = fs.readFileSync(csvFile).toString(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="keyword">const</span> records = <span class="keyword">new</span> CSV(data).parse()</span><br></pre></td></tr></table></figure>
   </section>
 
   <section class="post-comments">
