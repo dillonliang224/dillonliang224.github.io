@@ -7,7 +7,7 @@
     
 
     <title>
-      Prometheus | 逝水流LF 
+      dns之node.js | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,20 +16,18 @@
     
     
 
-    <meta name="description" content="Prometheus 普罗米修斯 From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution. Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的">
-<meta name="keywords" content="node.js linux">
+    <meta name="description" content="node.js核心模块中有dns模块，用于DNS解析">
+<meta name="keywords" content="node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Prometheus | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2018/11/16/Prometheus/index.html">
+<meta property="og:title" content="dns之node.js | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/06/04/dns之node-js/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="Prometheus 普罗米修斯 From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution. Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的">
+<meta property="og:description" content="node.js核心模块中有dns模块，用于DNS解析">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://image.dillonliang.cn/blog/prometheus.jpg">
 <meta property="og:updated_time" content="2019-06-04T12:34:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Prometheus | 逝水流LF">
-<meta name="twitter:description" content="Prometheus 普罗米修斯 From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution. Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的">
-<meta name="twitter:image" content="http://image.dillonliang.cn/blog/prometheus.jpg">
+<meta name="twitter:title" content="dns之node.js | 逝水流LF">
+<meta name="twitter:description" content="node.js核心模块中有dns模块，用于DNS解析">
     
     
     
@@ -153,12 +151,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">Prometheus</h1>
+    <h1 class="post-title">dns之node.js</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2018-11-16" class="post-meta__date date">2018-11-16</time> 
+      <time datetime="2019-06-04" class="post-meta__date date">2019-06-04</time> 
 
       <span class="post-meta__tags tags">
 
@@ -167,7 +165,7 @@ classes that you can use:
           
              &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/node-js-linux/">node.js linux</a>
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
             </font>
           
 
@@ -179,14 +177,19 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p><img src="http://image.dillonliang.cn/blog/prometheus.jpg" alt></p>
-<p>Prometheus 普罗米修斯</p>
-<p>From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution.</p>
-<p>Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的警报功能。Prometheus擅长于记录数字时间序列，并补充了以机器为中心的监控以及高度动态的面向服务的体系结构。</p>
-<a id="more"></a>
-<h1 id="Prometheus-普罗米修斯"><a href="#Prometheus-普罗米修斯" class="headerlink" title="Prometheus 普罗米修斯"></a>Prometheus 普罗米修斯</h1><blockquote>
-<p>From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution.</p>
+    <blockquote>
+<p>node.js核心模块中有dns模块，用于DNS解析</p>
 </blockquote>
+<a id="more"></a>
+<p>引用：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">'dns'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>lookup<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lookup两个方法不需要网络交互，直接读取本机</span></span><br><span class="line">dns.lookup(hostname, [,options], callback)</span><br><span class="line">dns.lookupService(address, port, callback)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下方法需要网络交互，每种方法的含义参考：https://www.zybuluo.com/DillonLiang/note/1476916</span></span><br><span class="line">dns.resolve4(hostname, [,options], callback)</span><br><span class="line">dns.resolve6(hostname, [,options], callback)</span><br><span class="line">dns.resolveCname(hostname, callback)</span><br><span class="line">dns.resolveMx(hostname, callback)</span><br><span class="line">dns.resolveNaptr(hostname, callback)</span><br><span class="line">dns.resolveNs(hostname, callback)</span><br><span class="line">dns.resolvePtr(hostname, callback)</span><br><span class="line">dns.resolveSoa(hostname, callback)</span><br><span class="line">dns.resolveTxt(hostname, callback)</span><br></pre></td></tr></table></figure>
+<p>dns模块里也有2个特殊的方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dns.resolve(hostname, rrtype, callback)</span><br><span class="line">dns.resolveAny(hostname, callback)</span><br></pre></td></tr></table></figure></p>
+<p><strong>resolve方法可以指定rrtype来获取dns记录，rrtype支持的类型有：A, AAAA, ANY, CNAME, MX, NAPTR, NS, PTR, SOA, SRV, TXT<br>resolveAny返回所有记录，</strong></p>
+<p>dns模块也可以根据ip地址<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dns.reverse(ip, callback)</span><br></pre></td></tr></table></figure></p>
+<p>在最新的node.js版本里，已经支持promise。</p>
+<hr>
+<p>文档：<a href="https://nodejs.org/dist/latest-v12.x/docs/api/dns.html#dns_dns" target="_blank" rel="noopener">https://nodejs.org/dist/latest-v12.x/docs/api/dns.html#dns_dns</a></p>
 
   </section>
 

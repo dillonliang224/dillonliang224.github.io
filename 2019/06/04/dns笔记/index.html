@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      dns笔记 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="域名注册完成后首先需要做域名解析，域名解析就是把域名指向网站所在服务器的IP，让人们通过注册的域名可以访问到网站。IP地址是网络上标识服务器的数字地址，为了方便记忆，使用域名来代替IP地址。域名解析就是域名到IP地址的转换过程，域名的解析工作由DNS服务器完成。DNS服务器会把域名解析到一个IP地址，然后在此IP地址的主机上将一个子目录与域名绑定。域名解析时会添加解析记录，这些记录有：A记录、A">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dns笔记 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/06/04/dns笔记/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="域名注册完成后首先需要做域名解析，域名解析就是把域名指向网站所在服务器的IP，让人们通过注册的域名可以访问到网站。IP地址是网络上标识服务器的数字地址，为了方便记忆，使用域名来代替IP地址。域名解析就是域名到IP地址的转换过程，域名的解析工作由DNS服务器完成。DNS服务器会把域名解析到一个IP地址，然后在此IP地址的主机上将一个子目录与域名绑定。域名解析时会添加解析记录，这些记录有：A记录、A">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-04T12:34:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dns笔记 | 逝水流LF">
+<meta name="twitter:description" content="域名注册完成后首先需要做域名解析，域名解析就是把域名指向网站所在服务器的IP，让人们通过注册的域名可以访问到网站。IP地址是网络上标识服务器的数字地址，为了方便记忆，使用域名来代替IP地址。域名解析就是域名到IP地址的转换过程，域名的解析工作由DNS服务器完成。DNS服务器会把域名解析到一个IP地址，然后在此IP地址的主机上将一个子目录与域名绑定。域名解析时会添加解析记录，这些记录有：A记录、A">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">dns笔记</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-06-04" class="post-meta__date date">2019-06-04</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/linux/">linux</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <blockquote>
+<p>域名注册完成后首先需要做域名解析，域名解析就是把域名指向网站所在服务器的IP，让人们通过注册的域名可以访问到网站。IP地址是网络上标识服务器的数字地址，为了方便记忆，使用域名来代替IP地址。域名解析就是域名到IP地址的转换过程，域名的解析工作由DNS服务器完成。DNS服务器会把域名解析到一个IP地址，然后在此IP地址的主机上将一个子目录与域名绑定。域名解析时会添加解析记录，这些记录有：A记录、AAAA记录、CNAME记录、MX记录、NS记录、TXT记录、SRV记录、URL转发。</p>
+</blockquote>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>What</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>IPv4地址记录</td>
+<td>返回域名指向的IP地址</td>
+<td></td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>IPv6地址记录</td>
+<td>返回域名指向的IP地址</td>
+<td></td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>规范名称记录（Canonical Name）</td>
+<td>返回另一个域名，即当前查询的域名是另一个域名的跳转</td>
+<td></td>
+</tr>
+<tr>
+<td>MX</td>
+<td>邮件记录（Mail eXchange）</td>
+<td>返回接收电子邮件的服务器地址</td>
+<td></td>
+</tr>
+<tr>
+<td>NAPTR</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NS</td>
+<td>域名服务器记录（Name Server）</td>
+<td>返回保存下一级域名信息的服务器地址。该记录只能设置为域名，不能设置为IP地址</td>
+<td></td>
+</tr>
+<tr>
+<td>PTR</td>
+<td>逆向查询记录（Pointer Record）</td>
+<td>只用于从IP地址查询域名</td>
+<td></td>
+</tr>
+<tr>
+<td>SOA</td>
+<td>起始授权机构记录</td>
+<td>NS用于标识多台域名解析服务器，SOA记录用于在众多NS记录中那一台是主服务器</td>
+<td></td>
+</tr>
+<tr>
+<td>SRV</td>
+<td>服务记录（Service Record)</td>
+<td>它记录了哪台计算机提供了哪个服务这么一个简单的信息。</td>
+<td></td>
+</tr>
+<tr>
+<td>TXT</td>
+<td>文本记录（Text Record）</td>
+<td>为网域外来源提供的文本信息</td>
+<td></td>
+</tr>
+<tr>
+<td>显性URL转发记录</td>
+<td>将域名指向一个http(s)协议地址，访问域名时，自动跳转至目标地址</td>
+<td>地址栏信息改变</td>
+<td></td>
+</tr>
+<tr>
+<td>隐性UR转发记录L</td>
+<td>将域名指向一个http(s)协议地址，访问域名时，自动跳转至目标地址，隐性转发会隐藏真实的目标地址</td>
+<td>地址栏信息不改变</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h3><p>3中类型DNS查询</p>
+<h4 id="递归查询"><a href="#递归查询" class="headerlink" title="递归查询"></a>递归查询</h4><h4 id="迭代查询"><a href="#迭代查询" class="headerlink" title="迭代查询"></a>迭代查询</h4><h4 id="非递归查询"><a href="#非递归查询" class="headerlink" title="非递归查询"></a>非递归查询</h4><hr>
+<p>参考文档： </p>
+<ol>
+<li><a href="https://www.cloudflare.com/learning/dns/what-is-dns/" target="_blank" rel="noopener">https://www.cloudflare.com/learning/dns/what-is-dns/</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/06/dns.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/06/dns.html</a></li>
+<li><a href="https://nodejs.org/dist/latest-v12.x/docs/api/dns.html#dns_dnspromises_resolveany_hostname" target="_blank" rel="noopener">https://nodejs.org/dist/latest-v12.x/docs/api/dns.html#dns_dnspromises_resolveany_hostname</a></li>
+<li><a href="https://itbilu.com/other/relate/EyxzdVl3.html" target="_blank" rel="noopener">https://itbilu.com/other/relate/EyxzdVl3.html</a></li>
+</ol>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
