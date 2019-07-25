@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      初识Kubernetes | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="Kubernetes这个名字起源于古希腊，是舵手的意思。K8s 是通过将 8 个字母 “ubernete” 替换为 8 而导出的缩写。另外，在中文里，k8s 的发音与 Kubernetes 的发音比较接近。 Kubernetes 是一个跨主机集群的 开源的容器调度平台，它可以自动化应用容器的部署、扩展和操作 , 提供以容器为中心的基础架构。">
+<meta name="keywords" content="k8s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Kubernetes | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/初识k8s/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="Kubernetes这个名字起源于古希腊，是舵手的意思。K8s 是通过将 8 个字母 “ubernete” 替换为 8 而导出的缩写。另外，在中文里，k8s 的发音与 Kubernetes 的发音比较接近。 Kubernetes 是一个跨主机集群的 开源的容器调度平台，它可以自动化应用容器的部署、扩展和操作 , 提供以容器为中心的基础架构。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtmDAWnD3nJyS2dbBxVIhpQnFEAnEh3C02EMYAebQLPJUOqQuYVA">
+<meta property="og:updated_time" content="2019-07-25T12:11:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识Kubernetes | 逝水流LF">
+<meta name="twitter:description" content="Kubernetes这个名字起源于古希腊，是舵手的意思。K8s 是通过将 8 个字母 “ubernete” 替换为 8 而导出的缩写。另外，在中文里，k8s 的发音与 Kubernetes 的发音比较接近。 Kubernetes 是一个跨主机集群的 开源的容器调度平台，它可以自动化应用容器的部署、扩展和操作 , 提供以容器为中心的基础架构。">
+<meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtmDAWnD3nJyS2dbBxVIhpQnFEAnEh3C02EMYAebQLPJUOqQuYVA">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">初识Kubernetes</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-07-25" class="post-meta__date date">2019-07-25</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/k8s/">k8s</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtmDAWnD3nJyS2dbBxVIhpQnFEAnEh3C02EMYAebQLPJUOqQuYVA" alt></p>
+<p>Kubernetes这个名字起源于古希腊，是舵手的意思。K8s 是通过将 8 个字母 “ubernete” 替换为 8 而导出的缩写。另外，在中文里，k8s 的发音与 Kubernetes 的发音比较接近。</p>
+<p>Kubernetes 是一个跨主机集群的 开源的容器调度平台，它可以自动化应用容器的部署、扩展和操作 , 提供以容器为中心的基础架构。</p>
+<a id="more"></a>
+<p>如何简单易懂的了解k8s，参考此链接的18张插画：<a href="https://mp.weixin.qq.com/s/vshU845WMnoBdrYnPMV49A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/vshU845WMnoBdrYnPMV49A</a></p>
+<p>Kubernetes 具有如下特点:</p>
+<ul>
+<li>便携性: 无论公有云、私有云、混合云还是多云架构都全面支持</li>
+<li>可扩展: 它是模块化、可插拔、可挂载、可组合的，支持各种形式的扩展</li>
+<li>自修复: 它可以自保持应用状态、可自重启、自复制、自缩放的，通过声明式语法提供了强大的自修复能力</li>
+</ul>
+<p>Kubernetes 项目由 Google 公司在 2014 年启动。Kubernetes 建立在 Google 公司超过十余年的运维经验基础之上，Google 所有的应用都运行在容器上, 再与社区中最好的想法和实践相结合，也许它是最受欢迎的容器平台。</p>
+<p>kubernetes特性：</p>
+<ul>
+<li><font color="#187892" size="number">自动包装</font>： 根据资源需求和其他约束自动放置容器，同时不会牺牲可用性，混合关键和最大努力的工作负载，以提高资源利用率并节省更多资源。</li>
+<li><font color="#187892" size="number">横向缩放</font>：使用简单的命令或UI，或者根据CPU的使用情况自动调整应用程序副本数。</li>
+<li><font color="#187892" size="number">自动部署和回滚</font>： Kubernetes逐渐部署对应用程序或其配置的更改，同时监视应用程序运行状况，以确保它不会同时终止所有实例。如果出现问题，Kubernetes会为你恢复更改，利用日益增长的部署解决方案的生态系统。</li>
+<li><font color="#187892" size="number">存储编排</font>：自动安装您所选择的存储系统，无论是本地存储，如公有云提供商AWS，还是网络存储系统NFS，Cinder。</li>
+<li><font color="#187892" size="number">自我修复</font>：重新启动失败的容器，在节点不可用时，替换和重新调度节点上的容器，对用户定义的健康检查不响应的容器会被中止，并且在容器准备好服务之前不会把其向客户端广播。</li>
+<li><font color="#187892" size="number">服务发现和负载均衡</font>：不需要修改您的应用程序来使用不熟悉的服务发现机制，Kubernetes为容器提供了自己的IP地址和一组容器的单个DNS名称，并可以在它们之间进行负载均衡。</li>
+<li><font color="#187892" size="number">密钥和配置管理</font>：部署和更新密钥和应用程序配置，不会重新编译您的镜像，不会在堆栈配置中暴露密钥(secrets)。</li>
+<li><font color="#187892" size="number">批处理</font>：除了服务之外，Kubernetes还可以管理您的批处理和CI工作负载，如果需要，替换出现故障的容器。</li>
+</ul>
+<hr>
+<p>参考资料：<br><a href="https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/" target="_blank" rel="noopener">认识k8s</a><br><a href="https://www.cncf.io/the-childrens-illustrated-guide-to-kubernetes/" target="_blank" rel="noopener">The Illustrated Children’s Guide to Kubernetes</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
