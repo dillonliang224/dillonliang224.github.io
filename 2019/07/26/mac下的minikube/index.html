@@ -16,18 +16,20 @@
     
     
 
-    <meta name="description" content="生与死 轮回不止 我们生 他们死">
+    <meta name="description" content="Kubernetes 是 Google 开源的容器集群管理系统，它构建在目前流行的 Docker 技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等一整套功能。   Minikube 是一个可以在本地轻松运行 Kubernetes 的工具。Minikube 会在您的笔记本电脑中的虚拟机上运行一个单节点的 Kubernetes 集群，以便用户对 Kubernetes 进行试用或">
 <meta name="keywords" content="k8s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac下的minikube | 逝水流LF">
 <meta property="og:url" content="http://yoursite.com/2019/07/26/mac下的minikube/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="生与死 轮回不止 我们生 他们死">
+<meta property="og:description" content="Kubernetes 是 Google 开源的容器集群管理系统，它构建在目前流行的 Docker 技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等一整套功能。   Minikube 是一个可以在本地轻松运行 Kubernetes 的工具。Minikube 会在您的笔记本电脑中的虚拟机上运行一个单节点的 Kubernetes 集群，以便用户对 Kubernetes 进行试用或">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-26T02:05:22.000Z">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/minikube.jpeg">
+<meta property="og:updated_time" content="2019-07-26T03:20:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下的minikube | 逝水流LF">
-<meta name="twitter:description" content="生与死 轮回不止 我们生 他们死">
+<meta name="twitter:description" content="Kubernetes 是 Google 开源的容器集群管理系统，它构建在目前流行的 Docker 技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等一整套功能。   Minikube 是一个可以在本地轻松运行 Kubernetes 的工具。Minikube 会在您的笔记本电脑中的虚拟机上运行一个单节点的 Kubernetes 集群，以便用户对 Kubernetes 进行试用或">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/minikube.jpeg">
     
     
     
@@ -177,7 +179,34 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    
+    <p><img src="http://image.dillonliang.cn/blog/minikube.jpeg" alt="minikube"></p>
+<blockquote>
+<p>Kubernetes 是 Google 开源的容器集群管理系统，它构建在目前流行的 Docker 技术之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等一整套功能。</p>
+</blockquote>
+<blockquote>
+<p>Minikube 是一个可以在本地轻松运行 Kubernetes 的工具。Minikube 会在您的笔记本电脑中的虚拟机上运行一个单节点的 Kubernetes 集群，以便用户对 Kubernetes 进行试用或者在之上进行 Kubernetes 的日常开发。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="minikube功能"><a href="#minikube功能" class="headerlink" title="minikube功能"></a>minikube功能</h3><p>minikube支持的Kubernetes功能包括：</p>
+<ul>
+<li>DNS</li>
+<li>NodePorts</li>
+<li>ConfigMaps和Secrets</li>
+<li>仪表盘</li>
+<li>容器运行时: Docker,rkt和CRI-O</li>
+</ul>
+<h3 id="安装minikube"><a href="#安装minikube" class="headerlink" title="安装minikube"></a>安装minikube</h3><p>在mac上使用brew安装：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install minikube</span><br></pre></td></tr></table></figure></p>
+<h3 id="下载虚拟机"><a href="#下载虚拟机" class="headerlink" title="下载虚拟机"></a>下载虚拟机</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-hyperkit</span><br></pre></td></tr></table></figure>
+<h3 id="启动minikube"><a href="#启动minikube" class="headerlink" title="启动minikube"></a>启动minikube</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start --registry-mirror=https://registry.docker-cn.com --vm-driver=hyperkit</span><br></pre></td></tr></table></figure>
+<p>如果启动不成功，删除用户目录下的.minikube文件夹。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /Users/dillonliang/.minikube/</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看版本信息"><a href="#查看版本信息" class="headerlink" title="查看版本信息"></a>查看版本信息</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube version</span><br></pre></td></tr></table></figure>
+<h3 id="启动dashboard"><a href="#启动dashboard" class="headerlink" title="启动dashboard"></a>启动dashboard</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure>
+<h3 id="获取minikube-ip"><a href="#获取minikube-ip" class="headerlink" title="获取minikube ip"></a>获取minikube ip</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube ip</span><br></pre></td></tr></table></figure>
+<h3 id="关闭虚拟机，保存集群状态"><a href="#关闭虚拟机，保存集群状态" class="headerlink" title="关闭虚拟机，保存集群状态"></a>关闭虚拟机，保存集群状态</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube stop</span><br></pre></td></tr></table></figure>
+<h3 id="删除虚拟机，清空集群信息"><a href="#删除虚拟机，清空集群信息" class="headerlink" title="删除虚拟机，清空集群信息"></a>删除虚拟机，清空集群信息</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube delete</span><br></pre></td></tr></table></figure>
+<hr>
+<p>参考资料：<br>安装minikube: <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/" target="_blank" rel="noopener">https://kubernetes.io/docs/tasks/tools/install-minikube/</a><br>minikube虚拟机： <a href="https://github.com/kubernetes/minikube/blob/master/docs/drivers.md" target="_blank" rel="noopener">https://github.com/kubernetes/minikube/blob/master/docs/drivers.md</a><br>容器之mac上安装minikube: <a href="https://my.oschina.net/u/2518341/blog/1834857" target="_blank" rel="noopener">https://my.oschina.net/u/2518341/blog/1834857</a></p>
+
   </section>
 
   <section class="post-comments">
