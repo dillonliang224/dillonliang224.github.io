@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      使用docker构建node demo | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="使用docker来打包node.js开发的应用，然后发布到自己的私有仓库。在远程机器上拉取这个镜像，做到开发／测试／线上环境的一致性。 为了以后k8s的测试用，特意打包了一个简单的node demo镜像，然后发布到docker hub上。">
+<meta name="keywords" content="docker node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用docker构建node demo | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/使用docker构建node-demo/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="使用docker来打包node.js开发的应用，然后发布到自己的私有仓库。在远程机器上拉取这个镜像，做到开发／测试／线上环境的一致性。 为了以后k8s的测试用，特意打包了一个简单的node demo镜像，然后发布到docker hub上。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTekemmyROjExECKTWA0o12uTvOMVbCeB0zJDhkeQzZm3HmN-RtNg">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/hello-node.jpg">
+<meta property="og:updated_time" content="2019-07-26T02:05:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用docker构建node demo | 逝水流LF">
+<meta name="twitter:description" content="使用docker来打包node.js开发的应用，然后发布到自己的私有仓库。在远程机器上拉取这个镜像，做到开发／测试／线上环境的一致性。 为了以后k8s的测试用，特意打包了一个简单的node demo镜像，然后发布到docker hub上。">
+<meta name="twitter:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTekemmyROjExECKTWA0o12uTvOMVbCeB0zJDhkeQzZm3HmN-RtNg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">使用docker构建node demo</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-07-25" class="post-meta__date date">2019-07-25</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/docker-node-js/">docker node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTekemmyROjExECKTWA0o12uTvOMVbCeB0zJDhkeQzZm3HmN-RtNg" alt="docker"></p>
+<p>使用docker来打包node.js开发的应用，然后发布到自己的私有仓库。在远程机器上拉取这个镜像，做到开发／测试／线上环境的一致性。</p>
+<p>为了以后k8s的测试用，特意打包了一个简单的node demo镜像，然后发布到docker hub上。</p>
+<a id="more"></a>
+<h2 id="node-demo"><a href="#node-demo" class="headerlink" title="node demo"></a>node demo</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> handleRequest = <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Received request for URL: '</span> + request.url);</span><br><span class="line">  response.writeHead(<span class="number">200</span>);</span><br><span class="line">  response.end(<span class="string">'Hello World!'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> app = http.createServer(handleRequest);</span><br><span class="line">app.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="docker-image"><a href="#docker-image" class="headerlink" title="docker image"></a>docker image</h3><p>创建Dockerfile文件，写入如下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM mhart/alpine-node:10</span><br><span class="line">EXPOSE 8080</span><br><span class="line">COPY app.js .</span><br><span class="line">CMD node app.js</span><br></pre></td></tr></table></figure></p>
+<p>这里使用的node基础镜像是mhart/alppine-node:10，打包出来的镜像大小在74m左右。<br>执行docker build -t hello-node:0.0.1 .</p>
+<h3 id="docker-hub"><a href="#docker-hub" class="headerlink" title="docker hub"></a>docker hub</h3><p>注册登陆 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> ，</p>
+<p>这里的docker ID是你以后镜像仓库的前缀，比如我的是dillonliang，获取我的镜像就是docker pull dillonliang/image_name，创建一个有意义且不重复的docker ID。</p>
+<p>在命令执行如下命令登陆docker<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login -u DOCKER_ID -p PASSWORD</span><br></pre></td></tr></table></figure></p>
+<p>控制台打印<strong>Login Succeeded</strong>代表你已经登陆成功了。<br>这里的DOCKER_ID是在docker hub里申请的Docker ID，PASSWORD是登陆的密码。</p>
+<h3 id="推送image并验证"><a href="#推送image并验证" class="headerlink" title="推送image并验证"></a>推送image并验证</h3><p>对hello-node重新打tag<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag hello-node:0.0.1 dillonliang/hello-node:latest</span><br></pre></td></tr></table></figure></p>
+<p>发布到docker hub<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push dillonliang/hello-node</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://image.dillonliang.cn/blog/hello-node.jpg" alt="docker hub image"></p>
+<p>删除本地的docker image<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rmi hello-node:0.0.1</span><br><span class="line">docker rmi dillonliang/hello-node:latest</span><br></pre></td></tr></table></figure></p>
+<p>此时检查docker images，没有了刚才我们创建的hello-node</p>
+<p>拉取发布到docker hub中的镜像<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull dillonliang/hello-node</span><br></pre></td></tr></table></figure></p>
+<p>拉取成功后，说明你的镜像可以被别人使用了，我们将用这个hello-node镜像做后续的k8s操作。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
