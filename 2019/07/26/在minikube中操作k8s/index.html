@@ -7,7 +7,7 @@
     
 
     <title>
-      dns之node.js | 逝水流LF 
+      在minikube中操作k8s | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,18 +16,21 @@
     
     
 
-    <meta name="description" content="node.js核心模块中有dns模块，用于DNS解析">
-<meta name="keywords" content="node.js">
+    <meta name="description" content="Minikube可以实现一种轻量级的Kubernetes集群，通过在本地计算机上创建虚拟机并部署只包含单个节点的简单集群。 在mac下的minikube中，学习了如果安装minikube以及简单的minikube操作。本节中学习如何发布应用／访问应用／滚动更新应用和回滚等操作。">
+<meta name="keywords" content="k8s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dns之node.js | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2019/06/04/dns之node-js/index.html">
+<meta property="og:title" content="在minikube中操作k8s | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/07/26/在minikube中操作k8s/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="node.js核心模块中有dns模块，用于DNS解析">
+<meta property="og:description" content="Minikube可以实现一种轻量级的Kubernetes集群，通过在本地计算机上创建虚拟机并部署只包含单个节点的简单集群。 在mac下的minikube中，学习了如果安装minikube以及简单的minikube操作。本节中学习如何发布应用／访问应用／滚动更新应用和回滚等操作。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/k8s-minikube.jpeg">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/kubernetes-dashboard.jpg">
 <meta property="og:updated_time" content="2019-07-26T10:16:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dns之node.js | 逝水流LF">
-<meta name="twitter:description" content="node.js核心模块中有dns模块，用于DNS解析">
+<meta name="twitter:title" content="在minikube中操作k8s | 逝水流LF">
+<meta name="twitter:description" content="Minikube可以实现一种轻量级的Kubernetes集群，通过在本地计算机上创建虚拟机并部署只包含单个节点的简单集群。 在mac下的minikube中，学习了如果安装minikube以及简单的minikube操作。本节中学习如何发布应用／访问应用／滚动更新应用和回滚等操作。">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/k8s-minikube.jpeg">
     
     
     
@@ -151,12 +154,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">dns之node.js</h1>
+    <h1 class="post-title">在minikube中操作k8s</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2019-06-04" class="post-meta__date date">2019-06-04</time> 
+      <time datetime="2019-07-26" class="post-meta__date date">2019-07-26</time> 
 
       <span class="post-meta__tags tags">
 
@@ -165,7 +168,7 @@ classes that you can use:
           
              &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/node-js/">node.js</a>
+              <a class="tags-link" href="/tags/k8s/">k8s</a>
             </font>
           
 
@@ -177,19 +180,17 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <blockquote>
-<p>node.js核心模块中有dns模块，用于DNS解析</p>
-</blockquote>
+    <p><img src="http://image.dillonliang.cn/blog/k8s-minikube.jpeg" alt></p>
+<p>Minikube可以实现一种轻量级的Kubernetes集群，通过在本地计算机上创建虚拟机并部署只包含单个节点的简单集群。</p>
+<p>在<a href="/2019/07/26/mac下的minikube/">mac下的minikube</a>中，学习了如果安装minikube以及简单的minikube操作。本节中学习如何发布应用／访问应用／滚动更新应用和回滚等操作。</p>
 <a id="more"></a>
-<p>引用：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dns = <span class="built_in">require</span>(<span class="string">'dns'</span>)</span><br></pre></td></tr></table></figure></p>
-<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>lookup<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lookup两个方法不需要网络交互，直接读取本机</span></span><br><span class="line">dns.lookup(hostname, [,options], callback)</span><br><span class="line">dns.lookupService(address, port, callback)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下方法需要网络交互，每种方法的含义参考：https://www.zybuluo.com/DillonLiang/note/1476916</span></span><br><span class="line">dns.resolve4(hostname, [,options], callback)</span><br><span class="line">dns.resolve6(hostname, [,options], callback)</span><br><span class="line">dns.resolveCname(hostname, callback)</span><br><span class="line">dns.resolveMx(hostname, callback)</span><br><span class="line">dns.resolveNaptr(hostname, callback)</span><br><span class="line">dns.resolveNs(hostname, callback)</span><br><span class="line">dns.resolvePtr(hostname, callback)</span><br><span class="line">dns.resolveSoa(hostname, callback)</span><br><span class="line">dns.resolveTxt(hostname, callback)</span><br></pre></td></tr></table></figure>
-<p>dns模块里也有2个特殊的方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dns.resolve(hostname, rrtype, callback)</span><br><span class="line">dns.resolveAny(hostname, callback)</span><br></pre></td></tr></table></figure></p>
-<p><strong>resolve方法可以指定rrtype来获取dns记录，rrtype支持的类型有：A, AAAA, ANY, CNAME, MX, NAPTR, NS, PTR, SOA, SRV, TXT<br>resolveAny返回所有记录，</strong></p>
-<p>dns模块也可以根据ip地址<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dns.reverse(ip, callback)</span><br></pre></td></tr></table></figure></p>
-<p>在最新的node.js版本里，已经支持promise。</p>
-<hr>
-<p>文档：<a href="https://nodejs.org/dist/latest-v12.x/docs/api/dns.html#dns_dns" target="_blank" rel="noopener">https://nodejs.org/dist/latest-v12.x/docs/api/dns.html#dns_dns</a></p>
+<p>假设已经安装了minikube和kubectl，也有预备好的<a href="/2019/07/25/使用docker构建node-demo/">测试镜像hello-node</a></p>
+<h3 id="获取集群信息"><a href="#获取集群信息" class="headerlink" title="获取集群信息"></a>获取集群信息</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl cluster-info</span><br></pre></td></tr></table></figure>
+<h3 id="创建Deployment"><a href="#创建Deployment" class="headerlink" title="创建Deployment"></a>创建Deployment</h3><p>容器应用运行在pod上，通过kubectl run命令创建Deployment来管理Pod。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl run hello-node --image=dillonliang/hello-node --port=8080</span><br><span class="line">// output: deployment.apps <span class="string">"hello-node"</span> created</span><br></pre></td></tr></table></figure></p>
+<p>查看Deployment</p>
+<p>启动minikube dashboard<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube dashboard</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://image.dillonliang.cn/blog/kubernetes-dashboard.jpg" alt="kubernetes dashboard"></p>
+<p>参考： <a href="http://docs.kubernetes.org.cn/126.html" target="_blank" rel="noopener">http://docs.kubernetes.org.cn/126.html</a></p>
 
   </section>
 
