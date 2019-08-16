@@ -7,7 +7,7 @@
     
 
     <title>
-      pm2之serve | 逝水流LF 
+      raft算法学习 | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,18 +16,18 @@
     
     
 
-    <meta name="description" content="pm2可以通过HTTP提供静态文件服务（如前段应用程序） 比如API文档，静态网页，可以迅速的部署查看效果。">
-<meta name="keywords" content="node.js,pm2">
+    <meta name="description" content="RAFT">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pm2之serve | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2018/08/02/pm2-serve/index.html">
+<meta property="og:title" content="raft算法学习 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/08/16/raft算法学习/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="pm2可以通过HTTP提供静态文件服务（如前段应用程序） 比如API文档，静态网页，可以迅速的部署查看效果。">
+<meta property="og:description" content="RAFT">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-08-16T10:17:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pm2之serve | 逝水流LF">
-<meta name="twitter:description" content="pm2可以通过HTTP提供静态文件服务（如前段应用程序） 比如API文档，静态网页，可以迅速的部署查看效果。">
+<meta name="twitter:title" content="raft算法学习 | 逝水流LF">
+<meta name="twitter:description" content="RAFT">
     
     
     
@@ -151,12 +151,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">pm2之serve</h1>
+    <h1 class="post-title">raft算法学习</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2018-08-02" class="post-meta__date date">2018-08-02</time> 
+      <time datetime="2019-08-16" class="post-meta__date date">2019-08-16</time> 
 
       <span class="post-meta__tags tags">
 
@@ -165,7 +165,7 @@ classes that you can use:
           
              &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/node-js/">node.js</a>, <a class="tags-link" href="/tags/pm2/">pm2</a>
+              <a class="tags-link" href="/tags/算法/">算法</a>
             </font>
           
 
@@ -177,17 +177,16 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>pm2可以通过HTTP提供静态文件服务（如前段应用程序）</p>
-<p>比如API文档，静态网页，可以迅速的部署查看效果。</p>
+    <p>RAFT</p>
 <a id="more"></a>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 serve &lt;path&gt; &lt;port&gt;</span><br></pre></td></tr></table></figure>
-<p>默认情况下，path指当前目录，port指8080端口，所有可以直接</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 serve</span><br></pre></td></tr></table></figure>
-<p>同样可以配置在ecosystem文件里：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [&#123;</span><br><span class="line">    name: <span class="string">"static-file"</span>,</span><br><span class="line">    script: <span class="string">"serve"</span>,</span><br><span class="line">    env: &#123;</span><br><span class="line">      PM2_SERVE_PATH: <span class="string">"."</span>,</span><br><span class="line">      PM2_SERVE_PORT: <span class="number">8080</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后使用如下命令启动：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start ecosystem.config.js</span><br></pre></td></tr></table></figure>
-<p>Note： 默认寻找path下的index.html文件</p>
+<p><a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">Raft动画</a></p>
+<hr>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">Raft动画</a></li>
+<li><a href="https://www.infoq.cn/article/raft-paper" target="_blank" rel="noopener">Raft 一致性算法论文译文</a></li>
+<li><a href="https://mp.weixin.qq.com/s/Dzs8ra3qLK8raR7PntYBZA" target="_blank" rel="noopener">图解raft算法</a></li>
+</ul>
 
   </section>
 

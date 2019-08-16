@@ -7,7 +7,7 @@
     
 
     <title>
-      pm2之serve | 逝水流LF 
+      page 3 | Archives: 2019 | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,18 +16,16 @@
     
     
 
-    <meta name="description" content="pm2可以通过HTTP提供静态文件服务（如前段应用程序） 比如API文档，静态网页，可以迅速的部署查看效果。">
-<meta name="keywords" content="node.js,pm2">
-<meta property="og:type" content="article">
-<meta property="og:title" content="pm2之serve | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2018/08/02/pm2-serve/index.html">
+    <meta name="description" content="生与死 轮回不止 我们生 他们死">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page 3 | Archives: 2019 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/archives/2019/page/3/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="pm2可以通过HTTP提供静态文件服务（如前段应用程序） 比如API文档，静态网页，可以迅速的部署查看效果。">
+<meta property="og:description" content="生与死 轮回不止 我们生 他们死">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-16T10:17:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pm2之serve | 逝水流LF">
-<meta name="twitter:description" content="pm2可以通过HTTP提供静态文件服务（如前段应用程序） 比如API文档，静态网页，可以迅速的部署查看效果。">
+<meta name="twitter:title" content="page 3 | Archives: 2019 | 逝水流LF">
+<meta name="twitter:description" content="生与死 轮回不止 我们生 他们死">
     
     
     
@@ -147,60 +145,56 @@ classes that you can use:
         <div class="content-wrapper__inner entry">
             
 
-<article class="post-container post-container--single">
 
-  <header class="post-header">
-    
-    <h1 class="post-title">pm2之serve</h1>
+  <h1 class="archive-title">Archives: 2019</h1>
+  <hr class="post-list__divider">
 
-    
 
-    <div class="post-meta">
-      <time datetime="2018-08-02" class="post-meta__date date">2018-08-02</time> 
-
-      <span class="post-meta__tags tags">
-
-          
-
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/node-js/">node.js</a>, <a class="tags-link" href="/tags/pm2/">pm2</a>
-            </font>
-          
-
-      </span>
-    </div>
+<div class="main-post-list">
+    <ol class="post-list">
     
     
+    <li>
 
-  </header>
+      <h2 class="post-list__post-title post-title">
+        <a href="/2019/01/01/node系列/" title="link to node.js相关文章汇总">node.js相关文章汇总</a>
+      </h2>
 
-  <section id="post-content" class="article-content post">
-    <p>pm2可以通过HTTP提供静态文件服务（如前段应用程序）</p>
-<p>比如API文档，静态网页，可以迅速的部署查看效果。</p>
-<a id="more"></a>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 serve &lt;path&gt; &lt;port&gt;</span><br></pre></td></tr></table></figure>
-<p>默认情况下，path指当前目录，port指8080端口，所有可以直接</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 serve</span><br></pre></td></tr></table></figure>
-<p>同样可以配置在ecosystem文件里：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [&#123;</span><br><span class="line">    name: <span class="string">"static-file"</span>,</span><br><span class="line">    script: <span class="string">"serve"</span>,</span><br><span class="line">    env: &#123;</span><br><span class="line">      PM2_SERVE_PATH: <span class="string">"."</span>,</span><br><span class="line">      PM2_SERVE_PORT: <span class="number">8080</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后使用如下命令启动：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start ecosystem.config.js</span><br></pre></td></tr></table></figure>
-<p>Note： 默认寻找path下的index.html文件</p>
+      <div class="post-list__meta">
 
-  </section>
+        <time datetime="2019-01-01" class="post-list__meta--date date">2019-01-01</time> 
+      </div>
 
-  <section class="post-comments">
+      <div class="excerpt">
+        
+          <p><img src="http://image.dillonliang.cn/blog/027214041074622.jpg" alt></p>
+<p>Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine.</p>
+<p>Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。</p>
+<p>Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。</p>
+        
+      </div>
 
-    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+      <hr class="post-list__divider">
+    </li>
     
-</section>
+  </ol>
+
+  <hr class="post-list__divider ">
+
+<nav class="pagination" role="navigation">
+    
+    	
+          <a class="newer-posts pagination__newer btn btn-small btn-tertiary" href="/archives/2019/page/2/">&larr; Prev </a>
+        
+    
+
+    <span class="pagination__page-number"> 3 / 3</span>
+    
+    
+</nav>
 
 
-</article>
-
-
+</div>
             <footer class="footer">
 
     <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
@@ -228,19 +222,6 @@ classes that you can use:
 
 
     
-
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/awesome-toc.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $.awesome_toc({
-                overlay: true,
-                contentId: "post-content",
-            });
-        });
-    </script>
-
-
     
     
     <!--kill ie6 -->
