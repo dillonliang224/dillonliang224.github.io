@@ -157,6 +157,46 @@ classes that you can use:
     <li>
 
       <h2 class="post-list__post-title post-title">
+        <a href="/2019/09/01/node-js宏任务和微任务/" title="link to node.js宏任务和微任务">node.js宏任务和微任务</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2019-09-01" class="post-list__meta--date date">2019-09-01</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <p>执行完一个宏任务后，执行微任务队列里的所有任务，然后重复此步骤。<br>在当前的微任务没有执行完成时，是不会执行下一个宏任务的</p>
+        
+      </div>
+
+      <hr class="post-list__divider">
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
+        <a href="/2019/09/01/node-js事件循环/" title="link to node.js事件循环">node.js事件循环</a>
+      </h2>
+
+      <div class="post-list__meta">
+
+        <time datetime="2019-09-01" class="post-list__meta--date date">2019-09-01</time> 
+      </div>
+
+      <div class="excerpt">
+        
+          <p>事件循环是 Node.js 处理非阻塞 I/O 操作的机制，node.js是单线程的，同一时间只会执行一份js代码。但这并不意味着node.js很慢，遇到耗时任务，我们不可能阻塞单线程的运行，而是把此任务扔给系统内核去处理，主线程继续处理请求服务，这样可以高并发运行业务。而在系统内核中，会有多线程操作来处理node.js任务，当处理完毕后，扔回事件循环队列里。等到主线程处理完所有的同步的js代码后，会从事件循环队列里取出任务，执行对应的回调函数。</p>
+        
+      </div>
+
+      <hr class="post-list__divider">
+    </li>
+    
+    <li>
+
+      <h2 class="post-list__post-title post-title">
         <a href="/2019/06/04/OS之node-js/" title="link to OS之node.js">OS之node.js</a>
       </h2>
 
@@ -321,49 +361,6 @@ classes that you can use:
         
           <p><img src="http://image.dillonliang.cn/blog/WX20190115-192616.png" alt></p>
 <p>Sequelize 是一个基于 promise 的 Node.js ORM, 目前支持 Postgres, MySQL, SQLite 和 Microsoft SQL Server. 它具有强大的事务支持, 关联关系, 读取和复制等功能.</p>
-        
-      </div>
-
-      <hr class="post-list__divider">
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2018/10/16/在使用淘宝镜像的情况下，登陆npm并发布包/" title="link to 在使用淘宝镜像的情况下，登陆npm并发布包">在使用淘宝镜像的情况下，登陆npm并发布包</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2018-10-16" class="post-list__meta--date date">2018-10-16</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <p><img src="http://image.dillonliang.cn/blog/npm.jpeg" alt></p>
-<p>如果本地使用了淘宝镜像，npm login登陆的是淘宝镜像仓库，而不是npm仓库。</p>
-        
-      </div>
-
-      <hr class="post-list__divider">
-    </li>
-    
-    <li>
-
-      <h2 class="post-list__post-title post-title">
-        <a href="/2018/08/20/progress-bar/" title="link to 进度条progress bar">进度条progress bar</a>
-      </h2>
-
-      <div class="post-list__meta">
-
-        <time datetime="2018-08-20" class="post-list__meta--date date">2018-08-20</time> 
-      </div>
-
-      <div class="excerpt">
-        
-          <p><img src="http://image.dillonliang.cn/blog/proess-bar.jpeg" alt></p>
-<p>有时候项目中需要一个进度条插件，关注执行进度，心里有底。</p>
-<p>忘了从哪里看的代码，贴出来一起学习下。</p>
         
       </div>
 

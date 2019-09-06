@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      node.js事件循环 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="事件循环是 Node.js 处理非阻塞 I/O 操作的机制，node.js是单线程的，同一时间只会执行一份js代码。但这并不意味着node.js很慢，遇到耗时任务，我们不可能阻塞单线程的运行，而是把此任务扔给系统内核去处理，主线程继续处理请求服务，这样可以高并发运行业务。而在系统内核中，会有多线程操作来处理node.js任务，当处理完毕后，扔回事件循环队列里。等到主线程处理完所有的同步的js代码后">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js事件循环 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/09/01/node-js事件循环/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="事件循环是 Node.js 处理非阻塞 I/O 操作的机制，node.js是单线程的，同一时间只会执行一份js代码。但这并不意味着node.js很慢，遇到耗时任务，我们不可能阻塞单线程的运行，而是把此任务扔给系统内核去处理，主线程继续处理请求服务，这样可以高并发运行业务。而在系统内核中，会有多线程操作来处理node.js任务，当处理完毕后，扔回事件循环队列里。等到主线程处理完所有的同步的js代码后">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/event-loop.png">
+<meta property="og:updated_time" content="2019-09-06T08:55:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node.js事件循环 | 逝水流LF">
+<meta name="twitter:description" content="事件循环是 Node.js 处理非阻塞 I/O 操作的机制，node.js是单线程的，同一时间只会执行一份js代码。但这并不意味着node.js很慢，遇到耗时任务，我们不可能阻塞单线程的运行，而是把此任务扔给系统内核去处理，主线程继续处理请求服务，这样可以高并发运行业务。而在系统内核中，会有多线程操作来处理node.js任务，当处理完毕后，扔回事件循环队列里。等到主线程处理完所有的同步的js代码后">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/event-loop.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">node.js事件循环</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-09-01" class="post-meta__date date">2019-09-01</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>事件循环是 Node.js 处理非阻塞 I/O 操作的机制，node.js是单线程的，同一时间只会执行一份js代码。但这并不意味着node.js很慢，遇到耗时任务，我们不可能阻塞单线程的运行，而是把此任务扔给系统内核去处理，主线程继续处理请求服务，这样可以高并发运行业务。而在系统内核中，会有多线程操作来处理node.js任务，当处理完毕后，扔回事件循环队列里。等到主线程处理完所有的同步的js代码后，会从事件循环队列里取出任务，执行对应的回调函数。</p>
+<a id="more"></a>
+<h2 id="事件轮询机制解析"><a href="#事件轮询机制解析" class="headerlink" title="事件轮询机制解析"></a>事件轮询机制解析</h2><p>node.js是基于V8引擎的javascript运行环境，基于事件驱动，底层用libuv库进行异步事件处理。</p>
+<p><img src="http://image.dillonliang.cn/blog/event-loop.png" alt></p>
+<p>从上图可以看到事件循环的过程，接下来根据官网文档，具体分析一下。</p>
+<p>在node.js启动后，会初始化事件循环<br>下面的图表显示了事件循环的概述以及操作顺序，从图中看到事件循环有6个阶段，每个阶段对应一个先进先出的回调队列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   ┌───────────────────────────┐</span><br><span class="line">┌─&gt;│           timers          │</span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">│  │     pending callbacks     │</span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">│  │       idle, prepare       │</span><br><span class="line">│  └─────────────┬─────────────┘      ┌───────────────┐</span><br><span class="line">│  ┌─────────────┴─────────────┐      │   incoming:   │</span><br><span class="line">│  │           poll            │&lt;─────┤  connections, │</span><br><span class="line">│  └─────────────┬─────────────┘      │   data, etc.  │</span><br><span class="line">│  ┌─────────────┴─────────────┐      └───────────────┘</span><br><span class="line">│  │           check           │</span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">└──┤      close callbacks      │</span><br><span class="line">   └───────────────────────────┘</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>timers(定时器)</strong>: 本阶段执行已经安排的 setTimeout() 和 setInterval() 的回调函数。</li>
+<li><strong>pending callbacks(待定回调)</strong>： 执行延迟到下一个循环迭代的 I/O 回调，除了close事件的callbacks、被timers(定时器，setTimeout、setInterval等)设定的callbacks、setImmediate()设定的callbacks之外的callbacks; </li>
+<li><strong>idle, prepare</strong>： 仅系统内部使用</li>
+<li><strong>pool(轮询)</strong>：检索新的 I/O 事件;执行与 I/O 相关的回调（几乎所有情况下，除了关闭的回调函数，它们由计时器和 setImmediate() 排定的之外），其余情况 node 将在此处阻塞。</li>
+<li><strong>check(检测)</strong>：setImmediate() 回调函数在这里执行</li>
+<li><strong>close callbacks(关闭的回调函数)</strong>: 一些准备关闭的回调函数，如：socket.on(‘close’, …)</li>
+</ul>
+<h3 id="timers-定时器"><a href="#timers-定时器" class="headerlink" title="timers(定时器)"></a>timers(定时器)</h3><p>一个timer指定一个下限时间而不是准确时间，在达到这个下限时间后执行回调。在指定时间过后，timers会尽可能早地执行回调，但系统调度或者其它回调的执行可能会延迟它们。</p>
+<p>Note: 轮询阶段控制何时定时器执行。</p>
+<h3 id="pending-callbacks-待定回调"><a href="#pending-callbacks-待定回调" class="headerlink" title="pending callbacks(待定回调)"></a>pending callbacks(待定回调)</h3><p>此阶段对某些系统操作（如 TCP 错误类型）执行回调。例如，如果 TCP 套接字在尝试连接时接收到 ECONNREFUSED，则某些 *nix 的系统希望等待报告错误。这将被排队以在此阶段执行。</p>
+<h3 id="pool-轮询"><a href="#pool-轮询" class="headerlink" title="pool(轮询)"></a>pool(轮询)</h3><p>轮询阶段有2个重要的功能：</p>
+<ol>
+<li>执行下限时间已经达到的timers的回调</li>
+<li>然后，处理轮询队列里的事件</li>
+</ol>
+<p>当事件循环进入poll阶段，且没有发现timers(定时器)时：</p>
+<ul>
+<li>如果轮询队列不空，事件循环会遍历队列并同步执行回调，直到队列清空或执行的回调数达到系统上限；</li>
+<li>如果轮询队列为空，则发生以下两件事之一：<ul>
+<li>如果有setImmediate()定义了回调，那么事件循环会终止轮询阶段并进入检查阶段去执行定时器回调</li>
+<li>如果没有setImmediate()，事件回调会等待回调被加入队列并立即执行</li>
+</ul>
+</li>
+</ul>
+<p>如果事件循环进入poll阶段，且有设定的timers，一旦poll队列为空：</p>
+<ul>
+<li>事件循环将检查timers，如果有1个或多个timers的下限时间已经到达，事件循环将回到timers(定时器)阶段执行回调。</li>
+</ul>
+<p>Q：</p>
+<ol>
+<li>poll队列不空，达到执行上限后去哪里？执行主线程同步代码，执行完毕后，继续执行poll阶段队列。</li>
+<li>poll阶段，有timers，但下限时间未到达，回到那个阶段？检测阶段，等待队列，处理队列…时间到，满足条件后回到timers阶段。</li>
+</ol>
+<h3 id="check-检测"><a href="#check-检测" class="headerlink" title="check(检测)"></a>check(检测)</h3><p>此阶段在poll阶段结束后立即执行回调（poll空闲，且有被setImmediate()设定的回调)，事件循环会转到check(检测)阶段而不是继续等待。</p>
+<p>根据官网所说，setImmediate是一个特殊的timer，跑在事件循环中一个独立的阶段。使用libuv的API来安排回调在轮询阶段完成后执行。</p>
+<h3 id="close-callbacks-关闭的回调函数"><a href="#close-callbacks-关闭的回调函数" class="headerlink" title="close callbacks(关闭的回调函数)"></a>close callbacks(关闭的回调函数)</h3><p>如果套接字或处理函数突然关闭（例如 socket.destroy()），则’close’ 事件将在这个阶段发出。否则它将通过 process.nextTick() 发出。</p>
+<h2 id="setTimeout-与-setImmediate"><a href="#setTimeout-与-setImmediate" class="headerlink" title="setTimeout 与 setImmediate"></a>setTimeout 与 setImmediate</h2><ul>
+<li>setImmediate()被设计在 poll 阶段结束后立即执行回调；</li>
+<li>setTimeout()被设计在指定下限时间到达后执行回调;    </li>
+</ul>
+<p>执行计时器的顺序将根据调用它们的上下文而异。如果二者都从主模块内调用，则计时将受进程性能的约束（这可能会受到计算机上运行的其它应用程序的影响）。下面脚本的执行顺序就是非确定性的，受进程性能的约束：</p>
+<p>无I/O处理情况下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timeout</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'timeout'</span>);</span><br><span class="line">&#125;,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="keyword">function</span> <span class="title">immediate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'immediate'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如果你把这两个函数放入一个 I/O 循环内调用，setImmediate 总是被优先调用：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// timeout_vs_immediate.js</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(__filename, () =&gt; &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'timeout'</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">  setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'immediate'</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>setImmediate() 比 setTimeout() 优势的地方是 setImmediate() 在 I/O 循环中总是先于任何定时器，不管已经定义了多少定时器。</p>
+<h2 id="process-nextTick"><a href="#process-nextTick" class="headerlink" title="process.nextTick()"></a>process.nextTick()</h2><p>在当前调用栈结束后就立即处理，这时也必然是“事件循环继续进行之前” </p>
+<p>关于 setTimeout(), setImmediate(), process.nextTick():</p>
+<ul>
+<li>setTimeout()           在某个时间值过后尽快执行回调函数；</li>
+<li>setImmediate()       一旦轮询阶段完成就执行回调函数；</li>
+<li>process.nextTick()   在当前调用栈结束后就立即处理，这时也必然是“事件循环继续进行之前” ；</li>
+</ul>
+<p>优先级顺序从高到低： process.nextTick() &gt; setImmediate() &gt; setTimeout()<br>注：这里只是多数情况下，即轮询阶段（I/O 回调中）。比如之前比较 setImmediate() 和 setTimeout() 的时候就区分了所处阶段/上下文。</p>
+<hr>
+<p>参考：<br><a href="https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/</a><br><a href="https://segmentfault.com/a/1190000012258592" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012258592</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

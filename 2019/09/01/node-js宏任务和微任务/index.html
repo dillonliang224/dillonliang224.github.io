@@ -7,7 +7,7 @@
     
 
     <title>
-      helm安装问题 | 逝水流LF 
+      node.js宏任务和微任务 | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,18 +16,18 @@
     
     
 
-    <meta name="description" content="安装使用helm的时候，报错Error: could not find tiller">
-<meta name="keywords" content="k8s">
+    <meta name="description" content="执行完一个宏任务后，执行微任务队列里的所有任务，然后重复此步骤。在当前的微任务没有执行完成时，是不会执行下一个宏任务的">
+<meta name="keywords" content="node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="helm安装问题 | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2019/08/06/helm安装问题/index.html">
+<meta property="og:title" content="node.js宏任务和微任务 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/09/01/node-js宏任务和微任务/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="安装使用helm的时候，报错Error: could not find tiller">
+<meta property="og:description" content="执行完一个宏任务后，执行微任务队列里的所有任务，然后重复此步骤。在当前的微任务没有执行完成时，是不会执行下一个宏任务的">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-09-06T08:55:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="helm安装问题 | 逝水流LF">
-<meta name="twitter:description" content="安装使用helm的时候，报错Error: could not find tiller">
+<meta name="twitter:title" content="node.js宏任务和微任务 | 逝水流LF">
+<meta name="twitter:description" content="执行完一个宏任务后，执行微任务队列里的所有任务，然后重复此步骤。在当前的微任务没有执行完成时，是不会执行下一个宏任务的">
     
     
     
@@ -151,12 +151,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">helm安装问题</h1>
+    <h1 class="post-title">node.js宏任务和微任务</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2019-08-06" class="post-meta__date date">2019-08-06</time> 
+      <time datetime="2019-09-01" class="post-meta__date date">2019-09-01</time> 
 
       <span class="post-meta__tags tags">
 
@@ -165,7 +165,7 @@ classes that you can use:
           
              &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/k8s/">k8s</a>
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
             </font>
           
 
@@ -177,25 +177,20 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>安装使用helm的时候，报错Error: could not find tiller</p>
+    <p>执行完一个宏任务后，执行微任务队列里的所有任务，然后重复此步骤。<br>在当前的微任务没有执行完成时，是不会执行下一个宏任务的</p>
 <a id="more"></a>
-<p>在安装了helm后，发现helm status后报错<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">helm status</span><br><span class="line"></span><br><span class="line">-&gt;</span><br><span class="line">Error: could not find a ready tiller pod</span><br></pre></td></tr></table></figure></p>
-<p>查找资料后解决了，详情如下：</p>
-<ol>
-<li><p>获取k8s集群下pod的状态</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -n kube-system</span><br><span class="line"></span><br><span class="line">-&gt;</span><br><span class="line">NAME                                    READY     STATUS             RESTARTS   AGE</span><br><span class="line">tiller-deploy-675cbc8478-57kqz          0/1       ImagePullBackOff   0          7d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看这个tiller的描述文件</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n kube-system describe po tiller-deploy-675cbc8478-57kqz</span><br><span class="line"></span><br><span class="line">-&gt;</span><br><span class="line">Events:</span><br><span class="line">  Type     Reason     Age               From               Message</span><br><span class="line">  ----     ------     ----              ----               -------</span><br><span class="line">  Normal   Scheduled  7d                default-scheduler  Successfully assigned kube-system/tiller-deploy-675cbc8478-57kqz to minikube</span><br><span class="line">  Normal   Pulling    7d (x4 over 7d)   kubelet, minikube  Pulling image <span class="string">"gcr.io/kubernetes-helm/tiller:v2.14.3"</span></span><br><span class="line">  Warning  Failed     7d (x4 over 7d)   kubelet, minikube  Failed to pull image <span class="string">"gcr.io/kubernetes-helm/tiller:v2.14.3"</span>: rpc error: code = Unknown desc = Error response from daemon: Get https://gcr.io/v2/: net/http: request canceled <span class="keyword">while</span> waiting <span class="keyword">for</span> connection (Client.Timeout exceeded <span class="keyword">while</span> awaiting headers)</span><br><span class="line">  Warning  Failed     7d (x4 over 7d)   kubelet, minikube  Error: ErrImagePull</span><br><span class="line">  Normal   BackOff    7d (x15 over 7d)  kubelet, minikube  Back-off pulling image <span class="string">"gcr.io/kubernetes-helm/tiller:v2.14.3"</span></span><br><span class="line">  Warning  Failed     7d (x36 over 7d)  kubelet, minikube  Error: ImagePullBackOff</span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="宏任务"><a href="#宏任务" class="headerlink" title="宏任务"></a>宏任务</h2><ol>
+<li>I/O操作</li>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>setImmediate</li>
+<li>script(主程序代码) </li>
 </ol>
-<p>发现是因为镜像下载的问题，那么可以用替代镜像的方式解决。</p>
-<ol start="3">
-<li>替换镜像，初始化helm<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.14.3 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts</span><br><span class="line"></span><br><span class="line">-&gt;</span><br><span class="line"><span class="variable">$HELM_HOME</span> has been configured at /Users/dillonliang/.helm.</span><br></pre></td></tr></table></figure>
-</li>
+<h2 id="微任务"><a href="#微任务" class="headerlink" title="微任务"></a>微任务</h2><ol>
+<li>Promise</li>
+<li>process.nextTick</li>
 </ol>
-<p>稍等一会，发现helm可用了。</p>
-<p>参考资料：<br><a href="https://github.com/helm/helm/issues/5071" target="_blank" rel="noopener">https://github.com/helm/helm/issues/5071</a></p>
+<p>script(主程序代码)—&gt;process.nextTick—&gt;Promises…——&gt;setTimeout——&gt;setInterval——&gt;setImmediate——&gt; I/O——&gt;UI rendering</p>
 
   </section>
 
