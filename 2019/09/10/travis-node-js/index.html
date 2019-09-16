@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      利用travis发布nodejs | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="最近编写了一个vscode插件，又懒着不想发布到vscode，想着直接在vscode里安装即可，那需要我把build好的插件放到github releases里，每次更新插件后可以自动打包并发布。当当当，利用travis做到了这一点，其实travis可以做很多功能的。">
+<meta name="keywords" content="node.js, github, travis-ci">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用travis发布nodejs | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/travis-node-js/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="最近编写了一个vscode插件，又懒着不想发布到vscode，想着直接在vscode里安装即可，那需要我把build好的插件放到github releases里，每次更新插件后可以自动打包并发布。当当当，利用travis做到了这一点，其实travis可以做很多功能的。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-16T01:38:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用travis发布nodejs | 逝水流LF">
+<meta name="twitter:description" content="最近编写了一个vscode插件，又懒着不想发布到vscode，想着直接在vscode里安装即可，那需要我把build好的插件放到github releases里，每次更新插件后可以自动打包并发布。当当当，利用travis做到了这一点，其实travis可以做很多功能的。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">利用travis发布nodejs</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-09-10" class="post-meta__date date">2019-09-10</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/node-js-github-travis-ci/">node.js, github, travis-ci</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>最近编写了一个<a href="https://github.com/dillonliang224/zsdoc" target="_blank" rel="noopener">vscode插件</a>，又懒着不想发布到vscode，想着直接在vscode里安装即可，那需要我把build好的插件放到github releases里，每次更新插件后可以自动打包并发布。当当当，利用travis做到了这一点，其实travis可以做很多功能的。</p>
+<a id="more"></a>
+<h2 id="Travis-CI是什么？"><a href="#Travis-CI是什么？" class="headerlink" title="Travis CI是什么？"></a>Travis CI是什么？</h2><p>官网地址： <a href="https://travis-ci.org/" target="_blank" rel="noopener">https://travis-ci.org/</a></p>
+<blockquote>
+<p>Test and Deploy with Confidence<br>Easily sync your GitHub projects with Travis CI and you’ll be testing your code in minutes!</p>
+</blockquote>
+<p>轻松的集成到github里，使我们的项目便于测试和部署。</p>
+<h3 id="注册登陆travis-CI"><a href="#注册登陆travis-CI" class="headerlink" title="注册登陆travis CI"></a>注册登陆travis CI</h3><p>直接点击官网有上角的<strong>Signin with github</strong>即可。</p>
+<p>在个人中心可以看到所有关联的github项目，但此时还不能跑travis ci，我们还缺少了一个重要的东西：.travis.yml</p>
+<h3 id="travis-yml"><a href="#travis-yml" class="headerlink" title=".travis.yml"></a>.travis.yml</h3><p>.travis.yml文件是我们的自动化测试/部署的声明文件，当Travis CI检测到我们的.travis.yml文件，会在Travis Dashboard里看到正在跑的自动化，帮助我们测试/构建/部署我们的应用。</p>
+<h2 id="构建一个node-js应用"><a href="#构建一个node-js应用" class="headerlink" title="构建一个node.js应用"></a>构建一个node.js应用</h2><p>现在有一个vscode插件<a href="https://github.com/dillonliang224/zsdoc" target="_blank" rel="noopener">项目</a>，我为此项目编写了一个.travis.yml文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env:</span></span><br><span class="line"><span class="attr">  global:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">PACKAGE_VERSION=`node</span> <span class="bullet">-p</span> <span class="bullet">-e</span> <span class="string">'require("./package.json").version'</span><span class="string">`</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">echo</span> <span class="string">package</span> <span class="string">version...</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">echo</span> <span class="string">$PACKAGE_VERSION</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_deploy:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">install</span> <span class="bullet">-g</span> <span class="string">vsce</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">vsce</span> <span class="string">package</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  - provider:</span> <span class="string">releases</span></span><br><span class="line"><span class="attr">    api_key:</span></span><br><span class="line"><span class="attr">      secure:</span> <span class="string">$GITHUB_OAUTH_TOKEN</span></span><br><span class="line"><span class="attr">    file_glob:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">"*.vsix"</span></span><br><span class="line"><span class="attr">    skip_cleanup:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">"zsdoc-$&#123;PACKAGE_VERSION&#125;"</span></span><br><span class="line"><span class="attr">    email:</span> <span class="string">dillonliang@163.com</span></span><br><span class="line"><span class="attr">    on:</span></span><br><span class="line"><span class="attr">      repo:</span> <span class="string">dillonliang224/zsdoc</span></span><br><span class="line"><span class="attr">      tags:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>如何编写.travis.yml文件呢，根据项目语言，查看对应的<a href="https://docs.travis-ci.com/user/languages" target="_blank" rel="noopener">travis文档</a>即可。</p>
+<p>我这里使用的node.js开发的应用，所以我的.travis.yml文件language配置如下:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 选择运行语言环境 node_js</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 指定测试时的node.js版本，可以指定多个，会依此验证测试。</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>在node.js环境里，默认会执行如下命令:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 安装项目依赖</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">or</span> <span class="string">npm</span> <span class="string">ci</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 执行测试脚本</span></span><br><span class="line"><span class="string">npm</span> <span class="string">test</span></span><br></pre></td></tr></table></figure></p>
+<p>所以在我的.travis.yml文件里没有这两条命令。</p>
+<h2 id="发布vscode插件到releases-page"><a href="#发布vscode插件到releases-page" class="headerlink" title="发布vscode插件到releases page"></a>发布vscode插件到releases page</h2><p>当有新版本插件发布时，release version会有变化，这个一般体现在package.json文件里的version字段上。<br>所以我使用如下命令获取新的version:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env:</span></span><br><span class="line"><span class="attr">  global:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">PACKAGE_VERSION=`node</span> <span class="bullet">-p</span> <span class="bullet">-e</span> <span class="string">'require("./package.json").version'</span><span class="string">`</span></span><br></pre></td></tr></table></figure></p>
+<p>env是travis里的环境，把<strong>node -p -e ‘require(“./package.json”).version’</strong>获取的version赋值到PACKAGE_VERSION变量上，然后在下面打印了一次，看是否是预期值:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">echo</span> <span class="string">package</span> <span class="string">version...</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">echo</span> <span class="string">$PACKAGE_VERSION</span></span><br></pre></td></tr></table></figure></p>
+<p>然后在发布之前，需要编译node.js代码并打包，这里使用到了vscode的vsce命令：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">before_deploy:</span></span><br><span class="line">	<span class="comment">## 全局安装vsce</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">install</span> <span class="bullet">-g</span> <span class="string">vsce</span></span><br><span class="line">  	<span class="comment">## 打包vscode插件</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">vsce</span> <span class="string">package</span></span><br></pre></td></tr></table></figure></p>
+<p>此时已经编译打包好应用了，如何发布到releases page呢？</p>
+<ol>
+<li>首先获取github oauth token，这样使travis有操作release page的权限。参考：<a href="https://blog.wyrihaximus.net/2015/09/github-auth-token-on-travis/" target="_blank" rel="noopener">https://blog.wyrihaximus.net/2015/09/github-auth-token-on-travis/</a></li>
+<li>把获取的github oauth token配置在travis ci对应项目的settting里。参考：<a href="https://blog.wyrihaximus.net/2015/09/github-auth-token-on-travis/" target="_blank" rel="noopener">https://blog.wyrihaximus.net/2015/09/github-auth-token-on-travis/</a></li>
+<li>配置.travis.yml文件，详细解析如下:<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 部署命令</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">	<span class="comment">## github的releases page页面</span></span><br><span class="line"><span class="attr">  - provider:</span> <span class="string">releases</span></span><br><span class="line">  	<span class="comment">## 授权的token</span></span><br><span class="line"><span class="attr">    api_key:</span></span><br><span class="line">    	<span class="comment">## 这个GITHUB_OAUTH_TOKEN是配置在travis 项目setting--&gt;Environment Variables里的</span></span><br><span class="line"><span class="attr">      secure:</span> <span class="string">$GITHUB_OAUTH_TOKEN</span></span><br><span class="line">    <span class="comment">## 指定文件&amp;&amp;文件类型</span></span><br><span class="line"><span class="attr">    file_glob:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">"*.vsix"</span></span><br><span class="line"><span class="attr">    skip_cleanup:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">## 重命名文件，PACKAGE_VERSION即是上面获取到的package.json里的version字段</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">"zsdoc-$&#123;PACKAGE_VERSION&#125;"</span></span><br><span class="line"><span class="attr">    email:</span> <span class="string">dillonliang@163.com</span></span><br><span class="line">    <span class="comment">## 发布到github的哪个项目，以及限定只有打了tag的情况下，才会触发部署操作。</span></span><br><span class="line"><span class="attr">    on:</span></span><br><span class="line"><span class="attr">      repo:</span> <span class="string">dillonliang224/zsdoc</span></span><br><span class="line"><span class="attr">      tags:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>至此，本项目算告一段落，可以发布部署了。</p>
+<h2 id="利用travis发布nodejs"><a href="#利用travis发布nodejs" class="headerlink" title="利用travis发布nodejs"></a>利用travis发布nodejs</h2><p>编写好.travis.yml文件后，操作流程如下：</p>
+<ol>
+<li>本地更新package.json里的version</li>
+<li>提交代码并打tag(同version)</li>
+<li>travis自动构建.vsix文件到release界面</li>
+<li>更新release界面的日志（可选）</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>travis可以做的不止于此，更多特性可自行查阅<a href="https://docs.travis-ci.com/" target="_blank" rel="noopener">官方文档</a>。</p>
+<hr>
+<p>参考资料：<br><a href="https://docs.travis-ci.com/user/languages/javascript-with-nodejs/" target="_blank" rel="noopener">javascript-with-nodejs travis文档</a><br><a href="https://blog.wyrihaximus.net/2015/09/github-auth-token-on-travis/" target="_blank" rel="noopener">如何获取github oauth token及配置</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

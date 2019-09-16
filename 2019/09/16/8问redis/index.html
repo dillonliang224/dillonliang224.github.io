@@ -7,7 +7,7 @@
     
 
     <title>
-      在使用淘宝镜像的情况下，登陆npm并发布包 | 逝水流LF 
+      8问Redis | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,20 +16,18 @@
     
     
 
-    <meta name="description" content="如果本地使用了淘宝镜像，npm login登陆的是淘宝镜像仓库，而不是npm仓库。">
-<meta name="keywords" content="node.js">
+    <meta name="description" content="Redis在项目开发中起着举足轻重的作用，也是互联网公司面试必考的点，下面的灵魂8问，不知道你能答得上来几个？">
+<meta name="keywords" content="redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在使用淘宝镜像的情况下，登陆npm并发布包 | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2018/10/16/在使用淘宝镜像的情况下，登陆npm并发布包/index.html">
+<meta property="og:title" content="8问Redis | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/09/16/8问redis/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="如果本地使用了淘宝镜像，npm login登陆的是淘宝镜像仓库，而不是npm仓库。">
+<meta property="og:description" content="Redis在项目开发中起着举足轻重的作用，也是互联网公司面试必考的点，下面的灵魂8问，不知道你能答得上来几个？">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://image.dillonliang.cn/blog/npm.jpeg">
 <meta property="og:updated_time" content="2019-09-16T01:38:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在使用淘宝镜像的情况下，登陆npm并发布包 | 逝水流LF">
-<meta name="twitter:description" content="如果本地使用了淘宝镜像，npm login登陆的是淘宝镜像仓库，而不是npm仓库。">
-<meta name="twitter:image" content="http://image.dillonliang.cn/blog/npm.jpeg">
+<meta name="twitter:title" content="8问Redis | 逝水流LF">
+<meta name="twitter:description" content="Redis在项目开发中起着举足轻重的作用，也是互联网公司面试必考的点，下面的灵魂8问，不知道你能答得上来几个？">
     
     
     
@@ -153,12 +151,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">在使用淘宝镜像的情况下，登陆npm并发布包</h1>
+    <h1 class="post-title">8问Redis</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2018-10-16" class="post-meta__date date">2018-10-16</time> 
+      <time datetime="2019-09-16" class="post-meta__date date">2019-09-16</time> 
 
       <span class="post-meta__tags tags">
 
@@ -167,7 +165,7 @@ classes that you can use:
           
              &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/node-js/">node.js</a>
+              <a class="tags-link" href="/tags/redis/">redis</a>
             </font>
           
 
@@ -179,18 +177,18 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p><img src="http://image.dillonliang.cn/blog/npm.jpeg" alt></p>
-<p>如果本地使用了淘宝镜像，npm login登陆的是淘宝镜像仓库，而不是npm仓库。</p>
+    <p>Redis在项目开发中起着举足轻重的作用，也是互联网公司面试必考的点，下面的灵魂8问，不知道你能答得上来几个？</p>
 <a id="more"></a>
-<p>输出信息eg:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  npm login</span><br><span class="line">Username: dillonliang</span><br><span class="line">Password:</span><br><span class="line">Email: (this IS public) dillonliang@163.com</span><br><span class="line">Logged <span class="keyword">in</span> as dillonliang on https://registry.npm.taobao.org/.</span><br></pre></td></tr></table></figure>
-<p>这种情况下是不能发布包到npm仓库的。</p>
-<p>那么如何解决呢？</p>
-<p>使用如下命令登陆：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm login --registry http://registry.npmjs.org</span><br><span class="line">Username: dillonliang</span><br><span class="line">Password:</span><br><span class="line">Email: (this IS public) dillonliang@163.com</span><br><span class="line">Logged <span class="keyword">in</span> as dillonliang on http://registry.npmjs.org/.</span><br></pre></td></tr></table></figure>
-<p>可以看到登陆到了npm的仓库。</p>
-<p>然后当我们发布包的时候执行如下命令就会发布到npm仓库。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish --registry http://registry.npmjs.org</span><br></pre></td></tr></table></figure></p>
-<p>打开一个新的终端，npm install刚才的包试试，看下效果。</p>
+<ol>
+<li>为什么使用Redis?</li>
+<li>使用Redis有什么缺点？</li>
+<li>单线程的Redis为什么这么快？</li>
+<li>Redis的数据类型及使用场景</li>
+<li>Redis过期策略和内存淘汰机制？</li>
+<li>Redis和数据库双写一致性问题</li>
+<li>如何应对缓存穿透和缓存雪崩问题</li>
+<li>如果解决Redis并发竞争key问题？</li>
+</ol>
 
   </section>
 
