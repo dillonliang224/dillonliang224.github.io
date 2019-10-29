@@ -7,7 +7,7 @@
     
 
     <title>
-      ELK日志收集分析系统 | 逝水流LF 
+      爬虫之gbk | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,20 +16,18 @@
     
     
 
-    <meta name="description" content="ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana , 它们都是开源软件。">
-<meta name="keywords" content="node.js,linux">
+    <meta name="description" content="爬虫的时候，有些页面gbk编码，直接request会导致乱码。">
+<meta name="keywords" content="node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ELK日志收集分析系统 | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2018/07/23/elk/index.html">
+<meta property="og:title" content="爬虫之gbk | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2019/10/29/爬虫之gbk/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana , 它们都是开源软件。">
+<meta property="og:description" content="爬虫的时候，有些页面gbk编码，直接request会导致乱码。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://image.dillonliang.cn/blog/elk.jpeg">
 <meta property="og:updated_time" content="2019-10-29T11:53:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ELK日志收集分析系统 | 逝水流LF">
-<meta name="twitter:description" content="ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana , 它们都是开源软件。">
-<meta name="twitter:image" content="http://image.dillonliang.cn/blog/elk.jpeg">
+<meta name="twitter:title" content="爬虫之gbk | 逝水流LF">
+<meta name="twitter:description" content="爬虫的时候，有些页面gbk编码，直接request会导致乱码。">
     
     
     
@@ -153,12 +151,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">ELK日志收集分析系统</h1>
+    <h1 class="post-title">爬虫之gbk</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2018-07-23" class="post-meta__date date">2018-07-23</time> 
+      <time datetime="2019-10-29" class="post-meta__date date">2019-10-29</time> 
 
       <span class="post-meta__tags tags">
 
@@ -167,7 +165,7 @@ classes that you can use:
           
              &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/linux/">linux</a>, <a class="tags-link" href="/tags/node-js/">node.js</a>
+              <a class="tags-link" href="/tags/node-js/">node.js</a>
             </font>
           
 
@@ -179,20 +177,11 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p><img src="http://image.dillonliang.cn/blog/elk.jpeg" alt></p>
-<p>ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana , 它们都是开源软件。</p>
+    <p>爬虫的时候，有些页面gbk编码，直接request会导致乱码。</p>
 <a id="more"></a>
-<p>分布式系统日志收集分析，有助于分析应用状态。一般我们把服务部署在不同的机器上，如何把多台机器上的日志收集起来，然后在一个统一的地方查询日志呢？</p>
-<p>以前我们通过tail -f temp.log的方式查询日志，这种方式不利于查询，还需要登录到每台服务器上，耗时耗力。</p>
-<p>幸运的是，我们现在可以使用ELK来采集日志，分析日志，查询日志了。</p>
-<p>ELK是三种软件的简写。</p>
-<ul>
-<li>E： Elastic Search，是一种搜索引擎数据库，可以通过API搜索你的数据。</li>
-<li>L： Logstash，按照一定的格式收集日志，并把日志输入到ES。</li>
-<li>K： Kibana， 提供一套Web界面用来和 Elastic Search 进行交互，把搜索数据可视化。</li>
-</ul>
-<p>ELK的安装可以参考博客： <a href="https://blog.csdn.net/boling_cavalry/article/details/79836171" target="_blank" rel="noopener">https://blog.csdn.net/boling_cavalry/article/details/79836171</a></p>
-<p>我们也可以采用docker的形式来安装ELK组件。</p>
+<p>解决方案：<strong>流式爬取html，转化为utf8</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>)</span><br><span class="line"><span class="keyword">const</span> Iconv = <span class="built_in">require</span>(<span class="string">'iconv-lite'</span>)</span><br><span class="line"><span class="keyword">const</span> rp = <span class="built_in">require</span>(<span class="string">'request-promise'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getHtml</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> res = <span class="keyword">await</span> rp(&#123;</span><br><span class="line">        url: url,</span><br><span class="line">        encoding: <span class="literal">null</span>,		<span class="comment">// 指定encoding为null，获取流式数据</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cheerio.load(Iconv.decode(res, <span class="string">'gb2312'</span>).toString())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">getHtml(url)</span><br><span class="line">	.then(<span class="function">(<span class="params">$</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">// $用来操作dom对象</span></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样就可以通过$来获取数据了。</p>
 
   </section>
 
