@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      golang原子操作 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="原子操作可以完成地消除竟态条件，并能够绝对保证并发安全性。并且，它地执行速度要比其他的同步工具快得多，通常会高出好几个数量级。">
+<meta name="keywords" content="goang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="golang原子操作 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2020/08/05/golang原子操作/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="原子操作可以完成地消除竟态条件，并能够绝对保证并发安全性。并且，它地执行速度要比其他的同步工具快得多，通常会高出好几个数量级。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://blog.betacat.io/image/golang-atomic-value/atomic-value-store.svg">
+<meta property="og:updated_time" content="2020-08-05T03:27:06.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="golang原子操作 | 逝水流LF">
+<meta name="twitter:description" content="原子操作可以完成地消除竟态条件，并能够绝对保证并发安全性。并且，它地执行速度要比其他的同步工具快得多，通常会高出好几个数量级。">
+<meta name="twitter:image" content="https://blog.betacat.io/image/golang-atomic-value/atomic-value-store.svg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">golang原子操作</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-08-05" class="post-meta__date date">2020-08-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/goang/">goang</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>原子操作可以完成地消除竟态条件，并能够绝对保证并发安全性。并且，它地执行速度要比其他的同步工具快得多，通常会高出好几个数量级。</p>
+<a id="more"></a>
+<blockquote>
+<p>学习golang笔记, 整理来自郝大的课程：Go语言核心36讲</p>
+</blockquote>
+<h2 id="原子操作（atomic-operation）"><a href="#原子操作（atomic-operation）" class="headerlink" title="原子操作（atomic operation）"></a>原子操作（atomic operation）</h2><p>原子操作可以完成地消除竟态条件，并能够绝对保证并发安全性。并且，它地执行速度要比其他的同步工具快得多，通常会高出好几个数量级。</p>
+<p>不过，它的缺点也很明显。</p>
+<p><strong>更具体地说，正是因为原子操作不能被中断，所以它需要足够简单，并且要求快速</strong></p>
+<p>操作系统层面只针对二进制或整数的原子操作提供了支持。</p>
+<h3 id="sync-atomic包中提供了几种原子操作？可操作的数据类型又有哪些？"><a href="#sync-atomic包中提供了几种原子操作？可操作的数据类型又有哪些？" class="headerlink" title="sync/atomic包中提供了几种原子操作？可操作的数据类型又有哪些？"></a>sync/atomic包中提供了几种原子操作？可操作的数据类型又有哪些？</h3><p>golang中原子操作如下：</p>
+<ul>
+<li><p>加法（add）</p>
+</li>
+<li><p>比较并交换（CAS，compare and swap）</p>
+</li>
+<li><p>加载（load）</p>
+</li>
+<li><p>存储（store）</p>
+</li>
+<li><p>交换（swap）</p>
+</li>
+</ul>
+<p>数据类型有: int32、int64、uint32、uint64、uintptr以及unsafe包中的Pointer</p>
+<h3 id="unsafe-Pointer"><a href="#unsafe-Pointer" class="headerlink" title="unsafe.Pointer"></a>unsafe.Pointer</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bytes := []<span class="keyword">byte</span>&#123;<span class="number">104</span>, <span class="number">101</span>, <span class="number">108</span>, <span class="number">108</span>, <span class="number">111</span>&#125;</span><br><span class="line">p := unsafe.Pointer(&amp;bytes)</span><br><span class="line">str := (*<span class="keyword">string</span>)(p)</span><br><span class="line">fmt.Println(str, *str)</span><br></pre></td></tr></table></figure>
+<p>出于安全考虑，Go 语言并不支持直接操作内存，但它的标准库中又提供一种<em>不安全（不保证向后兼容性）</em> 的指针类型<code>unsafe.Pointer</code>，让程序可以灵活的操作内存。</p>
+<p><code>unsafe.Pointer</code>的特别之处在于，它可以绕过 Go 语言类型系统的检查，与任意的指针类型互相转换。也就是说，如果两种类型具有相同的内存结构（layout），我们可以将<code>unsafe.Pointer</code>当做桥梁，让这两种类型的指针相互转换，从而实现同一份内存拥有两种不同的<strong>解读</strong>方式。</p>
+<p>比如说，<code>[]byte</code>和<code>string</code>其实内部的存储结构都是一样的，但 Go 语言的类型系统禁止他俩互换。如果借助<code>unsafe.Pointer</code>，我们就可以实现在零拷贝的情况下，将<code>[]byte</code>数组直接转换成<code>string</code>类型。</p>
+<h3 id="atomic-Value"><a href="#atomic-Value" class="headerlink" title="atomic.Value"></a>atomic.Value</h3><p><code>atomic.Value</code>被设计用来存储任意类型的数据，所以它内部的字段是一个<code>interface{}</code>类型，非常的简单粗暴。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Value <span class="keyword">struct</span> &#123;</span><br><span class="line">    v <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="写入操作-Store"><a href="#写入操作-Store" class="headerlink" title="写入操作(Store)"></a>写入操作(Store)</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Store sets the value of the Value to x.</span></span><br><span class="line"><span class="comment">// All calls to Store for a given Value must use values of the same concrete type.</span></span><br><span class="line"><span class="comment">// Store of an inconsistent type panics, as does Store(nil).</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Value)</span> <span class="title">Store</span><span class="params">(x <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">    <span class="comment">// 存储的值不能是nil</span></span><br><span class="line">    <span class="keyword">if</span> x == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">panic</span>(<span class="string">"sync/atomic: store of nil value into Value"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// old value</span></span><br><span class="line">    vp := (*ifaceWords)(unsafe.Pointer(v))</span><br><span class="line">    <span class="comment">// new value</span></span><br><span class="line">    xp := (*ifaceWords)(unsafe.Pointer(&amp;x))</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="comment">// 通过原子操作获取当前Value中存储的类型</span></span><br><span class="line">        typ := LoadPointer(&amp;vp.typ)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 第一次写入</span></span><br><span class="line">        <span class="keyword">if</span> typ == <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="comment">// Attempt to start first store.</span></span><br><span class="line">            <span class="comment">// Disable preemption so that other goroutines can use</span></span><br><span class="line">            <span class="comment">// active spin wait to wait for completion; and so that</span></span><br><span class="line">            <span class="comment">// GC does not see the fake type accidentally.</span></span><br><span class="line">            <span class="comment">// 如果typ是nil，那么这是第一次store</span></span><br><span class="line">            <span class="comment">// 禁止运行时抢占，其他goroutine可以进行自旋，直到第一次写入成功</span></span><br><span class="line">            <span class="comment">// runtime_procPin()，它可以将一个goroutine死死占用当前使用的P(P-M-G中的processor)，不允许其它goroutine/M抢占,</span></span><br><span class="line">            <span class="comment">// 使得它在执行当前逻辑的时候不被打断，以便可以尽快地完成工作，因为别人一直在等待它。</span></span><br><span class="line">            <span class="comment">// 另一方面，在禁止抢占期间，GC 线程也无法被启用，这样可以防止 GC 线程看到一个莫名其妙的指向^uintptr(0)的类型（这是赋值过程中的中间状态）。</span></span><br><span class="line">            runtime_procPin()</span><br><span class="line">            <span class="comment">// 使用CAS操作，原子性设置typ为^uintptr(0)这个中间状态。</span></span><br><span class="line">            <span class="comment">// 如果失败，则证明已经有别的线程抢先完成了赋值操作，那它就解除抢占锁，然后重新回到 for 循环第一步。</span></span><br><span class="line">            <span class="keyword">if</span> !CompareAndSwapPointer(&amp;vp.typ, <span class="literal">nil</span>, unsafe.Pointer(^<span class="keyword">uintptr</span>(<span class="number">0</span>))) &#123;</span><br><span class="line">                runtime_procUnpin()</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// Complete first store.</span></span><br><span class="line">            <span class="comment">// 如果CAS设置成功，证明当前goroutine获取到了这个"乐观锁"，可以安全地把v设为传入的新值</span></span><br><span class="line">            StorePointer(&amp;vp.data, xp.data)</span><br><span class="line">            StorePointer(&amp;vp.typ, xp.typ)</span><br><span class="line">            runtime_procUnpin()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 写入进行中...</span></span><br><span class="line">        <span class="comment">// 如果看到typ字段还是^uintptr(0)这个中间类型，证明刚刚的第一次写入还没有完成，</span></span><br><span class="line">        <span class="comment">// 所以它会继续循环，“忙等"到第一次写入完成。</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">uintptr</span>(typ) == ^<span class="keyword">uintptr</span>(<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// First store in progress. Wait.</span></span><br><span class="line">            <span class="comment">// Since we disable preemption around the first store,</span></span><br><span class="line">            <span class="comment">// we can wait with active spinning.</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 走到这里的时候，说明第一次写入已完成</span></span><br><span class="line">        <span class="comment">// First store completed. Check type and overwrite data.</span></span><br><span class="line">        <span class="comment">// 首先检查上一次写入的类型与这一次要写入的类型是否一致，如果不一致则抛出异常。</span></span><br><span class="line">        <span class="keyword">if</span> typ != xp.typ &#123;</span><br><span class="line">            <span class="built_in">panic</span>(<span class="string">"sync/atomic: store of inconsistently typed value into Value"</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 直接把这一次要写入的值写入到data字段</span></span><br><span class="line">        StorePointer(&amp;vp.data, xp.data)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个逻辑的主要思想就是，为了完成多个字段的原子性写入，我们可以抓住其中的一个字段，以它的状态来标志整个原子写入的状态。</p>
+<p>流程图：</p>
+<p><img src="https://blog.betacat.io/image/golang-atomic-value/atomic-value-store.svg" alt></p>
+<h4 id="读取操作-Load"><a href="#读取操作-Load" class="headerlink" title="读取操作(Load)"></a>读取操作(Load)</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load returns the value set by the most recent Store.</span></span><br><span class="line"><span class="comment">// It returns nil if there has been no call to Store for this Value.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Value)</span> <span class="title">Load</span><span class="params">()</span> <span class="params">(x <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">    vp := (*ifaceWords)(unsafe.Pointer(v))</span><br><span class="line">    typ := LoadPointer(&amp;vp.typ)</span><br><span class="line">    <span class="comment">// 如果typ为nil或者中间类型^uintptr(0)，那么说明第一次写入还没有完成，那就直接返回nil</span></span><br><span class="line">    <span class="keyword">if</span> typ == <span class="literal">nil</span> || <span class="keyword">uintptr</span>(typ) == ^<span class="keyword">uintptr</span>(<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// First store not yet completed.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 到这里，说明第一次写入已成功</span></span><br><span class="line">    <span class="comment">// 根据已有到typ和data，构建一个interface返回</span></span><br><span class="line">    data := LoadPointer(&amp;vp.data)</span><br><span class="line">    xp := (*ifaceWords)(unsafe.Pointer(&amp;x))</span><br><span class="line">    xp.typ = typ</span><br><span class="line">    xp.data = data</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>原子操作由底层硬件支持，而锁则由操作系统提供的 API 实现。若实现相同的功能，前者通常会更有效率，并且更能利用计算机多核的优势。所以，以后当我们想并发安全的更新一些变量的时候，我们应该优先选择用atomic.Value来实现。</p>
+<p>使用规则：</p>
+<ul>
+<li><p>不能用atomic.Value原子值存储nil</p>
+</li>
+<li><p>我们向原子值存储的第一个值，决定了它今后能且只能存储哪一个类型的值</p>
+</li>
+</ul>
+<blockquote>
+<p>建议：不要把内部使用的atomic.Value原子值暴露给外界，如果非要暴露也要通过API封装形式，做严格的check。</p>
+</blockquote>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
