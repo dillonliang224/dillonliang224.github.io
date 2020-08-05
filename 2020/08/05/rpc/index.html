@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      RPC | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="RPC框架的职责是：让调用方感觉就像调用本地函数一样调用远端函数、让服务提供方感觉就像实现一个本地函数一样来实现服务">
+<meta name="keywords" content="微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RPC | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2020/08/05/rpc/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="RPC框架的职责是：让调用方感觉就像调用本地函数一样调用远端函数、让服务提供方感觉就像实现一个本地函数一样来实现服务">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/rpc.jpg">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/rpc-proto.jpg">
+<meta property="og:image" content="http://image.dillonliang.cn/blog/rpc-call.jpg">
+<meta property="og:updated_time" content="2020-08-05T02:35:56.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RPC | 逝水流LF">
+<meta name="twitter:description" content="RPC框架的职责是：让调用方感觉就像调用本地函数一样调用远端函数、让服务提供方感觉就像实现一个本地函数一样来实现服务">
+<meta name="twitter:image" content="http://image.dillonliang.cn/blog/rpc.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">RPC</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-08-05" class="post-meta__date date">2020-08-05</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/微服务/">微服务</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <blockquote>
+<p>RPC框架的职责是：让调用方感觉就像调用本地函数一样调用远端函数、让服务提供方感觉就像实现一个本地函数一样来实现服务</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><p>标签（空格分隔）： 微服务</p>
+<hr>
+<p>参考<a href="https://developer.51cto.com/art/201906/597963.htm" target="_blank" rel="noopener">花了一个星期，我终于把RPC框架整明白了</a>整理记录。</p>
+<blockquote>
+<p>RPC是一种技术思想而非一种规范或协议。</p>
+</blockquote>
+<h2 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h2><p>微服务大行其道，微服务之间的通信怎么办呢？</p>
+<p>随着巨石应用的拆分，多个微服务共同完成应用功能，许多相似或一样的功能代码被抽离出来作为底层服务，它们之间需要一种通信方式。</p>
+<p>RPC，Remote Procedure Call，远程过程调用，它是一种通过网络从远程计算机上请求服务，而不需要理解底层网络技术的思想。</p>
+<p>通过RPC，可以像调用本地方法一样调用远程服务，不同的微服务也可以根据不同的场景选择最适合的开发语言和技术架构。</p>
+<h2 id="RPC-1"><a href="#RPC-1" class="headerlink" title="RPC"></a>RPC</h2><p>完整的RPC架构图镇楼<br><img src="http://image.dillonliang.cn/blog/rpc.jpg" alt="RPC架构图"></p>
+<p>在一个典型的RPC的使用场景中，包含了服务注册、服务发现、负载均衡、容错、网络传输、序列化等组件。</p>
+<p>RPC协议部分包括序列化、反序列化、协议编码解码和网络传输。</p>
+<h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><p>RPC 的核心功能是指实现一个 RPC 最重要的功能模块</p>
+<p><img src="http://image.dillonliang.cn/blog/rpc-proto.jpg" alt="RPC核心功能"></p>
+<p>一个RPC的核心功能主要有5个部分组成，分别是：客户端、客户端Stub、网络传输模块、服务端Stub、服务端</p>
+<p><img src="http://image.dillonliang.cn/blog/rpc-call.jpg" alt="RPC核心功能图"></p>
+<p>其中：</p>
+<ul>
+<li>客户端（client）： 服务调用方</li>
+<li>客户端存根（client stub）：存放服务端地址信息，将客户端的请求参数数据信息打包成网络信息，再通过网络传输层发送给服务端。</li>
+<li>服务端存根（server stub）：接受客户端发送过来的请求消息并进行解包，然后再调用本地服务进行处理。</li>
+<li>服务端（server）：服务的真正提供者。</li>
+<li>网络传输层（Network Service）： 底层传输，可以是TCP或HTTP2</li>
+</ul>
+<h3 id="核心功能实现"><a href="#核心功能实现" class="headerlink" title="核心功能实现"></a>核心功能实现</h3><p>RPC的核心功能主要由5个模块组成，主要技术点是：</p>
+<ul>
+<li>服务寻址</li>
+<li>数据流的序列化和反序列化</li>
+<li>网络传输</li>
+</ul>
+<h4 id="服务寻址"><a href="#服务寻址" class="headerlink" title="服务寻址"></a>服务寻址</h4><p>本地调用方法的时候，可以通过函数指针来指定。<br>远程调用方法的时候，需要通过一种映射机制来找到服务端方法。</p>
+<blockquote>
+<p>服务寻址可以使用 Call ID 映射。在本地调用中，函数体是直接通过函数指针来指定的，但是在远程调用中，函数指针是不行的，因为两个进程的地址空间是完全不一样的。</p>
+</blockquote>
+<blockquote>
+<p>所以在 RPC 中，所有的函数都必须有自己的一个 ID。这个 ID 在所有进程中都是唯一确定的。</p>
+</blockquote>
+<blockquote>
+<p>客户端在做远程过程调用时，必须附上这个 ID。然后我们还需要在客户端和服务端分别维护一个函数和Call ID的对应表。</p>
+</blockquote>
+<blockquote>
+<p>当客户端需要进行远程调用时，它就查一下这个表，找出相应的 Call ID，然后把它传给服务端，服务端也通过查表，来确定客户端需要调用的函数，然后执行相应函数的代码。</p>
+</blockquote>
+<h4 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h4><p>客户端和服务端不在一个进程内，两者的数据交换只能通过字节流，而在网络传输中，是以二进制数据的形式呈现的。</p>
+<blockquote>
+<p>将对象转换成二进制流的过程叫做序列化<br>将二进制流转换成对象的过程叫做反序列化</p>
+</blockquote>
+<p>客户端发起请求，需要序列化数据，接受返回结果需要反序列化数据</p>
+<p>服务端接受请求，需要反序列化数据，发送返回结果需要序列化数据</p>
+<h4 id="网络传输"><a href="#网络传输" class="headerlink" title="网络传输"></a>网络传输</h4><p>远程调用往往用在网络上，客户端和服务端是通过网络连接的。</p>
+<p>因此需要一个网络传输层来传递客户端和服务端之间的数据。</p>
+<p>目前RPC框架传输层协议大多使用TCP协议，也可以使用UDP和HTTP、HTTP2</p>
+<p>基于 TCP 的协议实现的 RPC 调用，由于 TCP 协议处于协议栈的下层，能够更加灵活地对协议字段进行定制，减少网络开销，提高性能，实现更大的吞吐量和并发数。</p>
+<p>基于 HTTP 协议实现的 RPC 则可以使用 JSON 和 XML 格式的请求或响应数据。但是由于 HTTP 协议是上层协议，发送包含同等内容的信息，使用 HTTP 协议传输所占用的字节数会比使用 TCP 协议传输所占用的字节数更高。</p>
+<p>因此在同等网络下，通过 HTTP 协议传输相同内容，效率会比基于 TCP 协议的数据效率要低，信息传输所占用的时间也会更长，当然压缩数据，能够缩小这一差距。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><blockquote>
+<ol>
+<li>RPC框架是架构微服务化的首要基础组件，它能大大降低架构微服务化的成本，提高调用方与服务提供方的研发效率，屏蔽跨进程调用函数（服务）的各类复杂细节</li>
+<li>RPC框架的职责是：让调用方感觉就像调用本地函数一样调用远端函数、让服务提供方感觉就像实现一个本地函数一样来实现服务</li>
+</ol>
+</blockquote>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
