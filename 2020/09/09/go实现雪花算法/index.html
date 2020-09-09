@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      go实现雪花算法 | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="如何在分布式系统中，实现一个有递增性且全局唯一的ID呢？ 实现方案之： go实现雪花算法">
+<meta name="keywords" content="golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go实现雪花算法 | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2020/09/09/go实现雪花算法/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="如何在分布式系统中，实现一个有递增性且全局唯一的ID呢？ 实现方案之： go实现雪花算法">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-09-09T08:28:42.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go实现雪花算法 | 逝水流LF">
+<meta name="twitter:description" content="如何在分布式系统中，实现一个有递增性且全局唯一的ID呢？ 实现方案之： go实现雪花算法">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">go实现雪花算法</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-09-09" class="post-meta__date date">2020-09-09</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/golang/">golang</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>如何在分布式系统中，实现一个有递增性且全局唯一的ID呢？</p>
+<p>实现方案之： go实现雪花算法</p>
+<a id="more"></a>
+<p>雪花算法在上一节已经写过了，在代码里也有注释。</p>
+<p>直接上代码 –&gt;</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> snowflake</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"errors"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"sync"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 雪花算法</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  0 | 00000000 00000000 00000000 00000000 00000000 0 / 00000000 00 / 00000000 0000</span></span><br><span class="line"><span class="comment">  1bit不用 |             41bit时间戳                  / 10bit工作机器ID / 12bit序列号</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  1bit不用，二进制中最高位为1代表负数</span></span><br><span class="line"><span class="comment">  41bit代表时间戳，(2^41−1)/(1000∗60∗60∗24∗365)=69 年</span></span><br><span class="line"><span class="comment">  10bit工作机器ID允许分布式最大节点数为1024个（10个bit按场景划分，总计组合1024个）</span></span><br><span class="line"><span class="comment">  12bit序列号表示每毫秒生成的ID序号 2^12-1=4095，即0，1，...4095共4096个序列号</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  实际情况下，可以根据具体场景来划分10bit工作机器ID和12bit序列号，</span></span><br><span class="line"><span class="comment">  比如说，把工作机器ID缩减到4位，把bit序列号扩大到18位来满足机器不足，单机可生成更多但序列号ID</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	timestampOffset <span class="keyword">uint8</span> = <span class="number">22</span> <span class="comment">// 时间戳偏移量</span></span><br><span class="line">	workerOffset    <span class="keyword">uint8</span> = <span class="number">12</span> <span class="comment">// 工作机器偏移量</span></span><br><span class="line"></span><br><span class="line">	workerBits   <span class="keyword">int64</span> = <span class="number">10</span> <span class="comment">// 工作机器ID所占bit数</span></span><br><span class="line">	sequenceBits <span class="keyword">int64</span> = <span class="number">12</span> <span class="comment">// 序列号所占bit数</span></span><br><span class="line"></span><br><span class="line">	maxWorkerId   <span class="keyword">int64</span> = <span class="number">-1</span> ^ (<span class="number">-1</span> &lt;&lt; <span class="keyword">uint64</span>(workerBits))   <span class="comment">// 最大工作机器ID</span></span><br><span class="line">	maxSequenceId <span class="keyword">int64</span> = <span class="number">-1</span> ^ (<span class="number">-1</span> &lt;&lt; <span class="keyword">uint64</span>(sequenceBits)) <span class="comment">// 最大序列号ID</span></span><br><span class="line"></span><br><span class="line">	epoch <span class="keyword">int64</span> = <span class="number">1599029955445</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Worker <span class="keyword">struct</span> &#123;</span><br><span class="line">	mu         sync.Mutex</span><br><span class="line">	timestamp  <span class="keyword">int64</span> <span class="comment">// 上一次生成ID的时间戳</span></span><br><span class="line">	workerId   <span class="keyword">int64</span> <span class="comment">// 工作机器ID</span></span><br><span class="line">	sequenceId <span class="keyword">int64</span> <span class="comment">// 每毫秒的序列号，从0开始，最多4096个</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewSnowflakeWorker</span><span class="params">(workerId <span class="keyword">int64</span>)</span> <span class="params">(*Worker, error)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> workerId &lt; <span class="number">0</span> || workerId &gt; maxWorkerId &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"WorkerId big than maxWorkerId"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> &amp;Worker&#123;</span><br><span class="line">		timestamp:  <span class="number">0</span>,</span><br><span class="line">		workerId:   workerId,</span><br><span class="line">		sequenceId: <span class="number">0</span>,</span><br><span class="line">	&#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(w *Worker)</span> <span class="title">GenerateId</span><span class="params">()</span> <span class="title">int64</span></span> &#123;</span><br><span class="line">	w.mu.Lock()</span><br><span class="line">	<span class="keyword">defer</span> w.mu.Unlock()</span><br><span class="line"></span><br><span class="line">	timestamp := w.getCurrentTime()</span><br><span class="line">	<span class="keyword">if</span> timestamp &lt; w.timestamp &#123;</span><br><span class="line">		log.Fatal(<span class="string">"can not generate id"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> timestamp == w.timestamp &#123;</span><br><span class="line">		w.sequenceId++</span><br><span class="line">		<span class="keyword">if</span> w.sequenceId &gt; maxSequenceId &#123;</span><br><span class="line">			<span class="keyword">for</span> timestamp &lt;= w.timestamp &#123;</span><br><span class="line">				timestamp = w.getCurrentTime()</span><br><span class="line">			&#125;</span><br><span class="line">			w.sequenceId = <span class="number">0</span></span><br><span class="line">			w.timestamp = timestamp</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		w.sequenceId = <span class="number">0</span></span><br><span class="line">		w.timestamp = timestamp</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	id := (timestamp-epoch)&lt;&lt;timestampOffset | (w.workerId &lt;&lt; workerOffset) | w.sequenceId</span><br><span class="line">	<span class="keyword">return</span> id</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(w *Worker)</span> <span class="title">getCurrentTime</span><span class="params">()</span> <span class="title">int64</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> time.Now().UnixNano() / <span class="number">1e6</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如何使用呢？写了一个测试代码<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestNewSnowflakeWorker</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 指定workerId，保证不重复即可，实际要结合生产环境来看，最大支持1024个组合</span></span><br><span class="line">	worker, err := NewSnowflakeWorker(<span class="number">12</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int64</span>)</span><br><span class="line">	<span class="keyword">defer</span> <span class="built_in">close</span>(ch)</span><br><span class="line">	count := <span class="number">10000</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; count; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			id := worker.GenerateId()</span><br><span class="line">			ch &lt;- id</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int64</span>]<span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; count; i++ &#123;</span><br><span class="line">		id := &lt;-ch</span><br><span class="line">		_, ok := m[id]</span><br><span class="line">		<span class="keyword">if</span> ok &#123;</span><br><span class="line">			t.Error(<span class="string">"id is not unique"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		m[id] = <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">"done..."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过执行测试用例，生成的ID不会重复</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

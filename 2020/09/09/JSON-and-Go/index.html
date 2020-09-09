@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      JSON and Go | 逝水流LF 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Dillon Liang">
+    
+    
+
+    <meta name="description" content="Golang官方博客 – JSON and Go的翻译，原文地址： https://blog.golang.org/json">
+<meta name="keywords" content="golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON and Go | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2020/09/09/JSON-and-Go/index.html">
+<meta property="og:site_name" content="逝水流LF">
+<meta property="og:description" content="Golang官方博客 – JSON and Go的翻译，原文地址： https://blog.golang.org/json">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-09-09T08:28:42.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSON and Go | 逝水流LF">
+<meta name="twitter:description" content="Golang官方博客 – JSON and Go的翻译，原文地址： https://blog.golang.org/json">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">逝水流LF</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title class>归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">JSON and Go</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-09-09" class="post-meta__date date">2020-09-09</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/golang/">golang</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>Golang官方博客 – JSON and Go的翻译，原文地址： <a href="https://blog.golang.org/json" target="_blank" rel="noopener">https://blog.golang.org/json</a></p>
+<a id="more"></a>
+<p>知其然知其所以然，写个代码有何难。</p>
+<hr>
+<p>正文如下：</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>JSON（JavaScript Object Notation）是一种简单的数据交换格式。在语法上看，类似于JavaScript的对象和数组。<br>它最常用于web后端和运行在浏览器中的JavaScript程序之间的通信，但它也用于许多其他地方。<br>它的官方网站，<a href="https://www.json.org/json-en.html" target="_blank" rel="noopener">json.org</a>，提供了一个非常清晰和简洁的标准定义。</p>
+<p>通过使用golang的官方<a href="https://golang.org/pkg/encoding/json/" target="_blank" rel="noopener">json package</a>，用golang来读写JSON数据非常简单。</p>
+<h3 id="Encoding"><a href="#Encoding" class="headerlink" title="Encoding"></a>Encoding</h3><p>使用<strong>Marshall</strong>函数来编码JSON数据<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Marshal</span><span class="params">(v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>让我们先定义一个golang数据结构体： Message<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Message <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Body <span class="keyword">string</span></span><br><span class="line">	Time <span class="keyword">int64</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后再定义一个Message实例<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m := Message&#123;<span class="string">"Alice"</span>, <span class="string">"Hello"</span>, <span class="number">1294706395881547000</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以使用json.Marshall函数来处理JSON数据:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b, err := json.Marshal(m)</span><br></pre></td></tr></table></figure></p>
+<p>如果一切正常，err将会是nil，b将是包含json数据的byte切片：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b == []<span class="keyword">byte</span>(<span class="string">`&#123;"Name":"Alice","Body":"Hello","Time":1294706395881547000&#125;`</span>)</span><br></pre></td></tr></table></figure></p>
+<p>只对那些有效表示JSON的数据结构来编码：</p>
+<ul>
+<li>JSON对象只支持strings类型作为key;编码Map类型的数据，需要数据满足map[string]T(T是json包下支持的golang类型)</li>
+<li>通道，复数和函数类型不支持被编码</li>
+<li>不支持循环数据结构；它将导致Marshal函数进入无限循环</li>
+<li>指针将被编码为它所指向的值（如果是nil指针，则为null）</li>
+</ul>
+<p>在json包输出字段的过程中，只有那些首字母大写的结构体字段会被编码。</p>
+<h3 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h3><p>使用<strong>Unmarshal</strong>函数来解码JSON数据<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Unmarshal</span><span class="params">(data []<span class="keyword">byte</span>, v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></span><br></pre></td></tr></table></figure></p>
+<p>首先，我们要创建一个存储解码后数据的地方<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m Message</span><br></pre></td></tr></table></figure></p>
+<p>之后，调用json.Unmarshal函数，把JSON数据转为[]byte和指向m的指针作为参数传进去<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">err := json.Unmarshal(b, &amp;m)</span><br></pre></td></tr></table></figure></p>
+<p>如果b中包含的有效JSON数据和m相匹配，函数调用后，err为nil，来源于B的数据将会存储在结构体m中，类似于被声明了：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">m = Message&#123;</span><br><span class="line">	Name: <span class="string">"Alice"</span>,</span><br><span class="line">	Body: <span class="string">"Hello"</span>,</span><br><span class="line">	Time: <span class="number">1294706395881547000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>随之而来的问题是Unmarshal函数如何识别被解码的数据和结构体字段的映射？<br>比如说给定一个JSON键“Foo”，Unmarshal将遍历目标结构的字段以查找（按以下规则顺序查找）</p>
+<ul>
+<li>带有”Foo”tag的导出字段（结构体tags参考<a href="https://golang.org/ref/spec#Struct_types" target="_blank" rel="noopener">Go规范</a>）</li>
+<li>导出字段名是”Foo”的</li>
+<li>导出字段名是”FOO”、”FoO”或者不区分大小写的”Foo”字段</li>
+</ul>
+<p>当JSON数据的结构与Go类型不完全匹配时会发生什么？<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b := []<span class="keyword">byte</span>(<span class="string">`&#123;"Name":"Bob","Food":"Pickle"&#125;`</span>)</span><br><span class="line"><span class="keyword">var</span> m Message</span><br><span class="line">err := json.Unmarshal(b, &amp;m)</span><br></pre></td></tr></table></figure></p>
+<p><strong>Unmarshal函数将只解码它可以在目标类型中找到的字段</strong>。在这个例子中，只有m的”Name”字段被映射，”Food”字段被忽略掉了。当需要在一个很大的JSON数据里pick指定的一些字段时，这个特性非常有用。这也意味着目标结构中任何未报告的字段不会受到Unmarshal函数的影响，不会解码在结构体中不存在的字段。</p>
+<p>如果事先不知道JSON数据的结构该怎么办呢？</p>
+<h3 id="通过interface-解析JSON"><a href="#通过interface-解析JSON" class="headerlink" title="通过interface{}解析JSON"></a>通过interface{}解析JSON</h3><p>interface{}(空接口)类型，零个方法。每个Go类型至少实现了零个方法，因此满足空接口。</p>
+<p>空接口用作通用容器类型：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">i = <span class="string">"a string"</span></span><br><span class="line">i = <span class="number">2011</span></span><br><span class="line">i = <span class="number">2.777</span></span><br></pre></td></tr></table></figure></p>
+<p>类型断言可以获取底层具体类型：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r := i.(<span class="keyword">float64</span>)</span><br><span class="line">fmt.Println(<span class="string">"the circle's area"</span>, math.Pi*r*r)</span><br></pre></td></tr></table></figure></p>
+<p>另外，如果底层类型不确定，类型选择可以检查：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> v := i.(<span class="keyword">type</span>) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">int</span>:</span><br><span class="line">    fmt.Println(<span class="string">"twice i is"</span>, v*<span class="number">2</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">float64</span>:</span><br><span class="line">    fmt.Println(<span class="string">"the reciprocal of i is"</span>, <span class="number">1</span>/v)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">string</span>:</span><br><span class="line">    h := <span class="built_in">len</span>(v) / <span class="number">2</span></span><br><span class="line">    fmt.Println(<span class="string">"i swapped by halves is"</span>, v[h:]+v[:h])</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="comment">// i isn't one of the types above</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>json包用map[string]interface{}和[]interface{}来存储JSON数据的对象和数组。<br>它会将任何有效的JSON blob解码到一个空接口上。<br>默认的转换规则是：</p>
+<ul>
+<li>bool 对应JSON booleans</li>
+<li>float64 对应JSON numbers</li>
+<li>strings 对应JSON strings</li>
+<li>nil 对应JSON null</li>
+</ul>
+<h3 id="Decoding-arbitrary-data"><a href="#Decoding-arbitrary-data" class="headerlink" title="Decoding arbitrary data"></a>Decoding arbitrary data</h3><p>解码任意数据</p>
+<p>假设存在变量b中的JSON数据如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b := []<span class="keyword">byte</span>(<span class="string">`&#123;"Name":"Wednesday","Age":6,"Parents":["Gomez","Morticia"]&#125;`</span>)</span><br></pre></td></tr></table></figure></p>
+<p>不需要知道JSON数据结构的情况下，我们可以用Unmarshal函数解码到空接口上(interface{}):<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">err := json.Unmarshal(b, &amp;f)</span><br></pre></td></tr></table></figure></p>
+<p>此时，f中的Go值将是一个map，其键是字符串，其值本身存储为空接口值:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;&#123;</span><br><span class="line">	<span class="string">"Name"</span>: <span class="string">"Wednesday"</span>,</span><br><span class="line">	<span class="string">"Age"</span>: <span class="number">6</span>,</span><br><span class="line">	<span class="string">"Parents"</span>: []<span class="keyword">interface</span>&#123;&#125;&#123;</span><br><span class="line">		<span class="string">"Gomez"</span>,</span><br><span class="line">		<span class="string">"Morticia"</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要访问这些数据，我们可以使用类型断言来访问f的底层map[string]interface{}<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m := f.(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后使用range语句迭代map，并使用类型选择来访问其值的具体类型：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k, v := <span class="keyword">range</span> m &#123;</span><br><span class="line">	<span class="keyword">switch</span> vv := v.(<span class="keyword">type</span>) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="keyword">string</span>:</span><br><span class="line">		fmt.Println(k, <span class="string">"is string"</span>, vv)</span><br><span class="line">	<span class="keyword">case</span> <span class="keyword">float64</span>:</span><br><span class="line">		fmt.Println(k, <span class="string">"is float64"</span>, vv)</span><br><span class="line">	<span class="keyword">case</span> []<span class="keyword">interface</span>&#123;&#125;:</span><br><span class="line">		fmt.Println(k, <span class="string">"is an array"</span>)</span><br><span class="line">		<span class="keyword">for</span> i, u := <span class="keyword">range</span> vv &#123;</span><br><span class="line">			fmt.Println(i, u)</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		fmt.Println(k, <span class="string">"is of a type I don't know how to handle"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过这种方式，既保证了类型安全，又可以处理未知的JSON数据。</p>
+<h3 id="Reference-Types"><a href="#Reference-Types" class="headerlink" title="Reference Types"></a>Reference Types</h3><p>让我们定义一个Go类型来包含上面例子的结构体：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> FamilyMember <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Age <span class="keyword">int</span></span><br><span class="line">	Parents []<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> m FamilyMember</span><br><span class="line">err := json.Unmarshal(b, &amp;m)</span><br></pre></td></tr></table></figure></p>
+<p>正如期望中的一样，数据被解码到FamilyMember，但如果我们仔细观察，就会发现发生了一件了不起的事情。<br>我们先声明了一个FamilyMeber类型的变量m，然后获取它的指针地址去Unmarshal，但是此时m中的Parents字段是一个nil切片。为了填充Parents字段，Unmarshal函数会在底层分配一个新的切片。这是典型的引用类型（points,slice和maps）解码的工作原理。</p>
+<p>考虑将数据解码到如下数据结构：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Foo <span class="keyword">struct</span>&#123;</span><br><span class="line">	Bar *Bar</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果在JSON数据里有一个”Bar”字段，Unmarshal函数会分配一个新Bar并填充它。如果不存在，Bar字段将会被当作空指针。</p>
+<p>由此产生了一个有用的模式：如果你的应用程序接收到一些不同的消息类型，你可以定义”receiver”结构，如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> IncomingMessage <span class="keyword">struct</span>&#123;</span><br><span class="line">	Cmd *Command</span><br><span class="line">	Msg *Message</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>发送方可以填充JSON对象的顶级Cmd字段或者Msg字段，这取决于它们想要通信的消息类型。<br>在将JSON解码为IncomingMessage结构时，Unmarshal将只分配JSON数据中存在的数据结构。为了知道要处理哪些消息，程序员只需测试Cmd或Msg是否为nil。</p>
+<h3 id="Streaming-Encoders-and-Decoders"><a href="#Streaming-Encoders-and-Decoders" class="headerlink" title="Streaming Encoders and Decoders"></a>Streaming Encoders and Decoders</h3><p>json包提供了Decoder和Encoder类型，以支持读取和写入json数据流的常见操作。<br>NewDecoder和NewEncoder函数对io.Reader和io.Writer接口类型进行了封装。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewDecoder</span><span class="params">(r io.Reader)</span> *<span class="title">Decoder</span></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">NewEncoder</span><span class="params">(r io.Writer)</span> *<span class="title">Encoder</span></span></span><br></pre></td></tr></table></figure></p>
+<p>这里提供了一个代码demo来演示如何从标准输入里读取JSON对象，删除JSON对象里字段名非Name的字段，并输出到标准输出里。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	dec := json.NewDecoder(os.Stdin)</span><br><span class="line">	enc := json.NewEncoder(os.Stdout)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">var</span> v <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">		<span class="keyword">if</span> err := dec.Decode(&amp;v); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Println(err)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> k := <span class="keyword">range</span> v &#123;</span><br><span class="line">			<span class="keyword">if</span> k != <span class="string">"Name"</span> &#123;</span><br><span class="line">				<span class="built_in">delete</span>(v, k)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> err := enc.Encode(&amp;v); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Println(err)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于Readers和Writers的普遍存在，被很多Go类型所实现，所以Encoder和Decoder可以在广泛的场景中使用，例如读写http连接、WebSockets或文件。</p>
+<hr>
+<p>Go里的json包是借助于反射来实现的，反射又是通过接口来实现的，所以学好接口很重要，找时间分析一下interface的源码。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
