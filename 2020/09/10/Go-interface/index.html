@@ -7,7 +7,7 @@
     
 
     <title>
-      Prometheus | 逝水流LF 
+      Go interface | 逝水流LF 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,20 +16,18 @@
     
     
 
-    <meta name="description" content="Prometheus 普罗米修斯 From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution. Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的">
-<meta name="keywords" content="node.js linux">
+    <meta name="description" content="Type AssertionType Assertion(类型断言)是用于interface value的一种操作。语法如下：1x.(T) x是interface type的表达式，而T是assertd type，被断言的类型。 类型断言的使用主要有两种情景：  如果asserted type是一个concrete type(具体类型)，一个实例类type，断言会检查x的dynamic type是">
+<meta name="keywords" content="golang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Prometheus | 逝水流LF">
-<meta property="og:url" content="http://yoursite.com/2018/11/16/Prometheus/index.html">
+<meta property="og:title" content="Go interface | 逝水流LF">
+<meta property="og:url" content="http://yoursite.com/2020/09/10/Go-interface/index.html">
 <meta property="og:site_name" content="逝水流LF">
-<meta property="og:description" content="Prometheus 普罗米修斯 From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution. Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的">
+<meta property="og:description" content="Type AssertionType Assertion(类型断言)是用于interface value的一种操作。语法如下：1x.(T) x是interface type的表达式，而T是assertd type，被断言的类型。 类型断言的使用主要有两种情景：  如果asserted type是一个concrete type(具体类型)，一个实例类type，断言会检查x的dynamic type是">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://image.dillonliang.cn/blog/prometheus.jpg">
-<meta property="og:updated_time" content="2021-02-22T07:24:17.341Z">
+<meta property="og:updated_time" content="2021-02-22T07:24:17.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Prometheus | 逝水流LF">
-<meta name="twitter:description" content="Prometheus 普罗米修斯 From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution. Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的">
-<meta name="twitter:image" content="http://image.dillonliang.cn/blog/prometheus.jpg">
+<meta name="twitter:title" content="Go interface | 逝水流LF">
+<meta name="twitter:description" content="Type AssertionType Assertion(类型断言)是用于interface value的一种操作。语法如下：1x.(T) x是interface type的表达式，而T是assertd type，被断言的类型。 类型断言的使用主要有两种情景：  如果asserted type是一个concrete type(具体类型)，一个实例类type，断言会检查x的dynamic type是">
     
     
     
@@ -153,12 +151,12 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">Prometheus</h1>
+    <h1 class="post-title">Go interface</h1>
 
     
 
     <div class="post-meta">
-      <time datetime="2018-11-16" class="post-meta__date date">2018-11-16</time> 
+      <time datetime="2020-09-10" class="post-meta__date date">2020-09-10</time> 
 
       <span class="post-meta__tags tags">
 
@@ -167,7 +165,7 @@ classes that you can use:
           
              &#8226; 标签:
             <font class="tags">
-              <a class="tags-link" href="/tags/node-js-linux/">node.js linux</a>
+              <a class="tags-link" href="/tags/golang/">golang</a>
             </font>
           
 
@@ -179,14 +177,18 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p><img src="http://image.dillonliang.cn/blog/prometheus.jpg" alt></p>
-<p>Prometheus 普罗米修斯</p>
-<p>From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution.</p>
-<p>Prometheus由SoundCloud开发，是一个开源的系统监控和警报工具包。它包含许多方面的监控，例如度量标准生成和收集，结果可视化以及发生异常时的警报功能。Prometheus擅长于记录数字时间序列，并补充了以机器为中心的监控以及高度动态的面向服务的体系结构。</p>
-<a id="more"></a>
-<h1 id="Prometheus-普罗米修斯"><a href="#Prometheus-普罗米修斯" class="headerlink" title="Prometheus 普罗米修斯"></a>Prometheus 普罗米修斯</h1><blockquote>
-<p>From metrics to insight. Power your metrics and alerting with a leading open-source monitoring solution.</p>
-</blockquote>
+    <h2 id="Type-Assertion"><a href="#Type-Assertion" class="headerlink" title="Type Assertion"></a>Type Assertion</h2><p>Type Assertion(类型断言)是用于interface value的一种操作。语法如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.(T)</span><br></pre></td></tr></table></figure></p>
+<p>x是interface type的表达式，而T是assertd type，被断言的类型。</p>
+<p>类型断言的使用主要有两种情景：</p>
+<ul>
+<li><strong>如果asserted type是一个concrete type(具体类型)，一个实例类type，断言会检查x的dynamic type是否和T相同，如果相同，断言的结果是x的dynamic value</strong>, 当然dynamic value的type就是T了。换句话说，对concrete type的断言实际上是获取x的dynamic value.</li>
+<li><strong>如果asserted type是一个interface type，断言的目的是为了检测x的dynamic type是否满足T，如果满足，断言的结果是满足T的表达式，但是其dynamic type和dynamic value与x是一样的</strong>。换句话说，对interface type的断言实际上改变了x的type，通常是一个更大的method set的interface type，但是保留原来的dynamic type和dynamic value。</li>
+</ul>
+<hr>
+<p>参考文章：</p>
+<ul>
+<li>三月沙 <a href="https://sanyuesha.com/2017/10/18/go-interface-3/" target="_blank" rel="noopener">Go interface详解三</a></li>
+</ul>
 
   </section>
 
